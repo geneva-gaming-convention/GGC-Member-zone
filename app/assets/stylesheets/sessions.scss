@@ -1,0 +1,19 @@
+// Place all the styles related to the sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.login-pf body{
+    background-image: image-url("bg.png");
+    #brand{
+        top: -1em;
+        h1{
+            font-size: 48px;
+            color: #FFF;
+        }
+    }
+}
+
+
+.container{
+    background-color: rgba(0, 0, 0, 0.6) !important;
+}
