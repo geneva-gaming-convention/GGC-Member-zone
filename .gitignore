@@ -19,3 +19,5 @@
 # Ignore secrets files
 /config/database.yml
 /config/secrets.yml
+
+db/schema.rb

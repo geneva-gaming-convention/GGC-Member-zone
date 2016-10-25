@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html class="layout-pf layout-pf-fixed transitions">
 <head>
-  <title>GGCWebsite</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+    <title>GGCWebsite</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+    <%= render 'menu_top' %>
+    <div class="container-fluid container-cards-pf container-pf-nav-pf-vertical nav-pf-persistent-secondary">
+        <%= yield %>
+    </div>
+    <%= render 'about_modal' %>
 </body>
 </html>
