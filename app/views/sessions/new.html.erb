@@ -1,10 +1,9 @@
-<html class="login-pf">
 <span id="badge">
     <%= image_tag("ggc_web_color", width: "128") %>
 </span>
 <div class="container">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12" style="height: 2em;">
             <div id="brand">
                 <h1>
                     Geneva Gaming Convention
@@ -12,6 +11,15 @@
             </div>
         </div>
         <div class="col-sm-7 col-md-6 col-lg-5 login">
+            <div class="col-md-offset-2">
+                <% flash.each do |key, value| %>
+                <div id="error_explanation" class="alert alert-<%=key%>" role="alert">
+                    <p>
+                        <%= value %>
+                    </p>
+                </div>
+                <% end %>
+            </div>
             <%= render 'form_new' %>
         </div>
         <div class="col-sm-5 col-md-6 col-lg-7 details">
@@ -24,4 +32,3 @@
         </div>
     </div>
 </div>
-</html>

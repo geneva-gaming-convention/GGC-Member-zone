@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html class="layout-pf layout-pf-fixed transitions login-pf">
+<head>
+    <title>GGC</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+</head>
+<body>
+    <%= yield %>
+</body>
+</html>
