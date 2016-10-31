@@ -1,5 +1,6 @@
 $(document).ready(function() {
     // Initialize the vertical navigation
+    get_toggle_link();
     $().setupVerticalNavigation(true);
     check_restfull_a.initialize();
 });
@@ -55,3 +56,17 @@ var check_restfull_a = {
         .appendTo('body');
     }
 };
+
+function get_toggle_link(){
+    var span_selected = ($('span[data-toggle]') && $('span[data-target]'));
+    for(var i = 0; i < span_selected.length; i++){
+        modal_span = $(span_selected[i]);
+        if ($(modal_span).data("toggle")=="modal"){
+            modal_id = $(modal_span).data("target");
+            modal = $($(modal_id));
+            $(modal_span.parent()).on( "click", function() {
+                modal.modal("show");
+            });
+        }
+    }
+}
