@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    before_action :must_be_proprietary, only: [:edit, :update]
 
     def new
         @user = User.new()
@@ -21,6 +22,18 @@ class UsersController < ApplicationController
         if !@user
             render_404
         end
+    end
+
+    def edit
+        @user = current_logged_user
+        @address = Address.new()
+        if !@user
+            render_404
+        end
+    end
+
+    def update
+
     end
 
     def user_params

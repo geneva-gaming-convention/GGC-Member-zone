@@ -1,0 +1,16 @@
+<div class="col-md-4">
+  <div class="card-pf card-pf-accented card-pf-aggregate-status">
+    <h1 class="card-pf-title">
+      <span class="fa pficon-home"></span> Address
+    </h1>
+    <div class="card-pf-body">
+      <% if current_logged_user.address %>
+      <% address = current_logged_user.address %>
+      <%= address.street %>
+      <% else %>
+      <%= render 'address/modal_new_addr'%>
+      <%= render 'empty_state', title: "Address", info: "", action: "Add new", toggle: "modal", target:"#new_addr_modal" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 <div class="col-md-offset-2">
-    <h1>Register</h1>
+    <h1>Personals infos</h1>
     <% flash.each do |key, value| %>
     <div id="error_explanation" class="alert alert-<%=key%>" role="alert">
         <p>
@@ -18,4 +18,11 @@
     </div>
     <% end %>
 </div>
-<%= render 'form_new' %>
+<%= render 'form_edit' %>
+<div class="container-fluid container-cards-pf">
+    <div class="row row-cards-pf">
+        <%= render 'address_card' %>
+        <%= render 'phone_card' %>
+        <%= render 'game_account_card' %>
+    </div>
+</div>

@@ -1,7 +1,6 @@
-$(document).ready(function() {
-    // Initialize the vertical navigation
-    get_toggle_link();
+$(document).ready(function () {
     $().setupVerticalNavigation(true);
+    get_toggle_link();
     check_restfull_a.initialize();
 });
 

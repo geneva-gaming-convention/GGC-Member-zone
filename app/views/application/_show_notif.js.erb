@@ -1,0 +1,8 @@
+<%= javascript_tag do %>
+function show_notif_success(){
+  $("#notif_location").html("<%= j (render 'notification', strong: 'Nice !', content: 'everywith worked as expected', type: 'success') %>");
+}
+function show_notif_failure(){
+  $("#notif_location").html("<%= j (render 'notification', strong: 'Aïe', content: 'somthing goes wrong', type: 'danger') %>");
+}
+<% end %>

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
     root 'sessions#new'
     resources :users
+    resources :addresses
 
     # Session -------------------
     get 'login' => 'sessions#new'

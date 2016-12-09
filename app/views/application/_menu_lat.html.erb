@@ -1,74 +1,78 @@
 <div class="nav-pf-vertical nav-pf-vertical-with-sub-menus nav-pf-persistent-secondary">
-    <ul class="list-group">
-        <li class="list-group-item">
+  <ul class="list-group">
+    <li class="list-group-item">
+      <a>
+        <span class="fa fa-dashboard" data-toggle="tooltip" title="Dashboard"></span>
+        <span class="list-group-item-value">Dashboard</span>
+      </a>
+    </li>
+    <li class="list-group-item secondary-nav-item-pf" data-target="#event-secondary">
+      <a>
+        <span class="glyphicon glyphicon-calendar" data-toggle="tooltip" title="Events"></span>
+        <span class="list-group-item-value">Events</span>
+      </a>
+      <div id="event-secondary" class="nav-pf-secondary-nav">
+        <div class="nav-item-pf-header">
+          <a class="secondary-collapse-toggle-pf" data-toggle="collapse-secondary-nav"></a>
+          <span>Events</span>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item " data-target="#event-ggc2017-tertiary">
             <a>
-                <span class="fa fa-dashboard" data-toggle="tooltip" title="Dashboard"></span>
-                <span class="list-group-item-value">Dashboard</span>
+              <span class="list-group-item-value">GGC 2017</span>
             </a>
-        </li>
-        <li class="list-group-item secondary-nav-item-pf" data-target="#event-secondary">
+          </li>
+          <li class="list-group-item " data-target="#event-ggc2016-tertiary">
             <a>
-                <span class="glyphicon glyphicon-calendar" data-toggle="tooltip" title="Events"></span>
-                <span class="list-group-item-value">Events</span>
+              <span class="list-group-item-value">GGC 2016</span>
             </a>
-            <div id="event-secondary" class="nav-pf-secondary-nav">
-                <div class="nav-item-pf-header">
-                    <a class="secondary-collapse-toggle-pf" data-toggle="collapse-secondary-nav"></a>
-                    <span>Events</span>
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item " data-target="#event-ggc2017-tertiary">
-                        <a>
-                            <span class="list-group-item-value">GGC 2017</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item " data-target="#event-ggc2016-tertiary">
-                        <a>
-                            <span class="list-group-item-value">GGC 2016</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item " data-target="#event-ggc2015-tertiary">
-                        <a>
-                            <span class="list-group-item-value">GGC 2015</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="list-group-item">
+          </li>
+          <li class="list-group-item " data-target="#event-ggc2015-tertiary">
             <a>
-                <span class="fa pficon-help" data-toggle="tooltip" title="FAQ"></span>
-                <span class="list-group-item-value">FAQ</span>
+              <span class="list-group-item-value">GGC 2015</span>
             </a>
-        </li>
-        <li class="list-group-item secondary-nav-item-pf" data-target="#settings-secondary">
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <a>
+        <span class="fa pficon-help" data-toggle="tooltip" title="FAQ"></span>
+        <span class="list-group-item-value">FAQ</span>
+      </a>
+    </li>
+    <% if is_logged_in %>
+    <li class="list-group-item secondary-nav-item-pf" data-target="#settings-secondary">
+      <a>
+        <span class="glyphicon glyphicon-cog" data-toggle="tooltip" title="Settings"></span>
+        <span class="list-group-item-value">Settings</span>
+      </a>
+      <div id="settings-secondary" class="nav-pf-secondary-nav">
+        <div class="nav-item-pf-header">
+          <a class="secondary-collapse-toggle-pf" data-toggle="collapse-secondary-nav"></a>
+          <span>Settings</span>
+        </div>
+        <ul class="list-group">
+          <% if current_logged_user %>
+          <li class="list-group-item">
+            <%= link_to edit_user_path(current_logged_user.id) do %>
+            <span class="list-group-item-value">Personals infos</span>
+            <% end %>
+          </li>
+          <% end %>
+          <li class="list-group-item">
             <a>
-                <span class="glyphicon glyphicon-cog" data-toggle="tooltip" title="Settings"></span>
-                <span class="list-group-item-value">Settings</span>
+              <span data-toggle="modal" data-target="#about-modal" class="list-group-item-value">About</span>
             </a>
-            <div id="settings-secondary" class="nav-pf-secondary-nav">
-                <div class="nav-item-pf-header">
-                    <a class="secondary-collapse-toggle-pf" data-toggle="collapse-secondary-nav"></a>
-                    <span>Settings</span>
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <a>
-                            <span class="list-group-item-value">Personal infos</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a>
-                            <span data-toggle="modal" data-target="#about-modal" class="list-group-item-value">About</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <%= link_to logout_path, :method => :delete do %>
-                        <span class="list-group-item-value">Logout</span>
-                        <% end %>
-                    </li>
-                </ul>
-            </div>
-        </li>
-    </ul>
+          </li>
+          <li class="list-group-item">
+            <%= link_to logout_path, :method => :delete do %>
+            <span class="list-group-item-value">Logout</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <% end %>
+  </ul>
 </div>
