@@ -21,5 +21,3 @@
 /config/secrets.yml
 
 db/schema.rb
-
-Gemfile.lock
