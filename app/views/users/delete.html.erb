@@ -1,0 +1,6 @@
+<div class="panel panel-danger">
+  <div class="panel-body">
+    <h1><%= current_logged_user.name.capitalize %>, you really want to delete permanently your GGC account ?</h1>
+    <%= link_to "Yes please, delete my account.", user_path(current_logged_user.id), :method => :delete, :class => "btn btn-danger btn-lg" %>
+  </div>
+</div>

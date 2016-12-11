@@ -1,37 +1,38 @@
 <%= form_for(@user,:html => {:class => 'form-horizontal'}) do |f| %>
 <div class="form-group">
-    <%= label_tag 'name', "Name", class: 'col-sm-2 col-md-2 control-label' %>
-    <div class="col-sm-10 col-md-10">
-        <%= f.text_field :name, class: 'form-control'%>
-    </div>
+  <%= label_tag 'name', "Name", class: 'col-sm-2 col-md-2 control-label' %>
+  <div class="col-sm-10 col-md-10">
+    <%= f.text_field :name, class: 'form-control'%>
+  </div>
 </div>
 <div class="form-group">
-    <%= label_tag 'lastname', "Lastname", class: 'col-sm-2 col-md-2 control-label' %>
-    <div class="col-sm-10 col-md-10">
-        <%= f.text_field :lastname, class: 'form-control'%>
-    </div>
+  <%= label_tag 'lastname', "Lastname", class: 'col-sm-2 col-md-2 control-label' %>
+  <div class="col-sm-10 col-md-10">
+    <%= f.text_field :lastname, class: 'form-control'%>
+  </div>
 </div>
 <div class="form-group">
-    <%= label_tag 'mail', "Email", class: 'col-sm-2 col-md-2 control-label' %>
-    <div class="col-sm-10 col-md-10">
-        <%= f.email_field :mail, class: 'form-control'%>
-    </div>
+  <%= label_tag 'mail', "Email", class: 'col-sm-2 col-md-2 control-label' %>
+  <div class="col-sm-10 col-md-10">
+    <%= f.email_field :mail, class: 'form-control'%>
+  </div>
 </div>
 <div class="form-group">
-    <%= label_tag 'password', "Password", class: 'col-sm-2 col-md-2 control-label'  %>
-    <div class="col-sm-10 col-md-10">
-        <%= f.password_field :password, class: 'form-control'%>
-    </div>
+  <%= label_tag 'password', "Password", class: 'col-sm-2 col-md-2 control-label'  %>
+  <div class="col-sm-10 col-md-10">
+    <%= f.password_field :password, class: 'form-control'%>
+  </div>
 </div>
 <div class="form-group">
-    <%= label_tag 'password', "Password confirmation", class: 'col-sm-2 col-md-2 control-label'  %>
-    <div class="col-sm-10 col-md-10">
-        <%= f.password_field :password_confirmation, class: 'form-control'%>
-    </div>
+  <%= label_tag 'password', "Password confirmation", class: 'col-sm-2 col-md-2 control-label'  %>
+  <div class="col-sm-10 col-md-10">
+    <%= f.password_field :password_confirmation, class: 'form-control'%>
+  </div>
 </div>
 <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-primary">Update</button>
-    </div>
+  <div class="col-sm-offset-2 col-sm-10">
+    <button type="submit" class="btn btn-primary">Update</button>
+    <%= link_to "delete my account",user_delete_path(@user.id), :class => "btn btn-danger", :type => "button" %>
+  </div>
 </div>
 <% end %>
