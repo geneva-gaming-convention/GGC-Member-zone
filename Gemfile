@@ -33,6 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'patternfly-sass'
 gem 'nominatim'
+gem 'github_api'
 
 
 group :development, :test do

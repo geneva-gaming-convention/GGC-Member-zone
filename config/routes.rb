@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'sessions#new'
+  root 'welcome#index'
   resources :users do
     get 'delete' => 'users#delete'
   end

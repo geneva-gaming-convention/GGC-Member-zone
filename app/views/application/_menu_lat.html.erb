@@ -1,10 +1,10 @@
 <div class="nav-pf-vertical nav-pf-vertical-with-sub-menus nav-pf-persistent-secondary">
   <ul class="list-group">
     <li class="list-group-item">
-      <a>
-        <span class="fa fa-dashboard" data-toggle="tooltip" title="Dashboard"></span>
-        <span class="list-group-item-value">Dashboard</span>
-      </a>
+      <%= link_to root_path do %>
+      <span class="fa fa-dashboard" data-toggle="tooltip" title="Dashboard"></span>
+      <span class="list-group-item-value">Dashboard</span>
+      <% end %>
     </li>
     <li class="list-group-item secondary-nav-item-pf" data-target="#event-secondary">
       <a>
@@ -41,7 +41,6 @@
         <span class="list-group-item-value">FAQ</span>
       </a>
     </li>
-    <% if is_logged_in %>
     <li class="list-group-item secondary-nav-item-pf" data-target="#settings-secondary">
       <a>
         <span class="glyphicon glyphicon-cog" data-toggle="tooltip" title="Settings"></span>
@@ -65,14 +64,21 @@
               <span data-toggle="modal" data-target="#about-modal" class="list-group-item-value">About</span>
             </a>
           </li>
+          <% if current_logged_user %>
           <li class="list-group-item">
             <%= link_to logout_path, :method => :delete do %>
             <span class="list-group-item-value">Logout</span>
             <% end %>
           </li>
+          <% else %>
+          <li class="list-group-item">
+            <%= link_to login_path do %>
+            <span class="list-group-item-value">Log in</span>
+            <% end %>
+          </li>
+          <% end %>
         </ul>
       </div>
     </li>
-    <% end %>
   </ul>
 </div>

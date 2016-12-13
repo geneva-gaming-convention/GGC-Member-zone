@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-4">
+    <h1>Latest updates</h1>
+    <% @commits.each do |commit| %>
+    <% date = DateTime.parse(commit.author.date).in_time_zone %>
+    <div class="card-pf card-pf-accented card-pf-aggregate-status">
+      <h2 class="card-pf-title">
+        <%= date.strftime("%d %B %Y at %Hh%M") %>
+      </h2>
+      <div class="card-pf-body">
+        <p class="">
+          <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> <%= commit.message.capitalize %>
+        </p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
