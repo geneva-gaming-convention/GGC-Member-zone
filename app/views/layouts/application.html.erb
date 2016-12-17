@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html class="layout-pf layout-pf-fixed transitions">
 <head>
-    <title>GGCWebsite</title>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
-    <%= javascript_include_tag("c3.min.js") %>
-    <%= javascript_include_tag("d3.min.js") %>
-    <%= javascript_include_tag("jquery.matchHeight-min.js") %>
-    <%= csrf_meta_tags %>
+  <title>GGCWebsite</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag("c3.min.js") %>
+  <%= javascript_include_tag("d3.min.js") %>
+  <%= javascript_include_tag("jquery.matchHeight-min.js") %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <%= render 'menu_top' %>
-    <div class="container-fluid container-cards-pf container-pf-nav-pf-vertical nav-pf-persistent-secondary">
-        <%= yield %>
-    </div>
-    <%= render 'about_modal' %>
+  <%= render 'menu_top' %>
+  <div class="container-fluid container-cards-pf container-pf-nav-pf-vertical nav-pf-persistent-secondary">
+    <%= yield %>
+  </div>
+  <%= render 'about_modal' %>
 </body>
 </html>
