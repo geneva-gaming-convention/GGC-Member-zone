@@ -1,19 +1,25 @@
 .row{
-    width: 100%;
+  width: 100%;
 }
 header{
-    margin-bottom: 2em;
+  margin-bottom: 2em;
 }
 
 a.navbar-brand:hover{
-    background-color: none;
+  background-color: none;
 }
 
 
 .blank-slate-pf{
-    padding: 30px 30px;
+  padding: 30px 30px;
 }
 
 h1.card-pf-title{
-    font-size: 18px !important;
+  font-size: 18px !important;
+}
+
+.panel-actions{
+  text-align: right;
+  padding: 0.5em;
+  border-bottom: 1px solid grey;
 }

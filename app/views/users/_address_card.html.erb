@@ -6,7 +6,19 @@
     <div class="card-pf-body">
       <% if current_logged_user.address %>
       <% address = current_logged_user.address %>
-      <%= address.street %>
+      <div class="panel panel-default">
+        <div class="panel-actions">
+          <%= link_to address_path(address.id), method: :delete, class: "btn btn-danger btn-xs" do %>
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          <% end %>
+        </div>
+        <div class="panel-body">
+          <%= address.street %><br/>
+          <%= address.locality.postal_code %> <%= address.locality.name %><br/>
+          <%= address.locality.state.name %><br/>
+          <%= address.locality.state.country.name %>
+        </div>
+      </div>
       <% else %>
       <%= render 'address/modal_new_addr'%>
       <%= render 'empty_state', title: "Address", info: "", action: "Add new", toggle: "modal", target:"#new_addr_modal" %>
