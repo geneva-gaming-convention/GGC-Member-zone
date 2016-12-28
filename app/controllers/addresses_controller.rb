@@ -24,6 +24,30 @@ class AddressesController < ApplicationController
     end
   end
 
+  def destroy
+    address = Address.find_by(id: params["id"])
+    user_addr = current_logged_user.address
+    if ((address == user_addr) && address != nil)
+      locality = user_addr.locality
+      state = locality.state
+      country = state.country
+      if user_addr.delete
+        if locality.addresses.count == 0
+          locality.delete
+          if state.localities.count == 0
+            state.delete
+            if country.states.count == 0
+              country.delete
+            end
+          end
+        end
+        redirect_to edit_user_path(current_logged_user.id)
+      else
+        render_403
+      end
+    end
+  end
+
   def address_params
     params.require(:address).permit(:street, :number)
   end
