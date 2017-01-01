@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
 
   root 'welcome#index'
+
+  # Users ---------------------
   resources :users do
     get 'delete' => 'users#delete'
   end
-  resources :addresses
+  get 'validate/:token' => 'users#validate', as: :validate
+  # ---------------------------
 
-  # Session -------------------
+  # Addresses -----------------
+  resources :addresses
+  # ---------------------------
+
+  # Sessions ------------------
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'

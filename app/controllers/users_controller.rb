@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @user.gen_token_and_salt
     if @user.save
       log_in_session(@user)
+      RegisterMailer.welcome(@user).deliver_now
       redirect_to user_path(@user.id)
     else
       flash.now[:danger] =  "Failed to create "+@user.name + ", check every fields."
@@ -48,6 +49,23 @@ class UsersController < ApplicationController
     else
       flash[:danger] =  "Failed to delete your account 😞"
       redirect_to edit_user_path(@user.id)
+    end
+  end
+
+  def validate
+    user = User.find_by(token: params["token"])
+    if user
+      user.validated = true
+      user.password_confirmation = user.password
+      if user.save
+        flash[:success] = 'Your email has been validated sucessfully !'
+        redirect_to login_path
+      else
+        flash[:danger] = 'Your email has not been validated, try again.'
+        redirect_to login_path
+      end
+    else
+      render_404
     end
   end
 

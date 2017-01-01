@@ -1,0 +1,138 @@
+<table data-module="module-2" cellpadding="0" cellspacing="0" style="max-width:800px; margin-top:1em;">
+  <tr>
+    <td data-bgcolor="bg-module">
+      <table class="flexible" align="center" style="margin:0 auto;" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="img-flex">
+            <img src="https://lh3.googleusercontent.com/QjkX9z3oi_xfBnrrndiqY7VpSDhH01xaGe3waZzSK87V_NKDfifPzU1PCnDbHa5kvnT9iZ-K96Dd_yqDgru6Y0t2KrOlo4fh_BLZmKYpDHWk9jOKDerSWRi52ZiP6s0ZfZI5YtwESFlljPPPaqH10pEw940SAm0IoN_zqH8mqSN4vl1BNamQp9hHOpdm3FUHrVn88W_MUOl-MgoOgs-3iubK0lmNyDtg9mp0Ayv87CAtPoMhNelrO0i5CtD6mKo8pEgzAMT9ARG3coYKtDWQLW-FUhqQePlS5aKA7Yx5KepAayYDa6G_eevSDq57LvfZhSJWb7XhOxLvSdZESTcf5tT-nAPX9cveDt1ry5L7caPIZCkTikI1CRj0e3ltIPS78pEGhw7PO-MEXoEeIxQuHwkqj8pvbR2RhPBnGXlediQj2-63xUf1L7RBcCB2ZOYDjn5ZytcMIq0-sQ6fwRXF_6UtR3wpYqg-2gBP0Bfk0DdzuNjrp-PBvU6eKBOrOC2KZkBVyQIG76NdiGo4bRWo_XW1oqw-SmXQw0QwQP3Gm2H0nmSU8LEQz7Ivu0m53zDXCEwF_DTCvnBYpEZo8JIF8jqP_Jo5Sq_spMw9wYhXA0sapoNUfW7M=w900-no" width="100%" style="margin:0; padding:0; border:none; display:block;" border="0" />
+          </td>
+        </tr>
+        <tr>
+          <td data-bgcolor="bg-block" class="holder" style="padding:2em 2em 2em;" bgcolor="#f9f9f9">
+            <table cellpadding="0" cellspacing="0" width="100%">
+              <tr>
+                <td data-color="title" data-size="size title" data-min="25" data-max="45" data-link-color="link title color" data-link-style="text-decoration:none; color:#292c34;" class="title" align="center" style="font:35px/38px Arial, Helvetica, sans-serif; color:#292c34; padding:0 0 24px;">
+                  Hi <%= @user.name.capitalize %>
+                </td>
+              </tr>
+              <tr>
+                <td data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="left" style="font:bold 16px/25px Arial, Helvetica, sans-serif; color:#888; padding:0 0 23px;">
+                  We are happy to see you here 😃 ! <br/>
+                  You're now near to rock, follow the instructions below to complete your registration.<br/>
+                </td>
+              </tr>
+              <tr>
+                <td data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="left" style="font:bold 16px/25px Arial, Helvetica, sans-serif; color:#888; padding:0 0 23px;">
+                  1️⃣ First, please use the link below to validate your email address:
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:0 0 20px;">
+                  <table width="134" align="center" style="margin:0 auto;" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td data-bgcolor="bg-button" data-size="size button" data-min="10" data-max="16" class="btn" align="center" style="font:12px/14px Arial, Helvetica, sans-serif; color:#f8f9fb; text-transform:uppercase; mso-padding-alt:12px 10px 10px; border-radius:2px;" bgcolor="#39a5dc">
+                        <%= link_to "Validate my email", validate_url(@user.token), style: "text-decoration:none; color:#f8f9fb; display:block; padding:12px 10px 10px;" %>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="left" style="font:bold 16px/25px Arial, Helvetica, sans-serif; color:#888; padding:0 0 1em;">
+                  2️⃣ You're now able to log in on the GGC website:<br/>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:0 0 20px;">
+                  <table width="134" align="center" style="margin:0 auto;" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td data-bgcolor="bg-button" data-size="size button" data-min="10" data-max="16" class="btn" align="center" style="font:12px/14px Arial, Helvetica, sans-serif; color:#f8f9fb; text-transform:uppercase; mso-padding-alt:12px 10px 10px; border-radius:2px;" bgcolor="#39a5dc">
+                        <%= link_to "Log in", login_url, style: "text-decoration:none; color:#f8f9fb; display:block; padding:12px 10px 10px;" %>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="left" style="font:bold 16px/25px Arial, Helvetica, sans-serif; color:#888; padding:0 0 1em;">
+                  3️⃣ Once logged in, edit your personnal informations and add an address.<br/>
+                </td>
+              </tr>
+              <tr>
+                <td data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="left" style="font:bold 16px/25px Arial, Helvetica, sans-serif; color:#888; padding:0 0 1em;">
+                  4️⃣ After this you can now add some games accounts to take part in any of our GGC Tournaments !<br/>
+                </td>
+              </tr>
+              <tr>
+                <td data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="left" style="font:bold 16px/25px Arial, Helvetica, sans-serif; color:#888; padding:0 0 1em;">
+                  Congratulation, you're now totaly ready to come at GGC 2017 !<br/><br/>
+                  See you there, GL & HF !
+                </td>
+              </tr>
+              <tr>
+                <td height="28">
+                </td>
+              </tr>
+              <tr>
+                <td data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="left" style="font:bold 16px/25px Arial, Helvetica, sans-serif; color:#888; padding:0 0 23px;">
+                  If you have any questions, feel free to contact us at <%= mail_to "contact@ggc.events" %>.<br/>
+                  Your GGC team.
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr style="text-align:center; max-width:800px; margin-bottom:1em; background-color:#e3e3e3;">
+          <td style="padding:1em;">
+            This mail was sent to <%= @user.mail %><br/>
+          </td>
+        </tr>
+        <tr style="text-align:center; margin-bottom:4em; background-color:#e3e3e3;">
+          <td style="padding-bottom:1em;">
+            <%= link_to 'https://ggc.ch' do %>
+            <%= image_tag "ggc_web_color", height: "32" %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <table width="100%" align="center" style="margin:auto;" cellpadding="0" cellspacing="0" bgcolor="#e3e3e3">
+            <tr>
+              <td></td>
+              <td>
+                <table align="center" style="margin:auto;" cellpadding="6" cellspacing="0">
+                  <tr>
+                    <td style="padding-bottom:1em;">
+                      <%= link_to 'https://www.facebook.com/GenevaGamingConvention' do %>
+                      <%= image_tag "fb", height: "32" %>
+                      <% end %>
+                    </td>
+                    <td style="padding-bottom:1em;">
+                      <%= link_to 'https://twitter.com/GGConvention' do %>
+                      <%= image_tag "tw", height: "32" %>
+                      <% end %>
+                    </td>
+                    <td style="padding-bottom:1em;">
+                      <%= link_to 'https://github.com/geneva-gaming-convention' do %>
+                      <%= image_tag "gh", height: "32" %>
+                      <% end %>
+                    </td>
+                    <td style="padding-bottom:1em;">
+                      <%= link_to 'https://www.youtube.com/channel/UCla9__OdhEjT-Kb0kgHpo-w' do %>
+                      <%= image_tag "yt", height: "32" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </tr>
+        <tr>
+          <td height="28">
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
