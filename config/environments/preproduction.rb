@@ -78,7 +78,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { :host => 'http://ggc-host.cypressxt.net' }
+  config.action_mailer.default_url_options = { :host => 'https://ggc-host.cypressxt.net' }
 
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
@@ -95,8 +95,8 @@ Rails.application.configure do
   #    :ssl => true
   # }
 
-  config.action_controller.asset_host = 'http://ggc-host.cypressxt.net'
-  config.action_mailer.asset_host = 'http://ggc-host.cypressxt.net'
+  config.action_controller.asset_host = 'https://ggc-host.cypressxt.net'
+  config.action_mailer.asset_host = 'https://ggc-host.cypressxt.net'
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
