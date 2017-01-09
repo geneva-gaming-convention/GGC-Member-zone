@@ -96,6 +96,7 @@ Rails.application.configure do
   # }
 
   config.action_controller.asset_host = 'https://preprod.ggc.ch'
+  config.action_controller.default_url_options = { :host => 'https://preprod.ggc.ch' }
   config.action_mailer.asset_host = 'https://preprod.ggc.ch'
 
   config.action_mailer.delivery_method = :smtp

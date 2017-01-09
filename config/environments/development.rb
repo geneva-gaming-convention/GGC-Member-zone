@@ -39,9 +39,10 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.default_url_options = { :host => 'http://dev:3000' }
+  config.action_controller.default_url_options = { :host => 'http://dev:3000' }
   config.action_controller.asset_host = 'http://dev:3000'
   config.action_mailer.asset_host = 'http://dev:3000'
-  
+
   config.action_mailer.smtp_settings = {
     :address   => Rails.application.secrets.mail_smtp_srv,
     :port      => Rails.application.secrets.mail_smtp_port,
