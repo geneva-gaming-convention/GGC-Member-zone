@@ -43,8 +43,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = current_logged_user
-    if @user.destroy
-      log_out
+    if @user.destroy && log_out
       redirect_to root_path
     else
       flash[:danger] =  "Failed to delete your account 😞"
