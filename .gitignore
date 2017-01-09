@@ -21,3 +21,4 @@
 /config/secrets.yml
 
 db/schema.rb
+config/newrelic.yml
