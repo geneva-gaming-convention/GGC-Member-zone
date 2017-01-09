@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
+  # Welcome -------------------
   root 'welcome#index'
+  get 'commits' => 'welcome#get_commits'
+  # ---------------------------
 
   # Users ---------------------
   resources :users do
