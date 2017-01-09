@@ -58,8 +58,15 @@ class UsersController < ApplicationController
       user.validated = true
       user.password_confirmation = user.password
       if user.save
-        flash[:success] = 'Your email has been validated sucessfully !'
-        redirect_to login_path
+        user.gen_token
+        user.password_confirmation = user.password
+        if user.save
+          flash[:success] = 'Your email has been validated sucessfully !'
+          redirect_to login_path
+        else
+          flash[:danger] = 'Your email has not been validated, try again.'
+          redirect_to login_path
+        end
       else
         flash[:danger] = 'Your email has not been validated, try again.'
         redirect_to login_path

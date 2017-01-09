@@ -30,10 +30,18 @@ class User < ActiveRecord::Base
   end
 
   def gen_token_and_salt
+    self.gen_token
+    self.gen_salt
+  end
+
+  def gen_token
     self.token = loop do
       token = SecureRandom.hex(12)
       break token unless User.exists?(token: token)
     end
+  end
+
+  def gen_salt
     self.salt = loop do
       salt = SecureRandom.hex(12)
       break salt unless User.exists?(salt: salt)
