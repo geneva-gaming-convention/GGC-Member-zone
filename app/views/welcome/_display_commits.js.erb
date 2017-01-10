@@ -1,0 +1,5 @@
+function display_commits(){
+  $.get( "<%=j commits_path %>", function( commits ) {
+    $("#commits").html(commits);
+  });
+}
