@@ -6,6 +6,14 @@
       <span class="list-group-item-value">Dashboard</span>
       <% end %>
     </li>
+    <% if is_logged_in %>
+    <li class="list-group-item">
+      <%= link_to user_path(current_logged_user.id) do %>
+      <span class="fa pficon-user" data-toggle="tooltip" title="Dashboard"></span>
+      <span class="list-group-item-value"><%= current_logged_user.name.capitalize %></span>
+      <% end %>
+    </li>
+    <% end %>
     <li class="list-group-item secondary-nav-item-pf" data-target="#event-secondary">
       <a>
         <span class="glyphicon glyphicon-calendar" data-toggle="tooltip" title="Events"></span>

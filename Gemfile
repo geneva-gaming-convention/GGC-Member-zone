@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'patternfly-sass'
 gem 'nominatim'
 gem 'github_api'
+gem 'gravatar_image_tag'
 
 
 group :development, :test do
