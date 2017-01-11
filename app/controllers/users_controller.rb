@@ -22,7 +22,9 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params["id"])
     if !@user
       render_404
+      return
     end
+    @is_account_valid = @user.address && @user.validated
   end
 
   def edit
@@ -30,6 +32,7 @@ class UsersController < ApplicationController
     @address = Address.new()
     if !@user
       render_404
+      return
     end
   end
 
