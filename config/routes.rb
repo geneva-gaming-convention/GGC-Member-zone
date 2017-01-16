@@ -12,6 +12,12 @@ Rails.application.routes.draw do
   get 'validate/:token' => 'users#validate', as: :validate
   # ---------------------------
 
+  # Reset password ------------
+  get 'reset_password' => 'reset_password#ask_reset_password', as: :ask_rst_passwd
+  post 'send_new_password' => 'reset_password#send_new_password', as: :send_new_passwd
+  get 'reset_password/:token' => 'reset_password#reset_password', as: :rst_passwd
+  # ---------------------------
+
   # Addresses -----------------
   resources :addresses
   # ---------------------------

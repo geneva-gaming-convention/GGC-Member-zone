@@ -8,6 +8,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <%= yield %>
+  <span id="badge" style="margin-bottom: 10em;">
+    <%= image_tag("ggc_web_color", width: "190") %>
+  </span>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div id="brand">
+          <h1 class="hidden-xs">
+            Geneva Gaming Convention
+          </h1>
+          <h1 class="visible-xs">
+            Geneva Gaming Convention
+          </h1>
+        </div>
+      </div>
+      <div class="col-sm-7 col-md-6 col-lg-5 login">
+        <div class="col-md-offset-2">
+          <% flash.each do |key, value| %>
+          <div id="error_explanation" class="alert alert-<%=key%>" role="alert">
+            <p>
+              <%= value %>
+            </p>
+          </div>
+          <% end %>
+        </div>
+        <%= yield %>
+      </div>
+      <div class="col-sm-5 col-md-6 col-lg-7 details">
+        <p>
+          <strong>Welcome to GGC | Geneva Gaming Convention member zone!</strong></br>
+          Here you are able to manage all your GGC experience such as create some teams for tournament,</br>
+          edit a bunch of personals preferences, find some friends and much more.</br>
+          GL HF
+        </p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

@@ -3,17 +3,36 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .login-pf body{
-    background-image: image-url("bg.png");
-    #brand{
-        top: -15em;
-        h1{
-            font-size: 48px;
-            color: #FFF;
-            text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
-        }
-    }
+  background-image: image-url("bg.png");
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-.container{
+.login-pf body{
+  #brand{
+    top: -13em;
+    h1 {
+      color: #FFF;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+    }
+    h1.hidden-xs{
+      font-size: 48px;
+    }
+    h1.visible-xs{
+      font-size: 33px;
+    }
+  }
+  div.container{
     background-color: rgba(0, 0, 0, 0.6) !important;
+    padding-top:3em;
+    padding-bottom:2em;
+    div.row{
+      div.col-sm-12{
+        height: 2em; margin-bottom: 0em; height: 0px;
+      }
+    }
+  }
 }
