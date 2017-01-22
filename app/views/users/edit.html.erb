@@ -7,16 +7,6 @@
     </p>
   </div>
   <% end %>
-  <% if @user.errors.any? %>
-  <div id="error_explanation" class="alert alert-danger">
-    <h5><%= pluralize(@user.errors.count, "error") %> canceled your registration:</h5>
-    <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
 </div>
 <div class="container-fluid container-cards-pf">
   <%= render 'form_edit' %>
@@ -24,5 +14,10 @@
     <%= render 'address_card' %>
     <%= render 'phone_card' %>
     <%= render 'game_account_card' %>
+  </div>
+  <div class="row">
+    <div class="col-lg-12" style="text-align:center;">
+      <%= link_to "Delete my account",user_delete_path(@user.id), :class => "btn btn-danger", :type => "button" %>
+    </div>
   </div>
 </div>

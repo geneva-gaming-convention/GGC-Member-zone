@@ -37,7 +37,28 @@ class UsersController < ApplicationController
   end
 
   def update
-
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      @user.password = user_params["password"]
+      @user.password_confirmation = user_params["password_confirmation"]
+      if @user.password == @user.password_confirmation && @user.password != ""
+        @user.gen_token_and_salt
+        @user.change_password(@user.password)
+        if @user.save
+          flash[:success] = "Your personnal informations have successfully been updated"
+          redirect_to edit_user_path(@user.id)
+        else
+          flash[:danger] = "An error occurred while updating your personal informations, "+@user.errors.full_messages.to_sentence
+          redirect_to edit_user_path(@user.id)
+        end
+      else
+        flash[:danger] = "An error occurred while updating your personal informations, password & confirmation must be identical and not empty"
+        redirect_to edit_user_path(@user.id)
+      end
+    else
+      flash[:danger] = "An error occurred while updating your personal informations"
+      redirect_to edit_user_path(@user.id)
+    end
   end
 
   def delete
