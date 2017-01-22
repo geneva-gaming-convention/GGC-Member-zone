@@ -1,85 +1,85 @@
-<div class="col-md-4">
+<div class="col-md-4 col-xs-12">
   <div class="card-pf card-pf-accented card-pf-aggregate-status">
     <h1 class="card-pf-title">
       Account status
     </h1>
     <div class="card-pf-body" style="text-align:left;">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 col-xs-8 col-xs-8">
           Mail validated
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-xs-2">
           <% if @user.validated %>
           <span class="glyphicon pficon-ok" aria-hidden="true"></span>
           <% else %>
           <span class="glyphicon pficon-error-circle-o" aria-hidden="true"></span>
           <% end %>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-xs-2">
           <%= link_to edit_user_path(@user.id) do %>
           <span class="glyphicon pficon-edit" aria-hidden="true"></span>
           <% end %>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 col-xs-8">
           Address
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-xs-2">
           <% if @user.address %>
           <span class="glyphicon pficon-ok" aria-hidden="true"></span>
           <% else %>
           <span class="glyphicon pficon-error-circle-o" aria-hidden="true"></span>
           <% end %>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-xs-2">
           <%= link_to edit_user_path(@user.id) do %>
           <span class="glyphicon pficon-edit" aria-hidden="true"></span>
           <% end %>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 col-xs-8">
           Phone number
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-xs-2">
           <% if false %>
           <span class="glyphicon pficon-ok" aria-hidden="true"></span>
           <% else %>
           <span class="glyphicon pficon-error-circle-o" aria-hidden="true"></span>
           <% end %>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-xs-2">
           <%= link_to edit_user_path(@user.id) do %>
           <span class="glyphicon pficon-edit" aria-hidden="true"></span>
           <% end %>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 col-xs-8">
           Game account
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-xs-2">
           <span class="glyphicon pficon-error-circle-o" aria-hidden="true"></span>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-xs-2">
           <%= link_to edit_user_path(@user.id) do %>
           <span class="glyphicon pficon-edit" aria-hidden="true"></span>
           <% end %>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 col-xs-8">
           <h2>Ready to event</h2>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-xs-2">
           <% if @is_account_valid %>
           <h2><span class="glyphicon pficon-ok" aria-hidden="true"></span></h2>
           <% else %>
           <h2><span class="glyphicon pficon-error-circle-o" aria-hidden="true"></span></h2>
           <% end %>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-xs-2">
         </div>
       </div>
     </div>
