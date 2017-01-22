@@ -41,6 +41,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def gen_reset_token
+    self.reset_token = loop do
+      reset_token = SecureRandom.hex(12)
+      break reset_token unless User.exists?(reset_token: reset_token)
+    end
+    self.reseted_at = DateTime.now
+  end
+
   def gen_salt
     self.salt = loop do
       salt = SecureRandom.hex(12)
