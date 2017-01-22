@@ -37,15 +37,18 @@ class ResetPasswordController < ApplicationController
     if @user && @user.reseted_at > DateTime.now-(24.hour)
       @user.password = user_params["password"]
       @user.password_confirmation = user_params["password_confirmation"]
-      if @user.password == @user.password_confirmation
+      if @user.password == @user.password_confirmation && @user.password != ""
         @user.gen_token_and_salt
         @user.change_password(@user.password)
-      end
-      if @user.gen_reset_token && @user.save
-        flash[:success] = "Your password has been updated !"
-        redirect_to login_path
+        if @user.gen_reset_token && @user.save
+          flash[:success] = "Your password has been updated !"
+          redirect_to login_path
+        else
+          flash[:danger] = "Failure during your password configuration process ! "+@user.errors.full_messages.to_sentence
+          redirect_to conf_new_passwd_path(params["token"])
+        end
       else
-        flash[:danger] = "Failure during your password configuration process !"+@user.errors.full_messages.to_s
+        flash[:danger] = "Failure during your password configuration process ! "
         redirect_to conf_new_passwd_path(params["token"])
       end
     else
