@@ -7,9 +7,9 @@
 <% end %>
 <div class="row">
   <div class="col-md-12">
-    <% if must_be_proprietary %>
-    <img src="<%= gravatar_image_url(current_logged_user.mail.gsub('spam', 'mdeering'), size: 192) %>
-    " alt="<%= current_logged_user.name %>" class="img-circle" height="96">
+    <% if is_proprietary %>
+    <img src="<%= gravatar_image_url(@user.mail.gsub('spam', 'mdeering'), size: 192) %>
+    " alt="<%= @user.name %>" class="img-circle" height="96">
     <span style="font-size:28px;display: inline-block;height:96px; margin-left:1em;">Hi <%= @user.name.capitalize %></span>
     <% else %>
     <span style="font-size:28px;"><%= @user.name.capitalize %></span>
