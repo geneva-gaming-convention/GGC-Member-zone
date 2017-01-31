@@ -15,9 +15,16 @@
     <%= render 'phone_card' %>
     <%= render 'game_account_card' %>
   </div>
-  <div class="row">
-    <div class="col-lg-12" style="text-align:center;">
-      <%= link_to "Delete my account",user_delete_path(@user.id), :class => "btn btn-danger", :type => "button" %>
+  <div class="row row-cards-pf">
+    <div class="col-lg-12" style="text-align:center;padding:2em;">
+      <div class="card-pf card-pf-accented card-pf-aggregate-status danger_zone">
+        <h1 class="card-pf-title">
+          <span class="glyphicon  pficon-warning-triangle-o"></span> Danger zone
+        </h1>
+        <div class="card-pf-body">
+          <%= link_to "Delete my account",user_delete_path(@user.id), :class => "btn btn-danger", :type => "button" %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
