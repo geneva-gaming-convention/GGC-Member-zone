@@ -4,7 +4,7 @@
     Where do you live ?
   </label>
   <div class="col-sm-9">
-    <%= f.text_field :street, class: 'form-control', id: "street-modal-markup", placeholder: "Chemin du Centurion 27, 1227 Carouge", required: true %>
+    <%= select_tag "address[street]", nil, class: 'form-control', id: "street-modal-markup", style: "width:100%;" %>
   </div>
 </div>
 <div class="form-group">

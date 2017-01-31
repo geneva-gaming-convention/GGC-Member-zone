@@ -35,6 +35,8 @@ gem 'patternfly-sass'
 gem 'nominatim'
 gem 'github_api'
 gem 'gravatar_image_tag'
+gem "select2-rails"
+gem "jt-rails-address"
 
 
 group :development, :test do

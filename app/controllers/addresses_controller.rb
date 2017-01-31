@@ -17,7 +17,7 @@ class AddressesController < ApplicationController
     user = current_logged_user
     user.address = new_addr
     user.password_confirmation = user.password
-    if new_addr.save && new_locality.save && new_state.save && user.save
+    if is_addr_valid(new_addr) && new_addr.save && new_locality.save && new_state.save && user.save
       head 200, content_type: "text/html"
     else
       head 500, content_type: "text/html"
@@ -45,6 +45,21 @@ class AddressesController < ApplicationController
       else
         render_403
       end
+    end
+  end
+
+  def get_valid_addr
+    data = JT::Rails::Address.search(params["query"], Rails.application.secrets.google_maps_api_key)
+    render json: data
+  end
+
+  def is_addr_valid(addr)
+    full_addr = addr.to_string
+    api_result = JT::Rails::Address.search(full_addr, Rails.application.secrets.google_maps_api_key)
+    if api_result
+      return true
+    else
+      return false
     end
   end
 

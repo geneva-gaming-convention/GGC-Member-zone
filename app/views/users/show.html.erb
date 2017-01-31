@@ -6,17 +6,36 @@
 </div>
 <% end %>
 <div class="row">
-  <div class="col-md-2" style="height:96px; text-align:right;">
+  <div class="col-md-12">
+    <% if must_be_proprietary %>
     <img src="<%= gravatar_image_url(current_logged_user.mail.gsub('spam', 'mdeering'), size: 192) %>
     " alt="<%= current_logged_user.name %>" class="img-circle" height="96">
-  </div>
-  <div class="col-md-10" style="height:96px;">
-    <h1 style="line-height: 66px; vertical-align:middle;">Hi <%= @user.name.capitalize %></h1>
+    <span style="font-size:28px;display: inline-block;height:96px; margin-left:1em;">Hi <%= @user.name.capitalize %></span>
+    <% else %>
+    <span style="font-size:28px;"><%= @user.name.capitalize %></span>
+    <% end %>
   </div>
 </div>
 
 <div class="row" style="margin-top:2em;">
+  <% if is_proprietary %>
   <%= render 'account_status' %>
+  <% else %>
+  <div class="row">
+    <div class="col-md-2 col-xs-4">
+      <h2>Ready to event</h2>
+    </div>
+    <div class="col-md-2 col-xs-2">
+      <% if @is_account_valid %>
+      <h2><span class="glyphicon pficon-ok" aria-hidden="true"></span></h2>
+      <% else %>
+      <h2><span class="glyphicon pficon-error-circle-o" aria-hidden="true"></span></h2>
+      <% end %>
+    </div>
+    <div class="col-md-2 col-xs-2">
+    </div>
+  </div>
+  <% end %>
   <div class="col-md-8">
   </div>
 </div>

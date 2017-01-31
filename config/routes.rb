@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   # Addresses -----------------
   resources :addresses
+  post 'validate_addr'               => 'addresses#get_valid_addr'
   # ---------------------------
 
   # Sessions ------------------

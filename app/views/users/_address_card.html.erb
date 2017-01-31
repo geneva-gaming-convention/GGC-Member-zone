@@ -8,12 +8,19 @@
       <% address = current_logged_user.address %>
       <div class="panel panel-default">
         <div class="panel-actions">
-          <%= link_to address_path(address.id), method: :delete, class: "btn btn-danger btn-xs" do %>
-          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-          <% end %>
+          <div class="row">
+            <div class="col-md-10 col-xs-8" style="text-align:left;">
+              <h5>Main address</h5>
+            </div>
+            <div class="col-md-2 col-xs-4" style="font-size:18px;">
+              <%= link_to address_path(address.id), method: :delete, class: "btn btn-danger btn-xs" do %>
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              <% end %>
+            </div>
+          </div>
         </div>
         <div class="panel-body">
-          <%= address.street %><br/>
+          <%= address.street %> <%= address.number %><br/>
           <%= address.locality.postal_code %> <%= address.locality.name %><br/>
           <%= address.locality.state.name %><br/>
           <%= address.locality.state.country.name %>

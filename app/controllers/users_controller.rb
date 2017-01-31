@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :must_be_proprietary, only: [:edit, :update, :delete, :destroy]
 
+
+  ##
+  # Initialise an empty user model and display the user's creation form
+  #
   def new
     @user = User.new()
   end
@@ -13,7 +17,7 @@ class UsersController < ApplicationController
       RegisterMailer.welcome(@user).deliver_now
       redirect_to user_path(@user.id)
     else
-      flash.now[:danger] =  "Failed to create "+@user.name + ", check every fields."
+      flash.now[:danger] =  "Failed to create "+@user.name + ", "+@user.errors.full_messages.to_sentence+"."
       render 'new'
     end
   end

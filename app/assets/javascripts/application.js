@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require select2
 //= require jquery_ujs
 //= require bootstrap
 //= require patternfly
