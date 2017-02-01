@@ -75,8 +75,8 @@ function submit_form_new_addr(){
       console.log(resultat);
       status = resultat.status;
       if(status=="200"){
-        show_notif_success();
         $('#new_addr_modal').modal('hide');
+        location.reload();
       }else{
         show_notif_failure();
       }
