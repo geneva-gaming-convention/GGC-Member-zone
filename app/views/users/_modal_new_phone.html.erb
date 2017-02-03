@@ -1,21 +1,21 @@
 <%= render :partial => 'show_notif.js.erb' %>
-<div class="modal fade" id="new_addr_modal" role="dialog" aria-labelledby="new_addr_modal_label" aria-hidden="true">
+<div class="modal fade" id="new_phone_modal" role="dialog" aria-labelledby="new_phone_modal_label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
           <span class="pficon pficon-close"></span>
         </button>
-        <h4 class="modal-title" id="new_addr_modal_label">
-          New address
+        <h4 class="modal-title" id="new_phone_modal_label">
+          New phone n°
         </h4>
       </div>
       <div class="modal-body">
-        <%= render 'address/form_new' %>
+        <%= render 'form_new_phone' %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button id="submit_btn_addr" type="button" class="btn btn-primary" disabled="true">Create</button>
+        <button id="submit_btn_phone" type="button" class="btn btn-primary" disabled="true">Create</button>
       </div>
     </div>
   </div>

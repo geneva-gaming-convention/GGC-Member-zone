@@ -1,0 +1,10 @@
+<%= form_for(@user,url: user_phone_path(@user.id),method: :put, remote: true, :html => {:class => 'form-horizontal', :id => 'new_phone_form'}) do |f| %>
+<div class="form-group">
+  <label class="col-sm-4 control-label" for="street-modal-markup">
+    What's your phone number
+  </label>
+  <div class="col-sm-8">
+    <%= f.text_field :phone, class: 'form-control', placeholder: "078 888 22 88", required: true %>
+  </div>
+</div>
+<% end %>

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   # Users ---------------------
   resources :users do
-    get 'delete'                     => 'users#delete'
+    get     'delete'                 => 'users#delete'
+    put     'phone'                  => 'users#update_phone'
+    delete  'phone'                  => 'users#delete_phone'
   end
   get   'validate/:token'            => 'users#validate',                       as: :validate
   # ---------------------------

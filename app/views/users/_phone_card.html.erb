@@ -1,10 +1,31 @@
 <div class="col-md-4">
-    <div class="card-pf card-pf-accented card-pf-aggregate-status">
-        <h1 class="card-pf-title">
-            <span class="glyphicon glyphicon-earphone"></span> Phone
-        </h1>
-        <div class="card-pf-body">
-            <%= render 'empty_state', title: "Phone n°", info: "", action: "Add new" %>
+  <div class="card-pf card-pf-accented card-pf-aggregate-status">
+    <h1 class="card-pf-title">
+      <span class="glyphicon glyphicon-earphone"></span> Phone
+    </h1>
+    <div class="card-pf-body">
+      <% if @user && @user.phone %>
+      <div class="panel panel-default">
+        <div class="panel-actions">
+          <div class="row">
+            <div class="col-md-10 col-xs-8" style="text-align:left;">
+              <h5>Phone n°</h5>
+            </div>
+            <div class="col-md-2 col-xs-4" style="font-size:18px;">
+              <%= link_to user_phone_path(@user.id), method: :delete, class: "btn btn-danger btn-xs" do %>
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              <% end %>
+            </div>
+          </div>
         </div>
+        <div class="panel-body">
+          <%= @user.phone %><br/>
+        </div>
+      </div>
+      <% else %>
+      <%= render 'modal_new_phone'%>
+      <%= render 'empty_state', title: "Phone n°", info: "", action: "Add new", toggle: "modal", target:"#new_phone_modal" %>
+      <% end %>
     </div>
+  </div>
 </div>

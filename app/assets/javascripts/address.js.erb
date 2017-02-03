@@ -52,12 +52,12 @@ function select2_changed(addr){
     $("#state-modal-markup")[0].value = addr.state;
     $("#country-modal-markup")[0].value = addr.country;
     $("#postal_code-modal-markup")[0].value = addr.zip_code;
-    $('#submit_btn').prop('disabled', false);
+    $('#submit_btn_addr').prop('disabled', false);
   }
 }
 
 function add_new_address_submit_listener(){
-  $("#submit_btn").click(function() {
+  $("#submit_btn_addr").click(function() {
     submit_form_new_addr();
   });
 }

@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_action :must_be_proprietary, only: [:edit, :update, :delete, :destroy]
-
+  before_action :must_be_proprietary, only: [:edit, :update, :update_phone, :delete_phone, :delete, :destroy]
 
   ##
   # Initialise an empty user model and display the user's creation form
@@ -65,6 +64,46 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_phone
+    @user = User.find(params[:user_id])
+    if @user && user_params[:phone].mb_chars.length >= 10
+      @user.password_confirmation = @user.password
+      @user.phone = user_params[:phone]
+      if @user.update_attributes(user_params)
+        msg = "Your new phone number have successfully been updated"
+        flash[:success] = msg
+        redirect_to edit_user_path(@user.id)
+      else
+        msg = "An error occurred while updating your phone number, "+@user.errors.full_messages.to_sentence
+        flash[:danger] = msg
+        redirect_to edit_user_path(@user.id)
+      end
+    else
+      msg = "An error occurred while updating your phone number"
+      flash[:danger] = msg
+      redirect_to edit_user_path(@user.id)
+    end
+  end
+
+  def delete_phone
+    @user = User.find(params[:user_id])
+    if @user
+      @user.phone = nil
+      @user.password_confirmation = @user.password
+      if @user.save
+        msg = "Your phone number has been deleted"
+        flash[:success] = msg
+        redirect_to edit_user_path(@user.id)
+      else
+        msg = "An error occurred while deleting your phone number"
+        flash[:danger] = msg
+        redirect_to edit_user_path(@user.id)
+      end
+    else
+      render_404
+    end
+  end
+
   def delete
     @user = current_logged_user
   end
@@ -104,6 +143,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :lastname, :mail, :password, :password_confirmation)
+    params.require(:user).permit(:name, :lastname, :mail, :phone, :password, :password_confirmation)
   end
 end
