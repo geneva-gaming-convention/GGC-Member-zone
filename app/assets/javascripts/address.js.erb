@@ -58,11 +58,11 @@ function select2_changed(addr){
 
 function add_new_address_submit_listener(){
   $("#submit_btn_addr").click(function() {
-    submit_form_new_addr();
+    submit_form_new_phone();
   });
 }
 
-function submit_form_new_addr(){
+function submit_form_new_phone(){
   var $form = $("#new_address_form");
   url = $form.attr('action');
   data_to_send = $form.serialize();
