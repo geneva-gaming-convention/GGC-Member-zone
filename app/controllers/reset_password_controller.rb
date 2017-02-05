@@ -18,6 +18,7 @@ class ResetPasswordController < ApplicationController
         redirect_to ask_rst_passwd_path
       end
     else
+      flash.now[:danger] = "Wrong email address, try again with a correct one."
       render_404
     end
   end

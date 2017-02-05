@@ -93,13 +93,13 @@ class UsersController < ApplicationController
       if @user.save
         msg = "Your phone number has been deleted"
         flash[:success] = msg
-        redirect_to edit_user_path(@user.id)
       else
         msg = "An error occurred while deleting your phone number"
         flash[:danger] = msg
-        redirect_to edit_user_path(@user.id)
       end
+      redirect_to edit_user_path(@user.id)
     else
+      flash.now[:danger] = "User asked not found"
       render_404
     end
   end
@@ -138,6 +138,7 @@ class UsersController < ApplicationController
         redirect_to login_path
       end
     else
+      flash.now[:danger] = "User asked not found"
       render_404
     end
   end

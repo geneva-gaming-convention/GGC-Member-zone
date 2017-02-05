@@ -1,0 +1,22 @@
+<!-- This file lives in public/404.html -->
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <% if flash.count > 0 %>
+          <% flash.each do |key, value| %>
+          <div id="error_explanation" class="alert alert-<%=key%>" role="alert">
+            <p>
+              <%= value %>
+            </p>
+          </div>
+          <% end %>
+        <% else %>
+          <h1>The page you were looking for doesn't exist.</h1>
+          <p>You may have mistyped the address or the page may have moved.</p>
+        <% end %>
+      </div>
+      <div class="panel-footer"></div>
+    </div>
+  </div>
+</div>
