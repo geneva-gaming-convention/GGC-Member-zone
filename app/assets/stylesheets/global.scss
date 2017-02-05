@@ -2,6 +2,7 @@
   width: 100%;
   margin: auto;
 }
+
 header{
   margin-bottom: 2em;
 }
@@ -9,7 +10,6 @@ header{
 a.navbar-brand:hover{
   background-color: none;
 }
-
 
 .blank-slate-pf{
   padding: 30px 30px;
@@ -46,4 +46,10 @@ h1.card-pf-title{
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: 4px;
   }
+}
+
+.navbar-brand-name:hover{
+  border-width:0px 0px 1px 0px;
+  border-style:inset inset inset inset;
+  border-color:#4CACD5;
 }
