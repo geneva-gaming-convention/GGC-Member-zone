@@ -1,0 +1,16 @@
+<% flash.each do |key, value| %>
+<div id="error_explanation" class="alert alert-<%=key%>" role="alert">
+  <p>
+    <%= value %>
+  </p>
+</div>
+<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <h1><%= @event.name %></h1>
+  </div>
+</div>
+<div class="row">
+  <%= render 'registration/form_new' %>
+  <%= render 'registration/form_options' %>
+</div>

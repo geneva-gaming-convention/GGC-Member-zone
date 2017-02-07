@@ -5,6 +5,7 @@
     </h1>
     <div class="card-pf-body" style="text-align:left;">
       <div class="row">
+        <% if is_proprietary %>
         <div class="col-md-8 col-xs-8 col-xs-8">
           Mail validated
         </div>
@@ -69,8 +70,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-8 col-xs-8">
-          <h2>Ready to event</h2>
+        <div class="col-md-10 col-xs-10">
+          <h2>Ready for event registration</h2>
         </div>
         <div class="col-md-2 col-xs-2">
           <% if @is_account_valid %>
@@ -79,9 +80,28 @@
           <h2><span class="glyphicon pficon-error-circle-o" aria-hidden="true"></span></h2>
           <% end %>
         </div>
-        <div class="col-md-2 col-xs-2">
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-xs-12" style="text-align:center;">
+          <% if @is_account_valid %>
+          <%= link_to "take me to registration", event_path(Event.last.id),:class=>"btn btn-lg btn-primary" %>
+          <% else %>
+          <%= link_to "take me to registration", event_path(Event.last.id),:class=>"btn btn-lg btn-primary disabled" %>
+          <% end %>
         </div>
       </div>
+      <% else %>
+      <div class="col-md-8 col-xs-8">
+        <h2>Ready for event registration</h2>
+      </div>
+      <div class="col-md-4 col-xs-4">
+        <% if @is_account_valid %>
+        <h2><span class="glyphicon pficon-ok" aria-hidden="true"></span></h2>
+        <% else %>
+        <h2><span class="glyphicon pficon-error-circle-o" aria-hidden="true"></span></h2>
+        <% end %>
+      </div>
+      <% end %>
     </div>
   </div>
 </div>

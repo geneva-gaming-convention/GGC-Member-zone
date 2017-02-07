@@ -18,24 +18,5 @@
 </div>
 
 <div class="row" style="margin-top:2em;">
-  <% if is_proprietary %>
   <%= render 'account_status' %>
-  <% else %>
-  <div class="row">
-    <div class="col-md-2 col-xs-4">
-      <h2>Ready to event</h2>
-    </div>
-    <div class="col-md-2 col-xs-2">
-      <% if @is_account_valid %>
-      <h2><span class="glyphicon pficon-ok" aria-hidden="true"></span></h2>
-      <% else %>
-      <h2><span class="glyphicon pficon-error-circle-o" aria-hidden="true"></span></h2>
-      <% end %>
-    </div>
-    <div class="col-md-2 col-xs-2">
-    </div>
-  </div>
-  <% end %>
-  <div class="col-md-8">
-  </div>
 </div>

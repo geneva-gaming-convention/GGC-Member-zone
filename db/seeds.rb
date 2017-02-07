@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+# Create GGC Events
+Event.find_or_create_by("name"=>"Geneva Gaming Convention 2017", "shortname"=>"GGC 2017")

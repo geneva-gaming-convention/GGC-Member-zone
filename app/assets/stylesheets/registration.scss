@@ -1,0 +1,25 @@
+.div-radio {
+  padding: 1em;
+  margin-top: 1em;
+  box-shadow: 0 0 2px rgba(3, 3, 3, 0.175);
+  cursor:pointer;
+  input[type="radio"]{
+    display: none;
+  }
+  p{
+    padding-left: 1em;
+  }
+  h4{
+    border-width:0px 0px 1px 0px;
+    border-style:solid;
+    border-color:#4CACD5;
+  }
+}
+
+.div-radio .active{
+  h4{
+    border-width:0px 0px 1px 0px;
+    border-style:solid;
+    border-color:#FFF;
+  }
+}

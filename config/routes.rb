@@ -26,6 +26,10 @@ Rails.application.routes.draw do
   post 'validate_addr'               => 'addresses#get_valid_addr'
   # ---------------------------
 
+  # Events --------------------
+  resources :events
+  # ---------------------------
+
   # Sessions ------------------
   get     'login'                    => 'sessions#new'
   post    'login'                    => 'sessions#create'
