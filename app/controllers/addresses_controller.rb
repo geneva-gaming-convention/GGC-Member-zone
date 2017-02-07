@@ -18,7 +18,6 @@ class AddressesController < ApplicationController
     user.address = new_addr
     user.password_confirmation = user.password
     if is_addr_valid(new_addr) && new_addr.save && new_locality.save && new_state.save && user.save
-      #head 200, content_type: "text/html"
       @addr = new_addr
       render json: @addr
     else

@@ -112,6 +112,6 @@ Rails.application.configure do
     :user_name => Rails.application.secrets.mail_user,
     :password  => Rails.application.secrets.mail_user_pwd,
     :authentication => 'plain',
-    :ssl => true
+    :enable_starttls_auto => true
   }
 end
