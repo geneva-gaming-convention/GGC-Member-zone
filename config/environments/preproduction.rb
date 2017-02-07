@@ -112,6 +112,7 @@ Rails.application.configure do
     :user_name => Rails.application.secrets.mail_user,
     :password  => Rails.application.secrets.mail_user_pwd,
     :domain    => 'ggc.ch',
+    :openssl_verify_mode  => 'none',
     :authentication => :login,
     :enable_starttls_auto => true
   }
