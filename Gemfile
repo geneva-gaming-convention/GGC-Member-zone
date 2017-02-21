@@ -56,6 +56,7 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
   gem 'highline'
+  gem "rails-erd"
 end
 
 group :preproduction, :production do

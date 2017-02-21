@@ -1,11 +1,7 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-
 # Create GGC Events
 Event.find_or_create_by("name"=>"Geneva Gaming Convention 2017", "shortname"=>"GGC 2017")
+
+# Create user's rules
+UserRule.find_or_create_by("name"=>"administrator", "description"=>"Global administration rights. Can administrate every thing.", "value"=>"0")
+UserRule.find_or_create_by("name"=>"human resources", "description"=>"Human resources management rights. Can assignate privileges to users", "value"=>"20")
+UserRule.find_or_create_by("name"=>"user", "description"=>"Standard user rights. Can manage personal concern", "value"=>"1000")

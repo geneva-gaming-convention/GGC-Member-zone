@@ -1,11 +1,20 @@
 class User < ActiveRecord::Base
   attr_accessor :password_confirmation
+  # Validation
   validates :name, :lastname, :mail, :password, :password_confirmation, :salt, presence: true
   validates :password, confirmation: true
   validates :mail, uniqueness: true
+  # -----
+  # Hooks
   before_create :change_password
   before_save :set_lowercase
+  # -----
+  # Relations
   belongs_to :address
+  has_many :registrations
+  has_many :privileges
+  has_many :user_rules, through: :privileges
+  # -----
 
   def encrypt_password(password)
     return Digest::SHA2.new(512).hexdigest(password+self.salt)
