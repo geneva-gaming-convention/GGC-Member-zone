@@ -22,5 +22,3 @@
 
 db/schema.rb
 config/newrelic.yml
-
-Gemfile.lock
