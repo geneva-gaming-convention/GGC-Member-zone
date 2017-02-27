@@ -22,14 +22,15 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  # config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = false
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
@@ -76,4 +77,43 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = { :host => 'https://member.ggc.ch' }
+
+  # ActionMailer Config
+  # Setup for production - deliveries, no errors raised
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.perform_deliveries = true
+  #config.action_mailer.raise_delivery_errors = false
+  #config.action_mailer.default :charset => "utf-8"
+  #config.action_mailer.smtp_settings = {
+  #    :address   => Rails.application.secrets.mail_smtp_srv,
+  #    :port      => Rails.application.secrets.mail_smtp_port,
+  #    :user_name => Rails.application.secrets.mail_user,
+  #    :password  => Rails.application.secrets.mail_user_pwd,
+  #    :authentication => 'plain',
+  #    :ssl => true
+  # }
+
+  config.action_controller.asset_host = 'https://member.ggc.ch'
+  config.action_controller.default_url_options = { :host => 'https://member.ggc.ch' }
+  config.action_mailer.default_url_options = { protocol: 'https' }
+  Rails.application.default_url_options = { :host => 'https://member.ggc.ch' }
+  Rails.application.routes.default_url_options = { :host => 'https://member.ggc.ch' }
+  config.action_mailer.asset_host = 'https://member.ggc.ch'
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+    :address   => Rails.application.secrets.mail_smtp_srv,
+    :port      => Rails.application.secrets.mail_smtp_port,
+    :user_name => Rails.application.secrets.mail_user,
+    :password  => Rails.application.secrets.mail_user_pwd,
+    :domain    => 'ggc.ch',
+    :openssl_verify_mode  => 'none',
+    :authentication => :login,
+    :enable_starttls_auto => true
+  }
 end
