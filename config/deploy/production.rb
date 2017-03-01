@@ -7,6 +7,8 @@
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
+server 'member.ggc.ch', user: 'cypress', roles: %w{app db web}, port: 419
+set :branch, proc { `git rev-parse --abbrev-ref master`.chomp }
 
 
 # role-based syntax

@@ -8,6 +8,7 @@
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
 server 'ggc-host.cypressxt.net', user: 'cypress', roles: %w{app db web}, port: 22108
+set :branch, proc { `git rev-parse --abbrev-ref preprod`.chomp }
 
 
 # role-based syntax
