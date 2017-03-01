@@ -1,0 +1,19 @@
+<% flash.each do |key, value| %>
+<div id="error_explanation" class="alert alert-<%=key%>" role="alert">
+  <p>
+    <%= value %>
+  </p>
+</div>
+<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <h1>Events</h1>
+  </div>
+</div>
+<% if @events.count > 0 %>
+<% @events.each do |event| %>
+<%= render 'event_summary', event: event %>
+<% end %>
+<% else %>
+<%= render 'application/empty_state', title: "Events", info: "No events available yet..." %>
+<% end %>

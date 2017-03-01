@@ -9,6 +9,8 @@
     <%= info %>
   </p>
   <div class="blank-slate-pf-main-action">
+    <% if defined? action %>
     <button class="btn btn-primary btn-lg" data-toggle="<%= toggle ||= '' %>" data-target="<%= target ||= '' %>"> <%= action %> </button>
+    <% end %>
   </div>
 </div>

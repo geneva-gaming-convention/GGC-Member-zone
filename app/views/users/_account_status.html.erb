@@ -84,9 +84,9 @@
       <div class="row">
         <div class="col-md-12 col-xs-12" style="text-align:center;">
           <% if @is_account_valid %>
-          <%= link_to "take me to registration", event_path(Event.last.id),:class=>"btn btn-lg btn-primary" %>
+          <%= link_to "take me to registration", events_path,:class=>"btn btn-lg btn-primary" %>
           <% else %>
-          <%= link_to "take me to registration", event_path(Event.last.id),:class=>"btn btn-lg btn-primary disabled" %>
+          <%= link_to "take me to registration", events_path,:class=>"btn btn-lg btn-primary disabled" %>
           <% end %>
         </div>
       </div>
