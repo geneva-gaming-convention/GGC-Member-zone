@@ -1,19 +1,24 @@
 <header>
-    <nav class="navbar navbar-pf-vertical">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="/" class="navbar-brand">
-                <%= image_tag("ggc_web_color", width: "72", class: "navbar-brand-icon") %>
-                <span class="navbar-brand-name" style="font-size: 22px; vertical-align: middle;">Geneva Gaming Convention</span>
-            </a>
-        </div>
-    </nav>
-    <div id="notif_location" class="toast-notifications-list-pf">
+  <nav class="navbar navbar-pf-vertical">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <%= image_tag("ggc_web_color", width: "72", class: "navbar-brand-icon") %>
+        <span class="navbar-brand-name" style="font-size: 22px; vertical-align: middle;">Geneva Gaming Convention</span>
+        <% if Rails.application.secrets.github_branch && Rails.application.secrets.github_branch == "preprod" %>
+        <span class="label label-info">Preprod</span>
+        <% elsif Rails.application.secrets.github_branch && Rails.application.secrets.github_branch == "dev" %>
+        <span class="label label-primary">dev</span>
+        <% end %>
+      </a>
     </div>
-    <%= render 'menu_lat' %>
+  </nav>
+  <div id="notif_location" class="toast-notifications-list-pf">
+  </div>
+  <%= render 'menu_lat' %>
 </header>
