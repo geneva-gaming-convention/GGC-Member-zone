@@ -6,6 +6,7 @@ $(document).ready(function() {
 function init_select2(){
   var ress = [];
   $("#street-modal-markup").select2({
+    allowClear: true,
     minimumInputLength: 3,
     ajax: {
       url: "/validate_addr",
