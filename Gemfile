@@ -37,6 +37,8 @@ gem 'github_api'
 gem 'gravatar_image_tag'
 gem "select2-rails"
 gem "jt-rails-address"
+gem "rest-client"
+gem "nokogiri"
 
 
 group :development, :test do

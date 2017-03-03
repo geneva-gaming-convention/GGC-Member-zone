@@ -30,6 +30,10 @@ Rails.application.routes.draw do
   resources :events
   # ---------------------------
 
+  # Statics pages -------------
+  get     'faq'                      => 'static#faq'
+  # ---------------------------
+
   # Sessions ------------------
   get     'login'                    => 'sessions#new'
   post    'login'                    => 'sessions#create'
