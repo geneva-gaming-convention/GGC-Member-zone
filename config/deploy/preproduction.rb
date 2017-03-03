@@ -6,10 +6,7 @@
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
-
 server 'ggc-host.cypressxt.net', user: 'cypress', roles: %w{app db web}, port: 22108
-set :branch, proc { `git rev-parse --abbrev-ref preprod`.chomp }
-
 
 # role-based syntax
 # ==================
@@ -32,8 +29,7 @@ set :branch, proc { `git rev-parse --abbrev-ref preprod`.chomp }
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
-
-
+set :branch, "preprod"
 
 # Custom SSH Options
 # ==================
