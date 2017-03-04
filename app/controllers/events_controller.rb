@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :must_be_logged
 
   def index
     @events = Event.all
