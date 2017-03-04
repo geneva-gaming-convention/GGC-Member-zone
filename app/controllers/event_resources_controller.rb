@@ -1,0 +1,2 @@
+class EventResourcesController < ApplicationController
+end

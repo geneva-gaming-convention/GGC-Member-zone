@@ -8,9 +8,11 @@
 <div class="row">
   <div class="col-md-12">
     <h1><%= @event.name %></h1>
+    <p><%= @event.description %></p>
   </div>
 </div>
 <div class="row">
-  <%= render 'registration/form_new' %>
-  <%= render 'registration/form_options' %>
+  <% @event.event_resources.each do |resource| %>
+  <%= render 'event_resources/show', resource: resource %>
+  <% end %>
 </div>
