@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :must_be_proprietary, only: [:edit, :update, :update_phone, :delete_phone, :delete, :destroy]
+  before_action :must_be_proprietary, only: [:edit, :update, :update_phone, :delete_phone, :delete, :destroy, :ask_validation]
 
   ##
   # Initialise an empty user model and display the user's creation form
@@ -47,6 +47,9 @@ class UsersController < ApplicationController
       if @user.password == @user.password_confirmation && @user.password != ""
         @user.gen_token_and_salt
         @user.change_password(@user.password)
+        if @user.mail != user_params["mail"]
+          @user.validated = false
+        end
         if @user.save
           flash[:success] = "Your personnal informations have successfully been updated"
           redirect_to edit_user_path(@user.id)
@@ -116,6 +119,16 @@ class UsersController < ApplicationController
       flash[:danger] =  "Failed to delete your account 😞"
       redirect_to edit_user_path(@user.id)
     end
+  end
+
+  def ask_validation
+    @user = current_logged_user
+    if RegisterMailer.welcome(@user).deliver_now
+      flash[:success] =  "A new validation mail has been sent"
+    else
+      flash[:danger] =  "Failed while send a new validation mail 😞"
+    end
+    redirect_to edit_user_path(@user.id)
   end
 
   def validate

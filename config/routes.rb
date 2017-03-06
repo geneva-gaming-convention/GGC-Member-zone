@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get     'delete'                 => 'users#delete'
     put     'phone'                  => 'users#update_phone'
     delete  'phone'                  => 'users#delete_phone'
+    get     'ask_validation'         => 'users#ask_validation'
   end
   get   'validate/:token'            => 'users#validate',                       as: :validate
   # ---------------------------
