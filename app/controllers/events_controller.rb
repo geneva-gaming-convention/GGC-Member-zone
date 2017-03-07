@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :must_be_logged
+  before_action :must_be_ready_to_registration, only: [:show]
 
   def index
     @events = Event.all

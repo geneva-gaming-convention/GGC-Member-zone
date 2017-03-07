@@ -3,8 +3,11 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <h1>You have not the right to be here, pass your way.</h1>
+        <p><%= @error_info ||='' %></p>
+        <% if @error_info == '' %>
         <p>You may be have to be connected to see this page ?</p>
         <%= link_to 'Take to to the login page', login_path, :class=>"btn btn-lg btn-primary" %>
+        <% end %>
       </div>
       <div class="panel-footer">If you are the application owner check the logs for more information.</div>
     </div>

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>jquery.matchHeight-min.js - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../";
+</script>
+
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/darkfish.js"></script>
+
+<link href="../../../css/fonts.css" rel="stylesheet">
+<link href="../../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../../table_of_contents.html#pages">Pages</a>
+    <a href="../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../../Capfile.html">Capfile</a>
+  
+    <li><a href="../../../Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../../Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../../README_rdoc.html">README</a>
+  
+    <li><a href="../../../Rakefile.html">Rakefile</a>
+  
+    <li><a href="../../../app/assets/images/fb_svg.html">fb.svg</a>
+  
+    <li><a href="../../../app/assets/images/gh_svg.html">gh.svg</a>
+  
+    <li><a href="../../../app/assets/images/tw_svg.html">tw.svg</a>
+  
+    <li><a href="../../../app/assets/images/yt_svg.html">yt.svg</a>
+  
+    <li><a href="../../../app/assets/javascripts/application_js.html">application.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/event_resources_js.html">event_resources.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/events_js.html">events.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/global_js.html">global.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/menu_lat_js.html">menu_lat.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/registration_js.html">registration.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/reset_password_coffee.html">reset_password.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/sessions_js.html">sessions.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/static_coffee.html">static.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/users_js.html">users.js</a>
+  
+    <li><a href="../../../app/assets/stylesheets/address_scss.html">address.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/application_scss.html">application.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/event_resources_scss.html">event_resources.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/events_scss.html">events.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/global_scss.html">global.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/registration_scss.html">registration.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/reset_password_scss.html">reset_password.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/sessions_scss.html">sessions.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/static_scss.html">static.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/users_scss.html">users.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/welcome_scss.html">welcome.scss</a>
+  
+    <li><a href="../../../config_ru.html">config.ru</a>
+  
+    <li><a href="../../../lib/assets/javascript/c3_min_js.html">c3.min.js</a>
+  
+    <li><a href="../../../lib/assets/javascript/d3_min_js.html">d3.min.js</a>
+  
+    <li><a href="../../../lib/assets/javascript/jquery_matchHeight-min_js.html">jquery.matchHeight-min.js</a>
+  
+    <li><a href="../../../log/capistrano_log.html">capistrano.log</a>
+  
+    <li><a href="../../../log/development_log.html">development.log</a>
+  
+    <li><a href="../../../log/development_conflict-20170123-082632_log.html">development_conflict-20170123-082632.log</a>
+  
+    <li><a href="../../../log/test_log.html">test.log</a>
+  
+    <li><a href="../../../public/422_html.html">422.html</a>
+  
+    <li><a href="../../../public/500_html.html">500.html</a>
+  
+    <li><a href="../../../public/favicon_ico.html">favicon.ico</a>
+  
+    <li><a href="../../../public/robots_txt.html">robots</a>
+  
+    <li><a href="../../../tmp/pids/server_pid.html">server.pid</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page lib/assets/javascript/jquery.matchHeight-min.js">
+
+<pre>jquery-match-height master by @liabru
+http://brm.io/jquery-match-height/
+License: MIT</pre>
+
+<p>;(function(factory) { // eslint-disable-line no-extra-semi</p>
+
+<pre>&#39;use strict&#39;;
+if (typeof define === &#39;function&#39; &amp;&amp; define.amd) {
+    // AMD
+    define([&#39;jquery&#39;], factory);
+} else if (typeof module !== &#39;undefined&#39; &amp;&amp; module.exports) {
+    // CommonJS
+    module.exports = factory(require(&#39;jquery&#39;));
+} else {
+    // Global
+    factory(jQuery);
+}</pre>
+
+<p>})(function($) {</p>
+
+<pre>/*
+   internal
+ /
+
+var _previousResizeWidth = -1,
+_updateTimeout = -1;
+
+/*
+   _parse
+   value parse utility function
+ /
+
+var _parse = function(value) {
+    // parse value and convert NaN to 0
+    return parseFloat(value) || 0;
+};
+
+/*
+   _rows
+   utility function returns array of jQuery selections representing each row
+   (as displayed after float wrapping applied by browser)
+ /
+
+var _rows = function(elements) {
+    var tolerance = 1,
+    $elements = $(elements),
+    lastTop = null,
+    rows = [];
+
+    // group elements by their top position
+    $elements.each(function(){
+        var $that = $(this),
+        top = $that.offset().top - _parse($that.css(&#39;margin-top&#39;)),
+        lastRow = rows.length &gt; 0 ? rows[rows.length - 1] : null;
+
+        if (lastRow === null) {
+            // first item on the row, so just push it
+            rows.push($that);
+        } else {
+            // if the row top is the same, add to the row group
+            if (Math.floor(Math.abs(lastTop - top)) &lt;= tolerance) {
+                rows[rows.length - 1] = lastRow.add($that);
+            } else {
+                // otherwise start a new row group
+                rows.push($that);
+            }
+        }
+
+        // keep track of the last row top
+        lastTop = top;
+    });
+
+    return rows;
+};
+
+/*
+   _parseOptions
+   handle plugin options
+ /
+
+var _parseOptions = function(options) {
+    var opts = {
+        byRow: true,
+        property: &#39;height&#39;,
+        target: null,
+        remove: false
+    };
+
+    if (typeof options === &#39;object&#39;) {
+        return $.extend(opts, options);
+    }
+
+    if (typeof options === &#39;boolean&#39;) {
+        opts.byRow = options;
+    } else if (options === &#39;remove&#39;) {
+        opts.remove = true;
+    }
+
+    return opts;
+};
+
+/*
+   matchHeight
+   plugin definition
+ /
+
+var matchHeight = $.fn.matchHeight = function(options) {
+    var opts = _parseOptions(options);
+
+    // handle remove
+    if (opts.remove) {
+        var that = this;
+
+        // remove fixed height from all selected elements
+        this.css(opts.property, &#39;&#39;);
+
+        // remove selected elements from all groups
+        $.each(matchHeight._groups, function(key, group) {
+            group.elements = group.elements.not(that);
+        });
+
+        // TODO: cleanup empty groups
+
+        return this;
+    }
+
+    if (this.length &lt;= 1 &amp;&amp; !opts.target) {
+        return this;
+    }
+
+    // keep track of this group so we can re-apply later on load and resize events
+    matchHeight._groups.push({
+        elements: this,
+        options: opts
+    });
+
+    // match each element&#39;s height to the tallest element in the selection
+    matchHeight._apply(this, opts);
+
+    return this;
+};
+
+/*
+   plugin global options
+ /
+
+matchHeight.version = &#39;master&#39;;
+matchHeight._groups = [];
+matchHeight._throttle = 80;
+matchHeight._maintainScroll = false;
+matchHeight._beforeUpdate = null;
+matchHeight._afterUpdate = null;
+matchHeight._rows = _rows;
+matchHeight._parse = _parse;
+matchHeight._parseOptions = _parseOptions;
+
+/*
+   matchHeight._apply
+   apply matchHeight to given elements
+ /
+
+matchHeight._apply = function(elements, options) {
+    var opts = _parseOptions(options),
+    $elements = $(elements),
+    rows = [$elements];
+
+    // take note of scroll position
+    var scrollTop = $(window).scrollTop(),
+    htmlHeight = $(&#39;html&#39;).outerHeight(true);
+
+    // get hidden parents
+    var $hiddenParents = $elements.parents().filter(&#39;:hidden&#39;);
+
+    // cache the original inline style
+    $hiddenParents.each(function() {
+        var $that = $(this);
+        $that.data(&#39;style-cache&#39;, $that.attr(&#39;style&#39;));
+    });
+
+    // temporarily must force hidden parents visible
+    $hiddenParents.css(&#39;display&#39;, &#39;block&#39;);
+
+    // get rows if using byRow, otherwise assume one row
+    if (opts.byRow &amp;&amp; !opts.target) {
+
+        // must first force an arbitrary equal height so floating elements break evenly
+        $elements.each(function() {
+            var $that = $(this),
+            display = $that.css(&#39;display&#39;);
+
+            // temporarily force a usable display value
+            if (display !== &#39;inline-block&#39; &amp;&amp; display !== &#39;flex&#39; &amp;&amp; display !== &#39;inline-flex&#39;) {
+                display = &#39;block&#39;;
+            }
+
+            // cache the original inline style
+            $that.data(&#39;style-cache&#39;, $that.attr(&#39;style&#39;));
+
+            $that.css({
+                &#39;display&#39;: display,
+                &#39;padding-top&#39;: &#39;0&#39;,
+                &#39;padding-bottom&#39;: &#39;0&#39;,
+                &#39;margin-top&#39;: &#39;0&#39;,
+                &#39;margin-bottom&#39;: &#39;0&#39;,
+                &#39;border-top-width&#39;: &#39;0&#39;,
+                &#39;border-bottom-width&#39;: &#39;0&#39;,
+                &#39;height&#39;: &#39;100px&#39;,
+                &#39;overflow&#39;: &#39;hidden&#39;
+            });
+        });
+
+        // get the array of rows (based on element top position)
+        rows = _rows($elements);
+
+        // revert original inline styles
+        $elements.each(function() {
+            var $that = $(this);
+            $that.attr(&#39;style&#39;, $that.data(&#39;style-cache&#39;) || &#39;&#39;);
+        });
+    }
+
+    $.each(rows, function(key, row) {
+        var $row = $(row),
+        targetHeight = 0;
+
+        if (!opts.target) {
+            // skip apply to rows with only one item
+            if (opts.byRow &amp;&amp; $row.length &lt;= 1) {
+                $row.css(opts.property, &#39;&#39;);
+                return;
+            }
+
+            // iterate the row and find the max height
+            $row.each(function(){
+                var $that = $(this),
+                style = $that.attr(&#39;style&#39;),
+                display = $that.css(&#39;display&#39;);
+
+                // temporarily force a usable display value
+                if (display !== &#39;inline-block&#39; &amp;&amp; display !== &#39;flex&#39; &amp;&amp; display !== &#39;inline-flex&#39;) {
+                    display = &#39;block&#39;;
+                }
+
+                // ensure we get the correct actual height (and not a previously set height value)
+                var css = { &#39;display&#39;: display };
+                css[opts.property] = &#39;&#39;;
+                $that.css(css);
+
+                // find the max height (including padding, but not margin)
+                if ($that.outerHeight(false) &gt; targetHeight) {
+                    targetHeight = $that.outerHeight(false);
+                }
+
+                // revert styles
+                if (style) {
+                    $that.attr(&#39;style&#39;, style);
+                } else {
+                    $that.css(&#39;display&#39;, &#39;&#39;);
+                }
+            });
+        } else {
+            // if target set, use the height of the target element
+            targetHeight = opts.target.outerHeight(false);
+        }
+
+        // iterate the row and apply the height to all elements
+        $row.each(function(){
+            var $that = $(this),
+            verticalPadding = 0;
+
+            // don&#39;t apply to a target
+            if (opts.target &amp;&amp; $that.is(opts.target)) {
+                return;
+            }
+
+            // handle padding and border correctly (required when not using border-box)
+            if ($that.css(&#39;box-sizing&#39;) !== &#39;border-box&#39;) {
+                verticalPadding += _parse($that.css(&#39;border-top-width&#39;)) + _parse($that.css(&#39;border-bottom-width&#39;));
+                verticalPadding += _parse($that.css(&#39;padding-top&#39;)) + _parse($that.css(&#39;padding-bottom&#39;));
+            }
+
+            // set the height (accounting for padding and border)
+            $that.css(opts.property, (targetHeight - verticalPadding) + &#39;px&#39;);
+        });
+    });
+
+    // revert hidden parents
+    $hiddenParents.each(function() {
+        var $that = $(this);
+        $that.attr(&#39;style&#39;, $that.data(&#39;style-cache&#39;) || null);
+    });
+
+    // restore scroll position if enabled
+    if (matchHeight._maintainScroll) {
+        $(window).scrollTop((scrollTop / htmlHeight) * $(&#39;html&#39;).outerHeight(true));
+    }
+
+    return this;
+};
+
+/*
+   matchHeight._applyDataApi
+   applies matchHeight to all elements with a data-match-height attribute
+ /
+
+matchHeight._applyDataApi = function() {
+    var groups = {};
+
+    // generate groups by their groupId set by elements using data-match-height
+    $(&#39;[data-match-height], [data-mh]&#39;).each(function() {
+        var $this = $(this),
+        groupId = $this.attr(&#39;data-mh&#39;) || $this.attr(&#39;data-match-height&#39;);
+
+        if (groupId in groups) {
+            groups[groupId] = groups[groupId].add($this);
+        } else {
+            groups[groupId] = $this;
+        }
+    });
+
+    // apply matchHeight to each group
+    $.each(groups, function() {
+        this.matchHeight(true);
+    });
+};
+
+/*
+   matchHeight._update
+   updates matchHeight on all current groups with their correct options
+ /
+
+var _update = function(event) {
+    if (matchHeight._beforeUpdate) {
+        matchHeight._beforeUpdate(event, matchHeight._groups);
+    }
+
+    $.each(matchHeight._groups, function() {
+        matchHeight._apply(this.elements, this.options);
+    });
+
+    if (matchHeight._afterUpdate) {
+        matchHeight._afterUpdate(event, matchHeight._groups);
+    }
+};
+
+matchHeight._update = function(throttle, event) {
+    // prevent update if fired from a resize event
+    // where the viewport width hasn&#39;t actually changed
+    // fixes an event looping bug in IE8
+    if (event &amp;&amp; event.type === &#39;resize&#39;) {
+        var windowWidth = $(window).width();
+        if (windowWidth === _previousResizeWidth) {
+            return;
+        }
+        _previousResizeWidth = windowWidth;
+    }
+
+    // throttle updates
+    if (!throttle) {
+        _update(event);
+    } else if (_updateTimeout === -1) {
+        _updateTimeout = setTimeout(function() {
+            _update(event);
+            _updateTimeout = -1;
+        }, matchHeight._throttle);
+    }
+};
+
+/*
+   bind events
+ /
+
+// apply on DOM ready event
+$(matchHeight._applyDataApi);
+
+// update heights on load and resize events
+$(window).bind(&#39;load&#39;, function(event) {
+    matchHeight._update(false, event);
+});
+
+// throttled update heights on resize events
+$(window).bind(&#39;resize orientationchange&#39;, function(event) {
+    matchHeight._update(true, event);
+});</pre>
+
+<p>});</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.3.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

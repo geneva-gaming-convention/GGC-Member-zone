@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       render_404
       return
     end
-    @is_account_valid = @user.address && @user.validated
+    @is_account_valid = is_ready_for_registration
   end
 
   def edit
