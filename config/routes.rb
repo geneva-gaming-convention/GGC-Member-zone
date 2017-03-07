@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # Welcome -------------------
   root  'welcome#index'
   get   'commits'                    => 'welcome#get_commits'
+  get   'jsevents'                   => 'welcome#get_events'
   # ---------------------------
 
   # Users ---------------------

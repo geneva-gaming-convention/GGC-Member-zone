@@ -21,4 +21,13 @@ class WelcomeController < ApplicationController
     end
     render 'commits', :layout => false
   end
+
+  def get_events
+    @events = Event.all.order(date: :desc)
+    if @events
+      render 'events', :layout => false
+    else
+      render partial: 'application/empty_state', locals: {title: "Events", info: "No events available yet..."}
+    end
+  end
 end
