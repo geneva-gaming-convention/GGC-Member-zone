@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :must_be_ready_to_registration, only: [:show]
 
   def index
-    @events = Event.all
+    @events = Event.all.where(visible: true)
   end
 
   def new
@@ -17,7 +17,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find_by(id: params["id"])
     if !@event
-      render 404
+      render_404
     end
   end
 

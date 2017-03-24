@@ -7,8 +7,15 @@
 <% end %>
 <div class="row">
   <div class="col-md-12">
-    <h1><%= @event.name %></h1>
-    <p><%= @event.description %></p>
+    <h1>
+      <%= @event.name %>
+    </h1>
+    <p>
+      <small>
+        <%= @event.description %>
+      </small>
+    </p>
+    <p style="font-size:15px;">You can find here the discord server: <%= link_to @event.chat_url, @event.chat_url, target: :_blank %></p>
   </div>
 </div>
 <div class="row">
