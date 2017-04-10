@@ -25,21 +25,28 @@
           <span>Events</span>
         </div>
         <ul class="list-group">
-          <% Event.all.each do |event| %>
-          <li class="list-group-item " data-target="#event-ggc2017-tertiary">
+          <% Event.all.where(visible: true).each do |event| %>
+          <li class="list-group-item">
             <%= link_to event_path(event.id) do %>
             <span class="list-group-item-value"><%= event.shortname %></span>
             <% end %>
           </li>
           <% end %>
+          <li class="list-group-item spacer">
+          </li>
+          <li class="list-group-item">
+            <%= link_to events_path do %>
+            <span class="list-group-item-value">All events</span>
+            <% end %>
+          </li>
         </ul>
       </div>
     </li>
     <li class="list-group-item">
-      <a>
-        <span class="fa pficon-help" data-toggle="tooltip" title="FAQ"></span>
-        <span class="list-group-item-value">FAQ</span>
-      </a>
+      <%= link_to faq_path do %>
+      <span class="fa pficon-help" data-toggle="tooltip" title="FAQ"></span>
+      <span class="list-group-item-value">FAQ</span>
+      <% end %>
     </li>
     <li class="list-group-item secondary-nav-item-pf" data-target="#settings-secondary">
       <a>
@@ -64,21 +71,21 @@
               <span data-toggle="modal" data-target="#about-modal" class="list-group-item-value">About</span>
             </a>
           </li>
-          <% if current_logged_user %>
-          <li class="list-group-item">
-            <%= link_to logout_path, :method => :delete do %>
-            <span class="list-group-item-value">Logout</span>
-            <% end %>
-          </li>
-          <% else %>
-          <li class="list-group-item">
-            <%= link_to login_path do %>
-            <span class="list-group-item-value">Log in</span>
-            <% end %>
-          </li>
-          <% end %>
         </ul>
       </div>
+    </li>
+    <li class="list-group-item">
+      <% if current_logged_user %>
+        <%= link_to logout_path, method: :delete do %>
+        <span class="fa pficon-private" data-toggle="tooltip" title="FAQ"></span>
+        <span class="list-group-item-value">Log out</span>
+        <% end %>
+      <% else %>
+        <%= link_to login_path do %>
+        <span class="fa pficon-private" data-toggle="tooltip" title="FAQ"></span>
+        <span class="list-group-item-value">Login / Register</span>
+        <% end %>
+      <% end %>
     </li>
   </ul>
 </div>

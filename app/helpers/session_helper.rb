@@ -8,7 +8,7 @@ module SessionHelper
   end
 
   def is_logged_in
-    !session[:UserLoggedId].nil?
+    !session[:UserLoggedId].nil? && current_logged_user.present? && !current_logged_user.id.nil?
   end
 
   def log_out

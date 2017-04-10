@@ -1,7 +1,23 @@
 # Create GGC Events
-Event.find_or_create_by("name"=>"Geneva Gaming Convention 2017", "shortname"=>"GGC 2017")
+ggcOT = Event.first_or_create(
+"name"=>"GGC Online Tournament",
+"shortname"=>"GGC Online Tournament",
+"description"=>"Online ESports Tournament",
+"date"=>"2017-06-04 09:45:00",
+"chat_url" => "https://discord.gg/yBVSU58",
+"visible" => true
+)
+event_resource = EventResource.first_or_create(
+"title"=>"GGC Online Tournament: Overwatch",
+"description"=>"Team up and join the battle to win a free entry for you and your team at the the Geneva Gaming Convention 2017 Overwatch tournament.",
+"start_at"=>"2017-06-04 09:45:00",
+"remote"=>true,
+"remote_url"=>"https://widget.toornament.com/tournaments/589d946a140ba044458b461c/",
+"event_id"=> ggcOT.id,
+"visible" => true
+)
 
-# Create user's rules
-UserRule.find_or_create_by("name"=>"administrator", "description"=>"Global administration rights. Can administrate every thing.", "value"=>"0")
-UserRule.find_or_create_by("name"=>"human resources", "description"=>"Human resources management rights. Can assignate privileges to users", "value"=>"20")
-UserRule.find_or_create_by("name"=>"user", "description"=>"Standard user rights. Can manage personal concern", "value"=>"1000")
+# Create user's rules (later...)
+# UserRule.first_or_create("name"=>"administrator", "description"=>"Global administration rights. Can administrate every thing.", "value"=>"0")
+# UserRule.first_or_create("name"=>"human resources", "description"=>"Human resources management rights. Can assignate privileges to users", "value"=>"20")
+# UserRule.first_or_create("name"=>"user", "description"=>"Standard user rights. Can manage personal concern", "value"=>"1000")

@@ -7,6 +7,9 @@
           <h5>Starting date: <%= event.date.strftime("%d %B %Y at %Hh%M") %></h5>
         </p>
         <p>
+          <%= event.description %>
+        </p>
+        <p>
           <%= link_to 'Show event\'s informations >', event_path(event.id), :class=>"btn btn-lg btn-primary"  %>
         </p>
       </div>

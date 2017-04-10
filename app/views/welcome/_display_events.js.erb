@@ -1,0 +1,5 @@
+function display_events(){
+  $.get( "<%=j jsevents_path %>", function( events ) {
+    $("#events").html(events);
+  });
+}

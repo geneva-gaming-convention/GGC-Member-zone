@@ -1,0 +1,22 @@
+.faq-items{
+  padding-bottom: 5em;
+}
+
+li.faq-title{
+  h2{
+    font-size: 40px;
+    padding-bottom: 0.2em;
+  }
+}
+
+.faq-group li{
+  list-style-type: none;
+  .trigger p{
+    padding-left: 1em;
+    font-size: 18px;
+  }
+}
+
+.faq-content{
+  padding-left: 3em;
+}

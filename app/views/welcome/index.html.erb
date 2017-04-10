@@ -1,10 +1,21 @@
 <script type="text/javascript">
 <%= render :partial => "display_commits.js" %>
+<%= render :partial => "display_events.js" %>
 </script>
 <div class="row">
   <div class="col-md-4">
-    <h1>Latest updates</h1>
+    <h1>Latest updates <%= @branch_title %></h1>
     <div id="commits">
+      <div class="card-pf card-pf-accented card-pf-aggregate-status">
+        <div class="card-pf-body">
+          <div class="spinner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <h1>Upcoming events</h1>
+    <div id="events">
       <div class="card-pf card-pf-accented card-pf-aggregate-status">
         <div class="card-pf-body">
           <div class="spinner"></div>
