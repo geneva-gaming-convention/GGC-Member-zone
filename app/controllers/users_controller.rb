@@ -41,13 +41,14 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    old_mail = @user.mail
     if @user.update_attributes(user_params)
       @user.password = user_params["password"]
       @user.password_confirmation = user_params["password_confirmation"]
       if @user.password == @user.password_confirmation && @user.password != ""
         @user.gen_token_and_salt
         @user.change_password(@user.password)
-        if @user.mail != user_params["mail"]
+        if old_mail != user_params["mail"]
           @user.validated = false
         end
         if @user.save
