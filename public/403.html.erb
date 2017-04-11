@@ -3,9 +3,9 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <h1>You have not the right to be here, pass your way.</h1>
-        <p><%= @error_info ||='' %></p>
+        <h4><%= @error_info ||='' %></h4>
         <% if @error_info == '' %>
-        <p>You may be have to be connected to see this page ?</p>
+        <h4>You may be have to be connected to see this page ?</h4>
         <%= link_to 'Take me to the login page', login_path, :class=>"btn btn-lg btn-primary" %>
         <% end %>
       </div>

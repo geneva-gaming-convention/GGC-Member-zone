@@ -18,6 +18,8 @@ class EventsController < ApplicationController
     @event = Event.find_by(id: params["id"])
     if !@event
       render_404
+    else
+      @games = @event.get_all_played_games
     end
   end
 

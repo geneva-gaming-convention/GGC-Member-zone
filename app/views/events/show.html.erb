@@ -5,6 +5,13 @@
   </p>
 </div>
 <% end %>
+<% if @event.banner %>
+<div class="row">
+  <div class="col-md-12">
+    <%= image_tag @event.banner %>
+  </div>
+</div>
+<% end %>
 <div class="row">
   <div class="col-md-12">
     <h1>
@@ -15,11 +22,29 @@
         <%= @event.description %>
       </small>
     </p>
-    <p style="font-size:15px;">You can find here the discord server: <%= link_to @event.chat_url, @event.chat_url, target: :_blank %></p>
+    <p>
+      Join us on:
+      <%= link_to @event.chat_url, target: :_blank do %>
+      <%= image_tag 'discord', height: 54 %>
+      <% end %>
+    </p>
   </div>
 </div>
 <div class="row">
-  <% @event.event_resources.each do |resource| %>
-  <%= render 'event_resources/show', resource: resource %>
-  <% end %>
+  <!-- Nav tabs -->
+  <ul id="game_tabs" class="nav nav-tabs" role="tablist">
+    <% @games.each do |game| %>
+    <li role="presentation"><a href="#game_id_<%= game.id %>" aria-controls="game_id_<%= game.id %>" role="tab" data-toggle="tab"><%= game.name %></a></li>
+    <% end %>
+  </ul>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <% @games.each do |game| %>
+    <div role="tabpanel" class="tab-pane" id="game_id_<%= game.id %>">
+      <% @event.event_resources_by_game(game).each do |resource| %>
+      <%= render 'event_resources/show', resource: resource %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
 </div>
