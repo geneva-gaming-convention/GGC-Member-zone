@@ -1,3 +1,7 @@
+<% if @events.count > 0 %>
 <% @events.each do |event| %>
 <%= render 'events/event_summary', event: event %>
+<% end %>
+<% else %>
+<%= render 'application/empty_state', title: "Events", info: "No upcoming event available yet..." %>
 <% end %>

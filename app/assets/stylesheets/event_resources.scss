@@ -1,3 +1,29 @@
-// Place all the styles related to the event_resources controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.banner{
+  -webkit-background-size: cover;
+  background-size: cover;
+  padding: 2em;
+  color: #FFF;
+  background-color: #000;
+  margin-bottom: -20px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+}
+
+.ow{
+  background: image-url('ow.jpg') no-repeat top right fixed;
+}
+
+.cs{
+  background: image-url('cs.jpg') no-repeat top right fixed;
+}
+
+.lol{
+  background: image-url('lol.jpg') no-repeat top right fixed;
+}
+
+.hs{
+  background: image-url('hs.jpg') no-repeat top right fixed;
+}
+
+.rl{
+  background: image-url('rl.jpg') no-repeat top right fixed;
+}

@@ -69,6 +69,7 @@ event_resource = EventResource.find_or_initialize_by(
 "remote_url"=>"https://widget.toornament.com/tournaments/589d946a140ba044458b461c/",
 "event_id"=> ggcOT.id,
 "game"=>ow,
+"banner"=>"ow",
 "visible" => true
 )
 event_resource.save
@@ -82,6 +83,7 @@ event_resource = EventResource.find_or_initialize_by(
 "remote_url"=>"https://widget.toornament.com/tournaments/58eb8fca140ba0b40c8b45b7/",
 "event_id"=> ggcOT.id,
 "game"=>rl,
+"banner"=>"rl",
 "visible" => true
 )
 event_resource.save
@@ -95,6 +97,7 @@ event_resource = EventResource.find_or_initialize_by(
 "remote_url"=>"https://widget.toornament.com/tournaments/58ae8d69150ba05d0d8b4588/",
 "event_id"=> ggcOT.id,
 "game"=>hs,
+"banner"=>"hs",
 "visible" => true
 )
 event_resource.save
@@ -108,6 +111,7 @@ event_resource = EventResource.find_or_initialize_by(
 "remote_url"=>"",
 "event_id"=> ggcOT.id,
 "game"=>csgo,
+"banner"=>"cs",
 "visible" => true
 )
 event_resource.save
@@ -116,11 +120,12 @@ puts "  "+event_resource.title.to_s+" ✅"
 event_resource = EventResource.find_or_initialize_by(
 "title"=>"Online Tournament - GGC 2017: League of Legends",
 "description"=>"Team up and join the battle to win a free entry for you and your team at the the Geneva Gaming Convention 2017 Leauge of Legends tournament.",
-"start_at"=>"2017-06-03 09:45:00",
+"start_at"=>"2017-06-03 15:00:00",
 "remote"=>true,
-"remote_url"=>"",
+"remote_url"=>"https://widget.toornament.com/tournaments/58ab0eb0140ba04b0e8b457e/",
 "event_id"=> ggcOT.id,
 "game"=>lol,
+"banner"=>"lol",
 "visible" => true
 )
 event_resource.save
