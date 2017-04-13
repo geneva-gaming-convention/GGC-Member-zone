@@ -52,6 +52,9 @@ class UsersController < ApplicationController
           @user.validated = false
         end
         if @user.save
+          if @user.validated == false
+            RegisterMailer.welcome(@user).deliver_now
+          end
           flash[:success] = "Your personnal informations have successfully been updated"
           redirect_to edit_user_path(@user.id)
         else
