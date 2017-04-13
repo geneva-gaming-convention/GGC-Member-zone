@@ -11,7 +11,7 @@ module UsersHelper
     must_be_logged
     user = current_logged_user
     if user
-      return user.address && user.validated && user.phone
+      return user.address && user.validated #&& user.phone
     end
     return false
   end
