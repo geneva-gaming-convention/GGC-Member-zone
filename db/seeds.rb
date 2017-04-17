@@ -54,7 +54,7 @@ ggcOT = Event.find_or_initialize_by(
 "name"=>"Online Tournament - GGC 2017",
 "shortname"=>"GGC Online Tournament",
 "description"=>"Geneva Gaming Convention first online tournaments with a LAN entrance offered to the winning teams",
-"date"=>"2017-06-03 09:45:00",
+"date"=>"2017-06-03 15:00:00",
 "chat_url" => "https://discord.gg/yBVSU58",
 "visible" => true
 )
@@ -64,9 +64,9 @@ puts ggcOT.name.to_s+" ✅"
 event_resource = EventResource.find_or_initialize_by(
 "title"=>"Online Tournament - GGC 2017: Overwatch",
 "description"=>"Team up and join the battle to win a free entry for you and your team at the the Geneva Gaming Convention 2017 Overwatch tournament.",
-"start_at"=>"2017-06-03 09:45:00",
+"start_at"=>"2017-06-03 15:00:00",
 "remote"=>true,
-"remote_url"=>"https://widget.toornament.com/tournaments/589d946a140ba044458b461c/",
+"remote_url"=>"https://widget.toornament.com/tournaments/58f2045e150ba0b0708b4579/",
 "event_id"=> ggcOT.id,
 "game"=>ow,
 "banner"=>"ow",
@@ -78,7 +78,7 @@ puts "  "+event_resource.title.to_s+" ✅"
 event_resource = EventResource.find_or_initialize_by(
 "title"=>"Online Tournament - GGC 2017: Rocket League",
 "description"=>"Team up and join the battle to win a free entry for you and your team at the the Geneva Gaming Convention 2017 Rocket League tournament.",
-"start_at"=>"2017-06-03 09:45:00",
+"start_at"=>"2017-06-03 15:00:00",
 "remote"=>true,
 "remote_url"=>"https://widget.toornament.com/tournaments/58eb8fca140ba0b40c8b45b7/",
 "event_id"=> ggcOT.id,
@@ -92,7 +92,7 @@ puts "  "+event_resource.title.to_s+" ✅"
 event_resource = EventResource.find_or_initialize_by(
 "title"=>"Online Tournament - GGC 2017: Hearthstone",
 "description"=>"Join the battle to win a free entry for you and your team at the the Geneva Gaming Convention 2017 Hearthstone tournament.",
-"start_at"=>"2017-06-03 09:45:00",
+"start_at"=>"2017-06-03 15:00:00",
 "remote"=>true,
 "remote_url"=>"https://widget.toornament.com/tournaments/58ae8d69150ba05d0d8b4588/",
 "event_id"=> ggcOT.id,
@@ -106,9 +106,9 @@ puts "  "+event_resource.title.to_s+" ✅"
 event_resource = EventResource.find_or_initialize_by(
 "title"=>"Online Tournament - GGC 2017: Counter-Strike: Global Offensive",
 "description"=>"Team up and join the battle to win a free entry for you and your team at the the Geneva Gaming Convention 2017 CSGO tournament.",
-"start_at"=>"2017-06-03 09:45:00",
+"start_at"=>"2017-06-03 15:00:00",
 "remote"=>true,
-"remote_url"=>"",
+"remote_url"=>"https://widget.toornament.com/tournaments/58f20516150ba0f0718b4583/",
 "event_id"=> ggcOT.id,
 "game"=>csgo,
 "banner"=>"cs",
