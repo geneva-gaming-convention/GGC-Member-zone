@@ -64,7 +64,7 @@ puts ggcOT.name.to_s+" ✅"
 event_resource = EventResource.find_or_initialize_by(
 "title"=>"Online Tournament - GGC 2017: Overwatch",
 "description"=>"Team up and join the battle to win a free entry for you and your team at the the Geneva Gaming Convention 2017 Overwatch tournament.",
-"start_at"=>"2017-06-03 15:00:00",
+"start_at"=>"2017-06-03 09:30:00",
 "remote"=>true,
 "remote_url"=>"https://widget.toornament.com/tournaments/58f2045e150ba0b0708b4579/",
 "event_id"=> ggcOT.id,
@@ -92,7 +92,7 @@ puts "  "+event_resource.title.to_s+" ✅"
 event_resource = EventResource.find_or_initialize_by(
 "title"=>"Online Tournament - GGC 2017: Hearthstone",
 "description"=>"Join the battle to win a free entry for you and your team at the the Geneva Gaming Convention 2017 Hearthstone tournament.",
-"start_at"=>"2017-06-03 15:00:00",
+"start_at"=>"2017-06-03 10:00:00",
 "remote"=>true,
 "remote_url"=>"https://widget.toornament.com/tournaments/58ae8d69150ba05d0d8b4588/",
 "event_id"=> ggcOT.id,
