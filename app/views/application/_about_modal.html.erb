@@ -9,22 +9,26 @@
       <div class="modal-body">
         <h1>Genva Gaming Convention</h1>
         <div class="product-versions-pf">
-          <!--<ul class="list-unstyled">
-          <li><strong>Label</strong> Version</li>
-          <li><strong>Label</strong> Version</li>
-          <li><strong>Label</strong> Version</li>
-          <li><strong>Label</strong> Version</li>
-          <li><strong>Label</strong> Version</li>
-          <li><strong>Label</strong> Version</li>
-        </ul>-->
+          <ul class="list-unstyled">
+            <li>
+              <strong>Clément Hampaï</strong>
+              v.<small>
+                <% if get_revision.to_s != "unknown 😳" %>
+                <%= link_to get_revision(7), 'https://github.com/geneva-gaming-convention/GGC-Website/commit/'+get_revision %>
+                <% else %>
+                <%= get_revision %>
+                <% end %>
+              </small>
+            </li>
+          </ul>
+        </div>
+        <div class="trademark-pf">
+          Geneva Gaming Convention © 2017
+        </div>
       </div>
-      <div class="trademark-pf">
-        GGC © 2017
+      <div class="modal-footer">
+        <%= image_tag("ggc_web_color", width: "64") %>
       </div>
-    </div>
-    <div class="modal-footer">
-      <%= image_tag("ggc_web_color", width: "64") %>
     </div>
   </div>
-</div>
 </div>
