@@ -45,28 +45,23 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       @user.password = user_params["password"]
       @user.password_confirmation = user_params["password_confirmation"]
-      if @user.password == @user.password_confirmation && @user.password != ""
-        @user.gen_token_and_salt
-        @user.change_password(@user.password)
-        if old_mail != user_params["mail"]
-          @user.validated = false
+      @user.gen_token_and_salt
+      @user.change_password(@user.password)
+      if old_mail != user_params["mail"]
+        @user.validated = false
+      end
+      if @user.save
+        if @user.validated == false
+          RegisterMailer.welcome(@user).deliver_now
         end
-        if @user.save
-          if @user.validated == false
-            RegisterMailer.welcome(@user).deliver_now
-          end
-          flash[:success] = "Your personnal informations have successfully been updated"
-          redirect_to edit_user_path(@user.id)
-        else
-          flash[:danger] = "An error occurred while updating your personal informations, "+@user.errors.full_messages.to_sentence
-          redirect_to edit_user_path(@user.id)
-        end
+        flash[:success] = "Your personnal informations have successfully been updated"
+        redirect_to edit_user_path(@user.id)
       else
-        flash[:danger] = "An error occurred while updating your personal informations, password & confirmation must be identical and not empty"
+        flash[:danger] = "An error occurred while updating your personal informations, "+@user.errors.full_messages.to_sentence
         redirect_to edit_user_path(@user.id)
       end
     else
-      flash[:danger] = "An error occurred while updating your personal informations"
+      flash[:danger] = "An error occurred while updating your personal informations, "+@user.errors.full_messages.to_sentence
       redirect_to edit_user_path(@user.id)
     end
   end

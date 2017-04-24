@@ -1,4 +1,4 @@
-<div class="col-md-4 col-xs-12">
+<div class="col-md-6 col-xs-12">
   <div class="card-pf card-pf-accented card-pf-aggregate-status">
     <h1 class="card-pf-title">
       Account status
@@ -7,7 +7,7 @@
       <div class="row">
         <% if is_proprietary %>
         <div class="col-md-8 col-xs-8 col-xs-8">
-          Mail validated
+          Mail validated (required)
         </div>
         <div class="col-md-2 col-xs-2">
           <% if @user.validated %>
@@ -24,7 +24,7 @@
       </div>
       <div class="row">
         <div class="col-md-8 col-xs-8">
-          Address
+          Address (required)
         </div>
         <div class="col-md-2 col-xs-2">
           <% if @user.address %>
@@ -91,10 +91,10 @@
         </div>
       </div>
       <% else %>
-      <div class="col-md-8 col-xs-8">
+      <div class="col-md-10 col-xs-10">
         <h2>Ready for event registration</h2>
       </div>
-      <div class="col-md-4 col-xs-4">
+      <div class="col-md-2 col-xs-2">
         <% if @is_account_valid %>
         <h2><span class="glyphicon pficon-ok" aria-hidden="true"></span></h2>
         <% else %>

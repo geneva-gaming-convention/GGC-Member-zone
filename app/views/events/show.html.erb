@@ -34,13 +34,15 @@
   <!-- Nav tabs -->
   <ul id="game_tabs" class="nav nav-tabs" role="tablist">
     <% @games.each do |game| %>
-    <li role="presentation"><a href="#game_id_<%= game.id %>" aria-controls="game_id_<%= game.id %>" role="tab" data-toggle="tab"><%= game.name %></a></li>
+    <li role="presentation">
+      <a href="#<%= game.proper_shortname %>" id="tab_btn_<%= game.proper_shortname %>" aria-controls="<%= game.proper_shortname %>" role="tab" data-toggle="tab"><%= game.name %></a>
+    </li>
     <% end %>
   </ul>
   <!-- Tab panes -->
   <div class="tab-content">
     <% @games.each do |game| %>
-    <div role="tabpanel" class="tab-pane" id="game_id_<%= game.id %>">
+    <div role="tabpanel" class="tab-pane fade" id="<%= game.proper_shortname %>">
       <% @event.event_resources_by_game(game).each do |resource| %>
       <%= render 'event_resources/show', resource: resource %>
       <% end %>
