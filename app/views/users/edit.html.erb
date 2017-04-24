@@ -1,13 +1,11 @@
-<div class="col-md-offset-2">
-  <h1>Personals infos</h1>
-  <% flash.each do |key, value| %>
-  <div id="error_explanation" class="alert alert-<%=key%>" role="alert">
-    <p>
-      <%= value %>
-    </p>
-  </div>
-  <% end %>
+<h1>Personals informations</h1>
+<% flash.each do |key, value| %>
+<div id="error_explanation" class="alert alert-<%=key%>" role="alert">
+  <p>
+    <%= value %>
+  </p>
 </div>
+<% end %>
 <div class="container-fluid container-cards-pf">
   <%= render 'form_edit' %>
   <div class="row row-cards-pf cards_edits">
