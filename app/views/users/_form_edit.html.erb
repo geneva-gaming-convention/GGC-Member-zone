@@ -1,6 +1,6 @@
 <%= form_for(@user,:html => {:class => 'form-horizontal'}) do |f| %>
 <div class="form-group">
-  <%= label_tag 'name', "Name", class: 'col-sm-2 col-md-2 control-label' %>
+  <%= label_tag 'firstname', "Firstname", class: 'col-sm-2 col-md-2 control-label' %>
   <div class="col-sm-10 col-md-10">
     <%= f.text_field :name, class: 'form-control', :value => f.object.name.capitalize %>
   </div>
