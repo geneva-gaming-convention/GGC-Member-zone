@@ -2,13 +2,13 @@
 # lock '3.7.0'
 
 set :application, 'GGC-Website'
-set :repo_url, 'git@github.com:geneva-gaming-convention/GGC-Website.git'
+set :repo_url, 'git@github.com:geneva-gaming-convention/GGC-Member-zone.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/var/www/GGC-Website'
+set :deploy_to, '/var/www/GGC-Member-zone'
 
 # Default value for :scm is :git
 # set :scm, :git
