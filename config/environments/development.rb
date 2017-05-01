@@ -52,4 +52,6 @@ Rails.application.configure do
     :authentication => 'plain',
     :ssl => true
   }
+
+  config.force_ssl = true
 end
