@@ -1,7 +1,7 @@
 # config valid only for current version of Capistrano
 # lock '3.7.0'
 
-set :application, 'GGC-Website'
+set :application, 'GGC-Member-zone'
 set :repo_url, 'git@github.com:geneva-gaming-convention/GGC-Member-zone.git'
 
 # Default branch is :master
