@@ -38,4 +38,9 @@ class SteamAccountsController < ApplicationController
     end
     redirect_to edit_user_path(current_logged_user.id)
   end
+
+  def auth_failure
+    flash[:notice] = params[:message]
+    redirect_to edit_user_path(current_logged_user.id)
+  end
 end
