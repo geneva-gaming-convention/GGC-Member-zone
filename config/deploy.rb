@@ -56,3 +56,12 @@ task :seed do
     end
   end
 end
+
+desc 'Runs bundle exec cap puma:restart'
+task :puma_restart do
+  within release_path do
+    with rails_env: fetch(:rails_env) do
+      execute :bundle, "exec cap puma:restart"
+    end
+  end
+end
