@@ -116,4 +116,6 @@ Rails.application.configure do
     :authentication => :login,
     :enable_starttls_auto => true
   }
+  OmniAuth.config.full_host = 'https://preprod.ggc.ch'
+
 end

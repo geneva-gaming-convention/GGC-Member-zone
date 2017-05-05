@@ -52,5 +52,6 @@ Rails.application.configure do
     :authentication => 'plain',
     :ssl => true
   }
+  OmniAuth.config.full_host = 'http://dev:3000'
 
 end
