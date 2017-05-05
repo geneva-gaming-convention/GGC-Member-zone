@@ -53,5 +53,4 @@ Rails.application.configure do
     :ssl => true
   }
 
-  config.force_ssl = true
 end

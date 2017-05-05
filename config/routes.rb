@@ -28,6 +28,13 @@ Rails.application.routes.draw do
   post 'validate_addr'               => 'addresses#get_valid_addr'
   # ---------------------------
 
+  # Game accounts -------------
+  resources :battlenet_accounts, only: [:new, :destroy, :auth_callback]
+  resources :steam_accounts, only: [:new, :destroy, :auth_callback]
+  post 'auth/bnet/callback'          => 'battlenet_accounts#auth_callback'
+  post 'auth/steam/callback'         => 'steam_accounts#auth_callback'
+  # ---------------------------
+
   # Events --------------------
   resources :events
   # ---------------------------

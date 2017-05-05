@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :registrations
   has_many :privileges
   has_many :user_rules, through: :privileges
+  has_many :game_accounts
   # -----
 
   def encrypt_password(password)
@@ -30,6 +31,13 @@ class User < ActiveRecord::Base
     self.name = self.name.downcase
     self.lastname = self.lastname.downcase
     self.mail = self.mail.downcase
+  end
+
+  def having_game_accounts
+    if self.game_accounts.count > 0
+      return true
+    end
+    return false
   end
 
   def change_password(password=self.password)

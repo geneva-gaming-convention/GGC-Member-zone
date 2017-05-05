@@ -40,6 +40,8 @@ gem 'jt-rails-address'
 gem 'rest-client'
 gem 'nokogiri'
 gem 'rdoc'
+gem 'omniauth-steam'
+gem 'omniauth-bnet'
 
 
 group :development, :test do

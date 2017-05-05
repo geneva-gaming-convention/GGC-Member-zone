@@ -4,7 +4,14 @@
       <span class="glyphicon glyphicon-knight"></span> Games account
     </h1>
     <div class="card-pf-body">
-      <%= render 'empty_state', title: "Game account", info: "", action: "Add new (soon™)", cssclass: "disabled" %>
+      <% if @user.having_game_accounts %>
+      <% @user.game_accounts.each do |game_account| %>
+      <%= render 'steam_accounts/show', game_account: game_account %>
+      <% end %>
+      <% else %>
+      <%= render 'modal_new_game_account'%>
+      <%= render 'empty_state', title: "Game account", info: "", action: "Add new", toggle: "modal", target:"#new_game_account_modal" %>
+      <% end %>
     </div>
   </div>
 </div>
