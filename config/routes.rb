@@ -31,7 +31,9 @@ Rails.application.routes.draw do
   # Game accounts -------------
   resources :battlenet_accounts, only: [:new, :destroy, :auth_callback]
   resources :steam_accounts, only: [:new, :destroy, :auth_callback]
+  get 'auth/bnet/callback'          => 'battlenet_accounts#auth_callback'
   post 'auth/bnet/callback'          => 'battlenet_accounts#auth_callback'
+  get 'auth/steam/callback'         => 'steam_accounts#auth_callback'
   post 'auth/steam/callback'         => 'steam_accounts#auth_callback'
   # ---------------------------
 
