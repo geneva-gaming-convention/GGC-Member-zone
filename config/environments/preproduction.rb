@@ -117,6 +117,5 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
   OmniAuth.config.full_host = "preprod.ggc.ch"
-  OmniAuth.config.logger = Rails.logger
 
 end
