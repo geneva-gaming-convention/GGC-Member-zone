@@ -37,9 +37,9 @@ class BattlenetAccountsController < ApplicationController
     bnet_account = GameAccount.find(params[:id])
     begin
       bnet_account.destroy
-      flash[:success] =  "Your Steam account has successfully been deleted !"
+      flash[:success] =  "Your Battle.net account has successfully been deleted !"
     rescue
-      flash[:danger] = "Error while steam authentication process."
+      flash[:danger] = "Error while Battle.net authentication process."
     end
     redirect_to edit_user_path(current_logged_user.id)
   end
