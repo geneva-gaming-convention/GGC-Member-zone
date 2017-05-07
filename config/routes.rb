@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   post 'auth/bnet/callback'         => 'battlenet_accounts#auth_callback'
   get 'auth/steam/callback'         => 'steam_accounts#auth_callback'
   post 'auth/steam/callback'        => 'steam_accounts#auth_callback'
-  get '/auth/failure'               => 'users_controller#auth_failure'
+  get '/auth/failure'               => 'users#auth_failure'
   # ---------------------------
 
   # Events --------------------
