@@ -2,18 +2,18 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md-2">
-        <%= image_tag(game_account.image, class: "img-circle", size: "54x54") %>
+        <%= image_tag("bnet_oauth", class: "img-circle", size: "54x54", style:"filter: invert(100%);") %>
       </div>
       <div class="col-md-3">
         <h5>Name: <small><%= game_account.name.capitalize %></small></h5>
       </div>
       <div class="col-md-4">
-        <h5>Steam ID: <small><%= link_to game_account.account_id, game_account.profile_url, target: :blank %></small></h5>
+        <h5>Bnet ID: <small><%= game_account.account_id %></small></h5>
       </div>
       <div class="col-md-3">
         <h5>Action:
           <small>
-            <%= link_to user_steam_account_path(current_logged_user.id, game_account.id), method: :delete, class: "btn btn-danger btn-xs" do %>
+            <%= link_to user_battlenet_account_path(current_logged_user.id, game_account.id), method: :delete, class: "btn btn-danger btn-xs" do %>
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
             <% end %>
           </small>
