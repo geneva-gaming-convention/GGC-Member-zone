@@ -98,6 +98,7 @@ GEM
       oauth2 (~> 1.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    google-analytics-rails (1.1.0)
     graticule (2.5.0)
       activesupport
       i18n
@@ -272,6 +273,7 @@ DEPENDENCIES
   capistrano3-puma
   coffee-rails (~> 4.1.0)
   github_api
+  google-analytics-rails
   gravatar_image_tag
   highline
   jbuilder (~> 2.0)

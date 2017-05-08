@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessor :password_confirmation
   # Validation
   validates :name, :lastname, :mail, :password, :password_confirmation, :salt, presence: true
+  validates :name, :lastname, format: { without: /\@/ }
   validates :password, confirmation: true
   validates :mail, uniqueness: true
   # -----

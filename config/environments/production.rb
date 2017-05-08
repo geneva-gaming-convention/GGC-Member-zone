@@ -116,5 +116,6 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
   OmniAuth.config.full_host = "https://member.ggc.ch"
+  GA.tracker = Rails.application.secrets.google_analytics_key
 
 end

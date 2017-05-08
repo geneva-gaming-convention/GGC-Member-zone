@@ -42,6 +42,7 @@ gem 'nokogiri'
 gem 'rdoc'
 gem 'omniauth-steam'
 gem 'omniauth-bnet'
+gem 'google-analytics-rails'
 
 
 group :development, :test do
