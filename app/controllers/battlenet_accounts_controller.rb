@@ -15,6 +15,9 @@ class BattlenetAccountsController < ApplicationController
       game_account.name = data['info']['battletag']
       game_account.account_id = account_id
       game_account.user = current_logged_user
+      if current_logged_user.has_already_game_provider(GameProvider.find_by(name: "battlenet"))
+        raise "You already have linked a Battle.net account, you can only have 1 account by game provider."
+      end
       game_account.game_provider = GameProvider.find_by(name: "battlenet")
       if game_account.save
         flash[:success] = "Your Battle.net account has sucessfully been linked !"

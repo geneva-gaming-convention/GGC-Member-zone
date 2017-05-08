@@ -16,6 +16,9 @@ class SteamAccountsController < ApplicationController
       game_account.account_id = account_id
       game_account.last_seen = Time.at(data['extra']['raw_info']['lastlogoff']).strftime("%d %B, %Y at %H:%M")
       game_account.user = current_logged_user
+      if current_logged_user.has_already_game_provider(GameProvider.find_by(name: "steam"))
+        raise "You already have linked a Steam account, you can only have 1 account per game provider."
+      end
       game_account.game_provider = GameProvider.find_by(name: "steam")
       if game_account.save
         flash[:success] = "Your Steam account has sucessfully been linked !"

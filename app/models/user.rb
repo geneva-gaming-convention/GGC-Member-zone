@@ -28,6 +28,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def has_already_game_provider(game_provider)
+    self.game_accounts.each do |game_account|
+      if game_account.game_provider == game_provider
+        return true
+      end
+    end
+    return false
+  end
+
   def set_lowercase
     self.name = self.name.downcase
     self.lastname = self.lastname.downcase
