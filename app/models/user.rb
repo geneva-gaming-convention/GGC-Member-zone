@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessor :password_confirmation
   # Validation
   validates :name, :lastname, :mail, :password, :password_confirmation, :salt, presence: true
+  validates :name, :lastname, format: { without: /\@/ }
   validates :password, confirmation: true
   validates :mail, uniqueness: true
   # -----
@@ -14,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :registrations
   has_many :privileges
   has_many :user_rules, through: :privileges
+  has_many :game_accounts
   # -----
 
   def encrypt_password(password)
@@ -26,10 +28,26 @@ class User < ActiveRecord::Base
     end
   end
 
+  def has_already_game_provider(game_provider)
+    self.game_accounts.each do |game_account|
+      if game_account.game_provider == game_provider
+        return true
+      end
+    end
+    return false
+  end
+
   def set_lowercase
     self.name = self.name.downcase
     self.lastname = self.lastname.downcase
     self.mail = self.mail.downcase
+  end
+
+  def having_game_accounts
+    if self.game_accounts.count > 0
+      return true
+    end
+    return false
   end
 
   def change_password(password=self.password)

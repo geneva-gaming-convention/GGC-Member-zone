@@ -16,7 +16,6 @@ class WelcomeController < ApplicationController
         data = github.repos.commits.all 'geneva-gaming-convention', 'GGC-Member-zone', per_page: 5
       end
     end
-    puts "!!!!!!!!!!!!!! "+data.inspect.to_s
     data.each do |commit|
       @commits << commit.commit
     end

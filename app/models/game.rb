@@ -1,6 +1,7 @@
 class Game < ApplicationRecord
   # Relations
   has_many :event_resources
+  belongs_to :game_provider
   # ---------
 
   def proper_shortname

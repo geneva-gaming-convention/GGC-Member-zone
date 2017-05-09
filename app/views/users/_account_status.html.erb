@@ -61,7 +61,11 @@
           Game account
         </div>
         <div class="col-md-2 col-xs-2">
+          <% if @user.game_accounts.count > 0 %>
+          <span class="glyphicon pficon-ok" aria-hidden="true"></span>
+          <% else %>
           <span class="glyphicon pficon-error-circle-o" aria-hidden="true"></span>
+          <% end %>
         </div>
         <div class="col-md-2 col-xs-2">
           <%= link_to edit_user_path(@user.id) do %>

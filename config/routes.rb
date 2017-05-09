@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     put     'phone'                  => 'users#update_phone'
     delete  'phone'                  => 'users#delete_phone'
     get     'ask_validation'         => 'users#ask_validation'
+    resources :battlenet_accounts,   only: [:destroy]
+    resources :steam_accounts,       only: [:destroy]
   end
   get   'validate/:token'            => 'users#validate',                       as: :validate
   # ---------------------------
@@ -26,6 +28,16 @@ Rails.application.routes.draw do
   # Addresses -----------------
   resources :addresses
   post 'validate_addr'               => 'addresses#get_valid_addr'
+  # ---------------------------
+
+  # Game accounts -------------
+  resources :battlenet_accounts,    only: [:new, :auth_callback]
+  resources :steam_accounts,        only: [:new, :auth_callback]
+  get 'auth/bnet/callback'          => 'battlenet_accounts#auth_callback'
+  post 'auth/bnet/callback'         => 'battlenet_accounts#auth_callback'
+  get 'auth/steam/callback'         => 'steam_accounts#auth_callback'
+  post 'auth/steam/callback'        => 'steam_accounts#auth_callback'
+  get '/auth/failure'               => 'users#auth_failure'
   # ---------------------------
 
   # Events --------------------

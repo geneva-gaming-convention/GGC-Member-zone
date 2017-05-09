@@ -1,0 +1,2 @@
+module BattlenetAccountsHelper
+end

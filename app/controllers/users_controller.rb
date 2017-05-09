@@ -155,6 +155,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def auth_failure
+    flash[:danger] = params[:message]
+    redirect_to edit_user_path(current_logged_user.id)
+  end
+
   def user_params
     params.require(:user).permit(:name, :lastname, :mail, :phone, :password, :password_confirmation)
   end
