@@ -1,0 +1,55 @@
+<%= render 'breadcrumb' %>
+<script type="text/javascript">
+<%= render :partial => "display_resources_teams.js" %>
+</script>
+<div class="row">
+  <div class="col-md-12" style="padding-left:0px; padding-right:0px;">
+    <div class="banner
+    <% if @event_resource.banner %>
+    <%= @event_resource.banner.downcase %>
+    <% end %>
+    ">
+    <h4><%= @event_resource.title %></h4>
+    <p>
+      <h5>Starting date: <%= @event_resource.start_at.strftime("%d %B %Y at %Hh%M") %></h5>
+    </p>
+    <p>
+      <%= @event_resource.description %>
+    </p>
+  </div>
+  <div class="card-pf-body">
+    <p>
+      <% if is_logged_in && is_ready_for_registration %>
+      <iframe src="<%= @event_resource.remote_url%>" width="100%" height="600" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
+      <% else %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Authent required <span class="glyphicon glyphicon-lock" aria-hidden="true"></span></h3>
+        </div>
+        <div class="panel-body">
+          To see this event you need to be <%= link_to 'connected', login_path %> and your account need to be ready for registration first 😉.
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <% if @event_resource.game.teambased %>
+          <h3 class="panel-title">Registered teams</span></h3>
+          <% else %>
+          <h3 class="panel-title">Registered participants</span></h3>
+          <% end %>
+        </div>
+        <div class="panel-body">
+          <div id="participants_teams">
+            <% if @event_resource.game.teambased %>
+            <div style="text-align:center;"><span class="spinner spinner-xs spinner-inline"></span> Searching for teams...</div>
+            <% else %>
+            <div style="text-align:center;"><span class="spinner spinner-xs spinner-inline"></span> Searching for players...</div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </p>
+  </div>
+</div>
+</div>

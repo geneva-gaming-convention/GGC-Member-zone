@@ -1,0 +1,8 @@
+<ol class="breadcrumb">
+  <li>
+    <a href="<%= event_path(@event_resource.event.id)%>"><%= @event_resource.event.name %></a>
+  </li>
+  <li class="active"> <strong><%= @event_resource.event.name %></strong>
+    <%= @event_resource.game.name %>
+  </li>
+</ol>

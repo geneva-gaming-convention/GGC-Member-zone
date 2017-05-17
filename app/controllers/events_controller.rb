@@ -6,29 +6,13 @@ class EventsController < ApplicationController
     @events = Event.all.where(visible: true)
   end
 
-  def new
-    @event = Event.new
-  end
-
-  def create
-
-  end
-
   def show
     @event = Event.find_by(id: params["id"])
     if !@event
       render_404
     else
-      @games = @event.get_all_played_games
+      @event_resources = @event.event_resources
     end
-  end
-
-  def edit
-
-  end
-
-  def update
-
   end
 
   def events_params

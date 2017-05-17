@@ -41,7 +41,12 @@ Rails.application.routes.draw do
   # ---------------------------
 
   # Events --------------------
-  resources :events
+  resources :events,                only: [:index, :show] do
+    resources :event_resources,     only: [:show] do
+      get 'teams'                   => 'event_resources#get_teams',             as: :teams
+      get 'teams_and_players'       => 'event_resources#get_teams_and_players', as: :team_players
+    end
+  end
   # ---------------------------
 
   # Statics pages -------------
