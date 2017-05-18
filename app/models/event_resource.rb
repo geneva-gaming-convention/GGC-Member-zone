@@ -18,6 +18,11 @@ class EventResource < ApplicationRecord
     return teams
   end
 
+  def get_size
+    event_resource = ToornamentHelper.get_tournament_by_id(self.get_resource_remote_id)
+    return event_resource["size"]
+  end
+
   def get_teams_with_members
     self.get_teams.each do |team|
       team["members"] = []

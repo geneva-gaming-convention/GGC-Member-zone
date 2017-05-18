@@ -1,5 +1,13 @@
 class EventResourcesController < ApplicationController
 
+  def index
+    @event_resources = EventResource.where(event_id: params["event_id"])
+    if @event_resources
+      render 'index', :layout => false
+    else
+      render_404
+    end
+  end
 
   def show
     @event_resource = EventResource.find_by(event_id: params["event_id"], id: params["id"])

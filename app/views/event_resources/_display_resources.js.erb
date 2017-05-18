@@ -1,0 +1,5 @@
+function display_resources(){
+  $.get( "<%=j event_event_resources_path(@event.id) %>", function( resources ) {
+    $("#event_resources").html(resources);
+  });
+}
