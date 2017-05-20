@@ -41,7 +41,7 @@ namespace :deploy do
       # within release_path do
       #   execute :rake, 'cache:clear'
       # end
-      execute "/home/cypress/start_ggc_member_zone.sh"
+      execute :bundle, 'exec cap puma:restart'
     end
   end
 end
