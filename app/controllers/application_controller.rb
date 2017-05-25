@@ -6,4 +6,5 @@ class ApplicationController < ActionController::Base
   include ErrorHelper
   include UsersHelper
   include ApplicationHelper
+  include ToornamentHelper
 end

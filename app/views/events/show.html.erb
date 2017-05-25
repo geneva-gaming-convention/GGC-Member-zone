@@ -12,6 +12,7 @@
   </div>
 </div>
 <% end %>
+<%= render 'breadcrumb' %>
 <div class="row">
   <div class="col-md-12">
     <h1>
@@ -30,23 +31,22 @@
     </p>
   </div>
 </div>
-<div class="row">
-  <!-- Nav tabs -->
-  <ul id="game_tabs" class="nav nav-tabs" role="tablist">
-    <% @games.each do |game| %>
-    <li role="presentation">
-      <a href="#<%= game.proper_shortname %>" id="tab_btn_<%= game.proper_shortname %>" aria-controls="<%= game.proper_shortname %>" role="tab" data-toggle="tab"><%= game.name %></a>
-    </li>
-    <% end %>
-  </ul>
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <% @games.each do |game| %>
-    <div role="tabpanel" class="tab-pane fade" id="<%= game.proper_shortname %>">
-      <% @event.event_resources_by_game(game).each do |resource| %>
-      <%= render 'event_resources/show', resource: resource %>
-      <% end %>
+<script type="text/javascript">
+<%= render :partial => "event_resources/display_resources.js" %>
+</script>
+<div class="row" id="event_resources">
+  <div class="card-pf card-pf-accented card-pf-aggregate-status">
+    <h2 class="card-pf-title">
+      Loading content ...
+    </h2>
+    <div class="card-pf-body">
+      <p class="card-pf-aggregate-status-notifications">
+        <div class="spinner spinner-lg"></div>
+      </p>
     </div>
-    <% end %>
   </div>
 </div>
+<%= render 'application/toornament_powered' %>
+<script type="text/javascript">
+display_resources();
+</script>

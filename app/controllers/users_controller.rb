@@ -35,7 +35,6 @@ class UsersController < ApplicationController
     @address = Address.new()
     if !@user
       render_404
-      return
     end
   end
 
@@ -57,12 +56,12 @@ class UsersController < ApplicationController
         flash[:success] = "Your personnal informations have successfully been updated"
         redirect_to edit_user_path(@user.id)
       else
-        flash[:danger] = "An error occurred while updating your personal informations, "+@user.errors.full_messages.to_sentence
-        redirect_to edit_user_path(@user.id)
+        flash.now[:danger] = "An error occurred while updating your personal informations, "+@user.errors.full_messages.to_sentence
+        render 'edit'
       end
     else
-      flash[:danger] = "An error occurred while updating your personal informations, "+@user.errors.full_messages.to_sentence
-      redirect_to edit_user_path(@user.id)
+      flash.now[:danger] = "An error occurred while updating your personal informations, "+@user.errors.full_messages.to_sentence
+      render 'edit'
     end
   end
 
@@ -77,13 +76,13 @@ class UsersController < ApplicationController
         redirect_to edit_user_path(@user.id)
       else
         msg = "An error occurred while updating your phone number, "+@user.errors.full_messages.to_sentence
-        flash[:danger] = msg
-        redirect_to edit_user_path(@user.id)
+        flash.now[:danger] = msg
+        render 'edit'
       end
     else
       msg = "An error occurred while updating your phone number"
-      flash[:danger] = msg
-      redirect_to edit_user_path(@user.id)
+      flash.now[:danger] = msg
+      render 'edit'
     end
   end
 
@@ -95,11 +94,12 @@ class UsersController < ApplicationController
       if @user.save
         msg = "Your phone number has been deleted"
         flash[:success] = msg
+        redirect_to edit_user_path(@user.id)
       else
         msg = "An error occurred while deleting your phone number"
-        flash[:danger] = msg
+        flash.now[:danger] = msg
+        render 'edit'
       end
-      redirect_to edit_user_path(@user.id)
     else
       flash.now[:danger] = "User asked not found"
       render_404
@@ -115,8 +115,8 @@ class UsersController < ApplicationController
     if @user.destroy && log_out
       redirect_to root_path
     else
-      flash[:danger] =  "Failed to delete your account 😞"
-      redirect_to edit_user_path(@user.id)
+      flash[:danger] =  "Failed to delete your account 😞, "+@user.errors.full_messages.to_sentence
+      redirect_to user_delete_path(@user.id)
     end
   end
 

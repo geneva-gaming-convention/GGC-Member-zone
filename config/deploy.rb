@@ -41,7 +41,7 @@ namespace :deploy do
       # within release_path do
       #   execute :rake, 'cache:clear'
       # end
-      execute :bundle, "exec cap puma:restart"
+      execute :bundle, 'exec cap puma:restart'
     end
   end
 end

@@ -1,21 +1,29 @@
-<div class="col-md-offset-2">
-    <h1>Register</h1>
-    <% flash.each do |key, value| %>
-    <div id="error_explanation" class="alert alert-<%=key%>" role="alert">
-        <p>
-            <%= value %>
-        </p>
+<div class="row row-cards-pf">
+  <div class="card-pf card-pf-accented">
+    <div class="card-pf-title">
+      <h1>Register</h1>
     </div>
-    <% end %>
-    <% if @user.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
+    <div class="col-md-offset-2">
+      <% flash.each do |key, value| %>
+      <div id="error_explanation" class="alert alert-<%=key%>" role="alert">
+        <p>
+          <%= value %>
+        </p>
+      </div>
+      <% end %>
+      <% if @user.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
         <h5><%= pluralize(@user.errors.count, "error") %> canceled your registration:</h5>
         <ul>
-            <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-            <% end %>
+          <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
         </ul>
+      </div>
+      <% end %>
     </div>
-    <% end %>
+    <div class="card-pf-body">
+      <%= render 'form_new' %>
+    </div>
+  </div>
 </div>
-<%= render 'form_new' %>

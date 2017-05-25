@@ -1,0 +1,16 @@
+<% @teams.each do |team| %>
+<div class="col-md-3">
+  <div class="card-pf card-pf-accented card-pf-aggregate-status">
+    <h2 class="card-pf-title">
+      <%= team["name"] %>
+    </h2>
+    <div class="card-pf-body row">
+      <ul class="list-group">
+        <% team["members"].each do |player| %>
+        <li class="list-group-item"><%= player["name"] %></li>
+        <%  end %>
+      </ul>
+    </div>
+  </div>
+</div>
+<% end %>

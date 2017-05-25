@@ -3,11 +3,13 @@
 <head>
   <title>GGC Member zone</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= analytics_init if GoogleAnalytics.valid_tracker? %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag("c3.min.js") %>
   <%= javascript_include_tag("d3.min.js") %>
   <%= javascript_include_tag("jquery.matchHeight-min.js") %>
-  <%= analytics_init if GoogleAnalytics.valid_tracker? %>
+  <%= favicon_link_tag 'favicon.ico' %>
+  <%= favicon_link_tag 'favicon.ico', rel: 'apple-touch-icon', type: 'image/ico' %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>

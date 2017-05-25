@@ -1,27 +1,57 @@
-<h1>Personals informations</h1>
-<% flash.each do |key, value| %>
-<div id="error_explanation" class="alert alert-<%=key%>" role="alert">
-  <p>
-    <%= value %>
-  </p>
-</div>
-<% end %>
 <div class="container-fluid container-cards-pf">
-  <%= render 'form_edit' %>
+  <div class="row row-cards-pf">
+    <div class="card-pf card-pf-accented">
+      <div class="card-pf-title">
+        Profil picture
+      </div>
+      <div class="card-pf-body">
+        <div class="row" style="margin-bottom:2em;">
+          <div class="col-md-2 text-center">
+            <img src="<%= gravatar_image_url(@user.mail.gsub('spam', 'mdeering'), size: 192) %>
+            " alt="<%= @user.name %>" class="img-circle" height="96">
+          </div>
+          <div class="col-md-10">
+            <p>
+              Please be concerned by the fact that this picture will be printed on your GGC control access pass.</br>
+              So we need to be able to <strong>recognize you easily</strong>.
+            </p>
+            <p>
+              <%= link_to "Change my picture", "http://fr.gravatar.com/", :class => "btn btn-default btn-large", :target => "_blank" %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% flash.each do |key, value| %>
+  <div id="error_explanation" class="alert alert-<%=key%>" role="alert">
+    <p>
+      <%= value %>
+    </p>
+  </div>
+  <% end %>
+  <div class="row row-cards-pf">
+    <div class="card-pf card-pf-accented">
+      <div class="card-pf-title">
+        Profil
+      </div>
+      <div class="card-pf-body">
+        <%= render 'form_edit' %>
+      </div>
+    </div>
+  </div>
   <div class="row row-cards-pf cards_edits">
     <%= render 'address/address_card' %>
     <%= render 'phone_card' %>
     <%= render 'game_account_card' %>
   </div>
   <div class="row row-cards-pf">
-    <div class="col-lg-12" style="text-align:center;padding:2em;">
-      <div class="card-pf card-pf-accented card-pf-aggregate-status danger_zone">
-        <h1 class="card-pf-title">
-          <span class="glyphicon  pficon-warning-triangle-o"></span> Danger zone
-        </h1>
-        <div class="card-pf-body">
-          <%= link_to "Delete my account",user_delete_path(@user.id), :class => "btn btn-danger", :type => "button" %>
-        </div>
+    <div class="card-pf card-pf-accented card-pf-aggregate-status danger_zone text-center">
+      <div class="card-pf-title">
+        <span class="glyphicon pficon-warning-triangle-o"></span> Danger zone
+      </div>
+      <div class="card-pf-body">
+        <%= link_to "Delete my account",user_delete_path(@user.id), :class => "btn btn-danger", :type => "button" %>
       </div>
     </div>
   </div>

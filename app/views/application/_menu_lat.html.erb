@@ -77,12 +77,12 @@
     <li class="list-group-item">
       <% if current_logged_user %>
         <%= link_to logout_path, method: :delete do %>
-        <span class="fa pficon-private" data-toggle="tooltip" title="Log out"></span>
+        <span class="glyphicon glyphicon-log-out" data-toggle="tooltip" title="Log out"></span>
         <span class="list-group-item-value">Log out</span>
         <% end %>
       <% else %>
         <%= link_to login_path do %>
-        <span class="fa pficon-private" data-toggle="tooltip" title="Login / Register"></span>
+        <span class="glyphicon glyphicon-log-in" data-toggle="tooltip" title="Login / Register"></span>
         <span class="list-group-item-value">Login / Register</span>
         <% end %>
       <% end %>

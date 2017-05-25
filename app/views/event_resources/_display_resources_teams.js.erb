@@ -1,0 +1,5 @@
+function display_teams(){
+  $.get( "<%=j event_event_resource_team_players_path(@event_resource.event.id, @event_resource.id) %>", function( teams ) {
+    $("#participants_teams").html(teams);
+  });
+}
