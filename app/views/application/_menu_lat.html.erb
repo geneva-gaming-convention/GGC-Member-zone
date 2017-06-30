@@ -42,6 +42,60 @@
         </ul>
       </div>
     </li>
+    <li class="list-group-item secondary-nav-item-pf" data-target="#groups-secondary">
+      <a>
+        <span class="fa pficon-project" data-toggle="tooltip" title="Groups & Friends"></span>
+        <span class="list-group-item-value">Groups & Friends</span>
+      </a>
+      <div id="groups-secondary" class="nav-pf-secondary-nav">
+        <div class="nav-item-pf-header">
+          <a class="secondary-collapse-toggle-pf" data-toggle="collapse-secondary-nav"></a>
+          <span>Groups & Friends</span>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <% if is_logged_in %>
+            <%= link_to user_users_groups_path(current_logged_user) do %>
+            <span class="list-group-item-value">My groups</span>
+            <% end %>
+            <% else %>
+            <%= link_to login_path do %>
+            <span class="list-group-item-value">My groups</span>
+            <% end %>
+            <% end %>
+          </li>
+          <li class="list-group-item">
+            <% if is_logged_in %>
+            <%= link_to new_user_users_group_path(current_logged_user) do %>
+            <span class="list-group-item-value">Create group</span>
+            <% end %>
+            <% else %>
+            <%= link_to login_path do %>
+            <span class="list-group-item-value">Create group</span>
+            <% end %>
+            <% end %>
+          </li>
+          <li class="list-group-item">
+            <% if is_logged_in %>
+            <%= link_to global_groups_list_path do %>
+            <span class="list-group-item-value">Join group</span>
+            <% end %>
+            <% else %>
+            <%= link_to login_path do %>
+            <span class="list-group-item-value">Join group</span>
+            <% end %>
+            <% end %>
+          </li>
+          <li class="list-group-item spacer">
+          </li>
+          <li class="list-group-item">
+            <%= link_to global_groups_list_path do %>
+            <span class="list-group-item-value">All friend's groups</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </li>
     <li class="list-group-item">
       <%= link_to faq_path do %>
       <span class="fa pficon-help" data-toggle="tooltip" title="FAQ"></span>
@@ -76,15 +130,15 @@
     </li>
     <li class="list-group-item">
       <% if current_logged_user %>
-        <%= link_to logout_path, method: :delete do %>
-        <span class="glyphicon glyphicon-log-out" data-toggle="tooltip" title="Log out"></span>
-        <span class="list-group-item-value">Log out</span>
-        <% end %>
+      <%= link_to logout_path, method: :delete do %>
+      <span class="glyphicon glyphicon-log-out" data-toggle="tooltip" title="Log out"></span>
+      <span class="list-group-item-value">Log out</span>
+      <% end %>
       <% else %>
-        <%= link_to login_path do %>
-        <span class="glyphicon glyphicon-log-in" data-toggle="tooltip" title="Login / Register"></span>
-        <span class="list-group-item-value">Login / Register</span>
-        <% end %>
+      <%= link_to login_path do %>
+      <span class="glyphicon glyphicon-log-in" data-toggle="tooltip" title="Login / Register"></span>
+      <span class="list-group-item-value">Login / Register</span>
+      <% end %>
       <% end %>
     </li>
   </ul>

@@ -4,18 +4,23 @@ class User < ActiveRecord::Base
   validates :name, :lastname, :mail, :password, :password_confirmation, :salt, presence: true
   validates :name, :lastname, format: { without: /\@/ }
   validates :password, confirmation: true
+  validates :password, :length => {:within => 6..40}
   validates :mail, uniqueness: true
   # -----
+
   # Hooks
   before_create :change_password
   before_save :set_lowercase
   # -----
+
   # Relations
   belongs_to :address
   has_many :registrations
   has_many :privileges
   has_many :user_rules, through: :privileges
   has_many :game_accounts
+  has_many :group_members
+  has_many :users_groups, through: :group_members
   # -----
 
   def encrypt_password(password)

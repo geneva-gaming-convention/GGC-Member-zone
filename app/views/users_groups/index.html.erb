@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="card-pf card-pf-accented card-pf-aggregate-status">
+      <h2 class="card-pf-title">
+        <span class="glyphicon pficon-add-circle-o" aria-hidden="true"></span>
+        Create a friend's group
+      </h2>
+      <div class="card-pf-body">
+        <p class="text-left">
+          A friend group can contain as much people as you wish. It's used to place you near by during events.
+          After creating a friend group you can create teams/roster from this friend list.
+          A friend's group is also can also be used for ESports structures.
+        </p>
+        <p>
+          <% if is_proprietary %>
+          <%= link_to "Create a friend's group", new_user_users_group_path(current_logged_user), class: "btn btn-lg btn-primary" %>
+          <% else %>
+          <button type="button" class="btn btn-lg btn-primary disabled" data-toggle="tooltip" data-placement="bottom" title="You need to be logged to create friend's groups">Create a friend's group</button>
+          <% end %>
+        </P>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card-pf card-pf-accented card-pf-aggregate-status">
+      <h2 class="card-pf-title">
+        <span class="glyphicon pficon-import" aria-hidden="true"></span>
+        Join a friends group
+      </h2>
+      <div class="card-pf-body">
+        <p class="text-left">
+          You can choose here which friends group you want to join.
+          You can join multiple friends groups.
+        </p>
+        <p>
+          <%= link_to "Join a friend's group", global_groups_list_path, class: "btn btn-lg btn-primary" %>
+        </P>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-pf card-pf-accented card-pf-aggregate-status">
+        <div class="card-pf-title">
+          <span class="glyphicon pficon-project" aria-hidden="true"></span>
+          My groups:
+        </div>
+        <div class="card-pf-body">
+          <%= render 'list_groups' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

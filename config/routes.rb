@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     get     'ask_validation'         => 'users#ask_validation'
     resources :battlenet_accounts,   only: [:destroy]
     resources :steam_accounts,       only: [:destroy]
+    resources :users_groups do
+      get 'leave'                    => 'users_groups#leave'
+    end
   end
   get   'validate/:token'            => 'users#validate',                       as: :validate
   # ---------------------------
@@ -47,6 +50,11 @@ Rails.application.routes.draw do
       get 'teams_and_players'       => 'event_resources#get_teams_and_players', as: :team_players
     end
   end
+  # ---------------------------
+
+  # Users Group ---------------
+  get     'users_groups'            => 'users_groups#list',                     as: :global_groups_list
+  get     'users_groups/:id/join'   => 'users_groups#join',                     as: :join_users_group
   # ---------------------------
 
   # Statics pages -------------
