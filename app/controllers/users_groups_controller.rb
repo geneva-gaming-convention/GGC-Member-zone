@@ -26,6 +26,18 @@ class UsersGroupsController < ApplicationController
     end
   end
 
+  def show
+    user = User.find_by(id: params[:user_id])
+    if user
+      @group = user.users_groups.find_by(id: params[:id])
+      if !@group
+        render_404
+      end
+    else
+      render_404
+    end
+  end
+
   def list
     @groups = UsersGroup.all
   end

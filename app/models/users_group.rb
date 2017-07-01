@@ -14,6 +14,14 @@ class UsersGroup < ApplicationRecord
   validates :name, uniqueness: true
   # -----
 
+  def get_proprietary
+    self.group_members.each do |group_member|
+      if group_member.is_creator
+        return group_member.user
+      end
+    end
+  end
+
   def encrypt_password(password)
     return Digest::SHA2.new(512).hexdigest(password+self.salt)
   end

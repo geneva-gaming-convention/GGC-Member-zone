@@ -5,22 +5,25 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">
+          <%= link_to user_users_group_path(group.get_proprietary, group) do %>
           <%= group.name.capitalize %> [<%= group.tag.upcase %>]
+          <% end %>
         </h3>
       </div>
       <div class="panel-body">
         <div class="row" style="margin-bottom:1em;">
           <div class="col-md-12">
             <% if is_logged_in %>
-            Actions: <%= link_to "Join", "", class:"btn btn-primary btn-xs" %>
+            <%= link_to "Show details", user_users_group_path(group.get_proprietary, group), class:"btn btn-primary btn-xs" %>
             <% end %>
           </div>
         </div>
         <ul class="list-group">
-          <% group.users.each do |user| %>
+          <% group.group_members.each do |group_member| %>
+          <% user = group_member.user %>
           <li class="list-group-item">
             <%= user.name.capitalize %> <%= user.lastname.capitalize %>
-            <% if user.group_members.where(users_group_id: group.id).first.is_creator %>
+            <% if group_member.is_creator %>
             <span class="glyphicon pficon-help" aria-hidden="true"></span>
             <% end %>
           </li>
