@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require patternfly
+//= require snaptable
 //= require_tree .

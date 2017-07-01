@@ -226,6 +226,11 @@ GEM
       rdoc (~> 4.0)
     select2-rails (4.0.3)
       thor (~> 0.14)
+    snaptable (2.0.4)
+      jquery-rails
+      rails (>= 5.0.0)
+      sass-rails
+      will_paginate
     spring (2.0.1)
       activesupport (>= 4.2)
     sprockets (3.7.1)
@@ -260,6 +265,7 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    will_paginate (3.1.6)
 
 PLATFORMS
   ruby
@@ -294,6 +300,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   select2-rails
+  snaptable
   spring
   sqlite3
   turbolinks

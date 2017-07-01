@@ -67,4 +67,10 @@ Rails.application.routes.draw do
   delete  'logout'                   => 'sessions#destroy'
   # ---------------------------
 
+  # Admin ---------------------
+  namespace :admin do
+    resources :users, except: [:show]
+  end
+  # ---------------------------
+
 end
