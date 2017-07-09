@@ -1,5 +1,6 @@
 $(document).ready(function() {
   disable_listener();
+  init_tooltips();
 });
 
 function disable_listener(){
@@ -10,4 +11,10 @@ function disable_listener(){
       button.closest("form").submit();
     }, 100);
   });
+}
+
+function init_tooltips(){
+  if($('[data-toggle="tooltip"]').length ){
+    $('[data-toggle="tooltip"]').tooltip();
+  }
 }

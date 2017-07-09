@@ -142,11 +142,11 @@ class UsersController < ApplicationController
           flash[:success] = 'Your email has been validated sucessfully !'
           redirect_to login_path
         else
-          flash[:danger] = 'Your email has not been validated, try again.'
+          flash[:danger] = 'Your email has not been validated, try again.'+user.errors.full_messages.to_sentence
           redirect_to login_path
         end
       else
-        flash[:danger] = 'Your email has not been validated, try again.'
+        flash[:danger] = 'Your email has not been validated, try again.'+user.errors.full_messages.to_sentence
         redirect_to login_path
       end
     else

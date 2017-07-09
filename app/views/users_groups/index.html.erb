@@ -13,7 +13,7 @@
         </p>
         <p>
           <% if is_proprietary %>
-          <%= link_to "Create a friend's group", new_user_users_group_path(current_logged_user), class: "btn btn-lg btn-primary" %>
+          <%= link_to "Create a friend group", new_user_users_group_path(current_logged_user), class: "btn btn-lg btn-primary" %>
           <% else %>
           <button type="button" class="btn btn-lg btn-primary disabled" data-toggle="tooltip" data-placement="bottom" title="You need to be logged to create friend's groups">Create a friend's group</button>
           <% end %>
@@ -33,7 +33,7 @@
           You can join multiple friends groups.
         </p>
         <p>
-          <%= link_to "Join a friend's group", global_groups_list_path, class: "btn btn-lg btn-primary" %>
+          <%= link_to "Join a friend group", global_groups_list_path, class: "btn btn-lg btn-primary" %>
         </P>
       </div>
     </div>

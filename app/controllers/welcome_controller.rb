@@ -13,7 +13,7 @@ class WelcomeController < ApplicationController
         data = github.repos.commits.list 'geneva-gaming-convention', 'GGC-Member-zone', :sha => branch.name, per_page: 5
       else
         @branch_title = ""
-        data = github.repos.commits.all 'geneva-gaming-convention', 'GGC-Member-zone', per_page: 5
+        data = github.repos.commits.all 'geneva-gaming-convention', 'GGC-Member-zone', :sha => "preprod",per_page: 5
       end
     end
     data.each do |commit|

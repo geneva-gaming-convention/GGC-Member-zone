@@ -9,7 +9,7 @@ class UsersGroup < ApplicationRecord
   # -----
 
   # Validations
-  validates :password, :length => {:within => 6..40}
+  validates :password, :length => { minimum: 7 }
   validates :tag, length: {is: 4}, allow_blank: false
   validates :name, uniqueness: true
   # -----
@@ -22,14 +22,25 @@ class UsersGroup < ApplicationRecord
     end
   end
 
+  def is_user_already_group_member(user)
+    self.group_members.each do |group_member|
+      if group_member.user == user
+        return true
+      end
+    end
+    return false
+  end
+
+  ## Crypto stuff
   def encrypt_password(password)
     return Digest::SHA2.new(512).hexdigest(password+self.salt)
   end
 
   def authenticate(password)
-    if Digest::SHA2.new(512).hexdigest(password+self.salt) == self.password
-      true
+    if encrypt_password(password) == self.password
+      return true
     end
+    return false
   end
 
   def change_password(password=self.password)
@@ -63,5 +74,6 @@ class UsersGroup < ApplicationRecord
       break salt unless User.exists?(salt: salt)
     end
   end
+  # -----
 
 end

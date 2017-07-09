@@ -53,18 +53,20 @@ Rails.application.routes.draw do
   # ---------------------------
 
   # Users Group ---------------
-  get     'users_groups'            => 'users_groups#list',                     as: :global_groups_list
-  get     'users_groups/:id/join'   => 'users_groups#join',                     as: :join_users_group
+  get     'users_groups'                   => 'users_groups#list',              as: :global_groups_list
+  get     'users_groups/:id'               => 'users_groups#show',              as: :show_group
+  get     'users_groups/:id/ask_to_join'   => 'users_groups#ask_to_join',       as: :ask_join_users_group
+  post    'users_groups/:id/join'          => 'users_groups#join',              as: :join_users_group
   # ---------------------------
 
   # Statics pages -------------
-  get     'faq'                      => 'static#faq'
+  get     'faq'                            => 'static#faq'
   # ---------------------------
 
   # Sessions ------------------
-  get     'login'                    => 'sessions#new'
-  post    'login'                    => 'sessions#create'
-  delete  'logout'                   => 'sessions#destroy'
+  get     'login'                          => 'sessions#new'
+  post    'login'                          => 'sessions#create'
+  delete  'logout'                         => 'sessions#destroy'
   # ---------------------------
 
   # Admin ---------------------
