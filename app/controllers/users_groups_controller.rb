@@ -38,6 +38,26 @@ class UsersGroupsController < ApplicationController
     @groups = UsersGroup.all
   end
 
+  def update
+    @group = UsersGroup.find_by(id: params[:id])
+    if @group && @group.is_proprietary(current_logged_user)
+      @group.update_attributes(users_group_params)
+      @group.change_password(@group.password)
+      if @group.save
+        flash[:success] = @group.name+" has been updated successfully."
+        redirect_to show_group_path(@group.id)
+      else
+        flash.now[:danger] = "An error occurred while updating this group. "+@group.errors.full_messages.to_sentence
+        render 'show'
+      end
+    elsif @group && !@group.is_proprietary(current_logged_user)
+      flash.now[:danger] = "You're not the group administrator. "
+      render 'show'
+    elsif !@group
+      render_404
+    end
+  end
+
   def ask_to_join
     @group = UsersGroup.find_by(id: params[:id])
     if !@group
@@ -56,7 +76,7 @@ class UsersGroupsController < ApplicationController
         group_member.users_group = @group
         group_member.is_creator = false
         if group_member.save
-          flash.now[:success] = "Welcome :) !"
+          flash[:success] = "Welcome :) !"
           redirect_to show_group_path(@group.id)
         else
           flash.now[:danger] = "An error occurred while joining this group. "+group_member.errors.full_messages.to_sentence
