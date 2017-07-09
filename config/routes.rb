@@ -72,9 +72,9 @@ Rails.application.routes.draw do
   # ---------------------------
 
   # Admin ---------------------
-  namespace :admin do
-    resources :users, except: [:show]
-  end
+  #namespace :admin do
+  #  resources :users, except: [:show]
+  #end
   # ---------------------------
 
 end
