@@ -55,8 +55,10 @@ Rails.application.routes.draw do
   # Users Group ---------------
   get     'users_groups'                   => 'users_groups#list',              as: :global_groups_list
   get     'users_groups/:id'               => 'users_groups#show',              as: :show_group
-  get     'users_groups/:id/ask_to_join'   => 'users_groups#ask_to_join',       as: :ask_join_users_group
+  get     'users_groups/:id/join'          => 'users_groups#ask_to_join',       as: :ask_join_users_group
   post    'users_groups/:id/join'          => 'users_groups#join',              as: :join_users_group
+  get     'leave/:id'                      => 'users_groups#ask_to_leave',      as: :ask_to_leave
+  delete  'leave/:id'                      => 'users_groups#leave',             as: :leave
   # ---------------------------
 
   # Statics pages -------------

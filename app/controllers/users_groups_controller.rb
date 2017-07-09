@@ -1,6 +1,6 @@
 class UsersGroupsController < ApplicationController
   before_action :must_be_proprietary, only: [:index, :new, :create, :update, :delete, :destroy]
-  before_action :must_be_logged,      only: [:ask_to_join, :join]
+  before_action :must_be_logged,      only: [:ask_to_join, :join, :ask_to_leave, :leave]
 
   def index
     @groups = current_logged_user.users_groups
@@ -57,7 +57,7 @@ class UsersGroupsController < ApplicationController
         group_member.is_creator = false
         if group_member.save
           flash.now[:success] = "Welcome :) !"
-          render 'show'
+          redirect_to show_group_path(@group.id)
         else
           flash.now[:danger] = "An error occurred while joining this group. "+group_member.errors.full_messages.to_sentence
           render 'ask_to_join'
@@ -69,6 +69,31 @@ class UsersGroupsController < ApplicationController
     else
       flash.now[:danger] = "An error occurred while joining this group. Credentials may be incorrect..."
       render 'ask_to_join'
+    end
+  end
+
+  def ask_to_leave
+    @group = UsersGroup.find_by(id: params[:id])
+    if !@group
+      render_404
+    end
+  end
+
+  def leave
+    @group = UsersGroup.find_by(id: params[:id])
+    if @group
+      if @group.is_user_already_group_member(current_logged_user)
+        group_member = @group.group_members.find_by(user_id:current_logged_user.id)
+        if group_member.destroy
+          flash[:success] = "You're free :P, you successfully left "+@group.name
+          redirect_to show_group_path(@group.id)
+        else
+          flash.now[:danger] = "An error occurred while leaving this group."+group_member.errors.full_messages.to_sentence
+          render 'ask_to_leave'
+        end
+      end
+    else
+      render_404
     end
   end
 

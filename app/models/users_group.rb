@@ -22,6 +22,14 @@ class UsersGroup < ApplicationRecord
     end
   end
 
+  def is_proprietary(user)
+    if user == self.get_proprietary
+      return true
+    else
+      return false
+    end
+  end
+
   def is_user_already_group_member(user)
     self.group_members.each do |group_member|
       if group_member.user == user

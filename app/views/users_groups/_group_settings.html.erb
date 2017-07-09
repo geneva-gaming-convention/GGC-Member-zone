@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-12">
+    <% if is_logged_in %>
+      <!-- logged user -->
+      <% if group.is_user_already_group_member(current_logged_user) %>
+        <!-- logged & in grp -->
+        <% if group.is_proprietary(current_logged_user) %>
+
+        <% else %>
+        <%= link_to "Leave this group", ask_to_leave_path(group), class: "btn btn-danger" %>
+        <% end %>
+      <% else %>
+        <!-- logged & out grp -->
+      <% end %>
+      <!-- ########## -->
+    <% else %>
+      <!-- anon user -->
+
+      <!-- ######### -->
+    <% end %>
+  </div>
+</div>
