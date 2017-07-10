@@ -28,7 +28,7 @@
             <%= link_to "kick",kick_group_member_path(group.id, member.id), method: :delete, :class => "btn btn-danger btn-xs" %>
             <% elsif user == current_logged_user %>
             <button class="btn btn-danger btn-xs disabled"
-            data-toggle="tooltip" data-placement="right" title="You can't yourself genius !">kick</button>
+            data-toggle="tooltip" data-placement="right" title="You can't kick yourself genius !">kick</button>
             <% elsif group.is_proprietary(user) %>
             <button class="btn btn-danger btn-xs disabled"
             data-toggle="tooltip" data-placement="right" title="You can't kick the admin">kick</button>
