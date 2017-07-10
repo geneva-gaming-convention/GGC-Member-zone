@@ -45,8 +45,8 @@ class UsersGroup < ApplicationRecord
     return Digest::SHA2.new(512).hexdigest(password+self.salt)
   end
 
-  def authenticate(password)
-    if encrypt_password(password) == self.password
+  def authenticate(authentication)
+    if authentication && (encrypt_password(authentication) == self.password || self.token == authentication)
       return true
     end
     return false

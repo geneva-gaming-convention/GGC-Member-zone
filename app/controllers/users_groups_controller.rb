@@ -50,6 +50,7 @@ class UsersGroupsController < ApplicationController
       if @group.valid?
         if users_group_params[:password] !=""
           @group.change_password(users_group_params[:password])
+          @group.gen_token
         end
         if @group.save
           flash[:success] = @group.name+" has been updated successfully."
@@ -79,7 +80,7 @@ class UsersGroupsController < ApplicationController
     @group = UsersGroup.find_by(id: params[:id])
     if !@group
       render_404
-    elsif @group && @group.authenticate(users_group_params["password"])
+    elsif @group && ( @group.authenticate(params[:token]) || (params.has_key?(:users_group) && params[:users_group].has_key?(:password) && @group.authenticate(users_group_params[:password])) )
       if !@group.is_user_already_group_member(current_logged_user)
         group_member = GroupMember.new
         group_member.user = current_logged_user

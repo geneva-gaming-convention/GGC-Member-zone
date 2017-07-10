@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   get     'users_groups'                                => 'users_groups#list',              as: :global_groups_list
   get     'users_groups/:id'                            => 'users_groups#show',              as: :show_group
   get     'users_groups/:id/join'                       => 'users_groups#ask_to_join',       as: :ask_join_users_group
+  get     'users_groups/:id/join/:token'                => 'users_groups#join',              as: :token_join_users_group
   post    'users_groups/:id/join'                       => 'users_groups#join',              as: :join_users_group
   get     'users_groups/:id/leave'                      => 'users_groups#ask_to_leave',      as: :ask_to_leave
   delete  'users_groups/:id/leave'                      => 'users_groups#leave',             as: :leave
