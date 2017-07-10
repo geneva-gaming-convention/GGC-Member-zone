@@ -42,11 +42,21 @@ class UsersGroupsController < ApplicationController
   def update
     @group = UsersGroup.find_by(id: params[:id])
     if @group && @group.is_proprietary(current_logged_user)
-      @group.update_attributes(users_group_params)
-      @group.password = users_group_params[:password]
-      if @group.save
-        flash[:success] = @group.name+" has been updated successfully."
-        redirect_to show_group_path(@group.id)
+      if users_group_params[:password] == ""
+        @group.update_attributes(users_group_params.except(:password))
+      else
+        @group.update_attributes(users_group_params)
+      end
+      if @group.valid?
+        if users_group_params[:password] !=""
+          @group.change_password(users_group_params[:password])
+        end
+        if @group.save
+          flash[:success] = @group.name+" has been updated successfully."
+          redirect_to show_group_path(@group.id)
+        else
+          render 'show'
+        end
       else
         render 'show'
       end

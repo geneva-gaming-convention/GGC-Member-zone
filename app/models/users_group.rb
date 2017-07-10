@@ -6,13 +6,12 @@ class UsersGroup < ApplicationRecord
 
   # Hooks
   before_create :change_password
-  before_update :change_password
   # -----
 
   # Validations
   validates :name, :password, :tag, presence: true
   validates :password, :length => { minimum: 7 }, allow_blank: false
-  validates :tag, length: {in: 2..4}
+  validates :tag, uniqueness: true, length: {in: 2..4}
   validates :name, uniqueness: true
   # -----
 
