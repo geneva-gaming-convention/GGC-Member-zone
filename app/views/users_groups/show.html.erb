@@ -7,7 +7,7 @@
 <% end %>
 <% if @group.errors.any? %>
 <div id="error_explanation" class="alert alert-danger">
-  <h5><%= pluralize(@group.errors.count, "error") %> canceled your registration:</h5>
+  <h5><%= pluralize(@group.errors.count, "error") %> canceled your modification:</h5>
   <ul>
     <% @group.errors.full_messages.each do |msg| %>
     <li><%= msg %></li>

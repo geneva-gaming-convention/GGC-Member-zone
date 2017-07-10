@@ -37,7 +37,8 @@
           <li class="list-group-item">
             <%= user.name.capitalize %> <%= user.lastname.capitalize %>
             <% if group_member.is_creator %>
-            <span class="glyphicon pficon-help" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"
+            data-toggle="tooltip" data-placement="right" title="Group's admin"></span>
             <% end %>
           </li>
           <% end %>

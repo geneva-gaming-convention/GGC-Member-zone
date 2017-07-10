@@ -43,12 +43,11 @@ class UsersGroupsController < ApplicationController
     @group = UsersGroup.find_by(id: params[:id])
     if @group && @group.is_proprietary(current_logged_user)
       @group.update_attributes(users_group_params)
-      @group.change_password(@group.password)
+      @group.password = users_group_params[:password]
       if @group.save
         flash[:success] = @group.name+" has been updated successfully."
         redirect_to show_group_path(@group.id)
       else
-        flash.now[:danger] = "An error occurred while updating this group. "+@group.errors.full_messages.to_sentence
         render 'show'
       end
     elsif @group && !@group.is_proprietary(current_logged_user)

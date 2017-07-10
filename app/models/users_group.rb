@@ -6,6 +6,7 @@ class UsersGroup < ApplicationRecord
 
   # Hooks
   before_create :change_password
+  before_update :change_password
   # -----
 
   # Validations
