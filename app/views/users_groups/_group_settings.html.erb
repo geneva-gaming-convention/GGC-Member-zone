@@ -11,11 +11,12 @@
         <% end %>
       <% else %>
         <!-- logged & out grp -->
+        <%= link_to "Join "+group.name, ask_join_users_group_path(group), class:"btn btn-primary" %>
       <% end %>
       <!-- ########## -->
     <% else %>
       <!-- anon user -->
-
+      
       <!-- ######### -->
     <% end %>
   </div>

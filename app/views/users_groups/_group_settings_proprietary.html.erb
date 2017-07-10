@@ -23,10 +23,6 @@
   </div>
 </div>
 <% end %>
-<%= form_for [current_logged_user, @group], method: :delete, :html => {:class => 'form-horizontal'} do |f| %>
-<div class="form-group">
-  <div class="col-sm-12">
-    <button type="submit" class="btn btn-danger btn-lg" disabled>Delete this group</button>
-  </div>
+<div class="col-sm-12">
+  <%= link_to "Delete this group", user_users_group_destroy_path(current_logged_user.id, @group.id), class: "btn btn-danger btn-lg" %>
 </div>
-<% end %>

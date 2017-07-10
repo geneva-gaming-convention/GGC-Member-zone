@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Members</h3>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped table-bordered table-condensed text-left">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% group.group_members.each do |member| %>
+        <% user = member.user %>
+        <tr>
+          <td>
+            <%= user.name.capitalize%>
+            <% if member.is_creator %>
+            <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"
+            data-toggle="tooltip" data-placement="right" title="Group's admin"></span>
+            <% end %>
+          </td>
+          <td><%= user.lastname.capitalize%></td>
+          <td class="text-center">
+            <% if group.is_proprietary(current_logged_user) && user != current_logged_user && !group.is_proprietary(user) %>
+            <%= link_to "kick",kick_group_member_path(group.id, member.id), method: :delete, :class => "btn btn-danger btn-xs" %>
+            <% elsif user == current_logged_user %>
+            <button class="btn btn-danger btn-xs disabled"
+            data-toggle="tooltip" data-placement="right" title="You can't yourself genius !">kick</button>
+            <% elsif group.is_proprietary(user) %>
+            <button class="btn btn-danger btn-xs disabled"
+            data-toggle="tooltip" data-placement="right" title="You can't kick the admin">kick</button>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <button class="btn btn-primary disabled" type="button">Invite members</button>
+  </div>
+</div>

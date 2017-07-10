@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :steam_accounts,       only: [:destroy]
     resources :users_groups do
       get 'leave'                    => 'users_groups#leave'
+      get 'destroy'                  => 'users_groups#ask_to_destroy'
     end
   end
   get   'validate/:token'            => 'users#validate',                       as: :validate
@@ -53,12 +54,13 @@ Rails.application.routes.draw do
   # ---------------------------
 
   # Users Group ---------------
-  get     'users_groups'                   => 'users_groups#list',              as: :global_groups_list
-  get     'users_groups/:id'               => 'users_groups#show',              as: :show_group
-  get     'users_groups/:id/join'          => 'users_groups#ask_to_join',       as: :ask_join_users_group
-  post    'users_groups/:id/join'          => 'users_groups#join',              as: :join_users_group
-  get     'leave/:id'                      => 'users_groups#ask_to_leave',      as: :ask_to_leave
-  delete  'leave/:id'                      => 'users_groups#leave',             as: :leave
+  get     'users_groups'                                => 'users_groups#list',              as: :global_groups_list
+  get     'users_groups/:id'                            => 'users_groups#show',              as: :show_group
+  get     'users_groups/:id/join'                       => 'users_groups#ask_to_join',       as: :ask_join_users_group
+  post    'users_groups/:id/join'                       => 'users_groups#join',              as: :join_users_group
+  get     'users_groups/:id/leave'                      => 'users_groups#ask_to_leave',      as: :ask_to_leave
+  delete  'users_groups/:id/leave'                      => 'users_groups#leave',             as: :leave
+  delete  'users_groups/:id/members/:id_member/kick'    => 'users_groups#kick',              as: :kick_group_member
   # ---------------------------
 
   # Statics pages -------------
