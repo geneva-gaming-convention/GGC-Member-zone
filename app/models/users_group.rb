@@ -10,8 +10,9 @@ class UsersGroup < ApplicationRecord
   # -----
 
   # Validations
-  validates :password, :length => { minimum: 7 }
-  validates :tag, length: {is: 4}, allow_blank: false
+  validates :name, :password, :tag, presence: true
+  validates :password, :length => { minimum: 7 }, allow_blank: false
+  validates :tag, length: {in: 2..4}
   validates :name, uniqueness: true
   # -----
 
