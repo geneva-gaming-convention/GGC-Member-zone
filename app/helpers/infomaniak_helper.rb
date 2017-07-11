@@ -178,6 +178,18 @@ module InfomaniakHelper
     end
   end
 
-  def self.put_customer()
+  def self.put_customer(payload, credential, customer_key, customer_email)
+    begin
+      init_vars
+      @header["credential"] = credential
+      @header["customer_key"] = customer_key
+      @header["customer_email"] = customer_email
+      url = @end_point+"customer"
+      response = RestClient.put(url, payload.to_json, header=@header)
+      response = JSON.parse(response)
+      return response
+    rescue
+      return JSON.parse('{"error": "Customer not found"}')
+    end
   end
 end
