@@ -4,7 +4,7 @@
 <p>
   This action will kick out all group members and delete this group afterward.
 </p>
-<%= form_for [current_logged_user, @group], method: :delete, :html => {:class => 'form-horizontal'} do |f| %>
+<%= form_for @group, method: :delete, :html => {:class => 'form-horizontal'} do |f| %>
 <div class="form-group">
   <div class="col-sm-12">
     <button type="submit" class="btn btn-danger btn-lg">

@@ -7,11 +7,11 @@
         <% if group.is_proprietary(current_logged_user) %>
         <%= render 'group_settings_proprietary' %>
         <% else %>
-        <%= link_to "Leave this group", ask_to_leave_path(group), class: "btn btn-danger" %>
+        <%= link_to "Leave this group", users_group_ask_to_leave_path(group), class: "btn btn-danger" %>
         <% end %>
       <% else %>
         <!-- logged & out grp -->
-        <%= link_to "Join "+group.name, ask_join_users_group_path(group), class:"btn btn-primary" %>
+        <%= link_to "Join "+group.name, users_group_ask_join_path(group), class:"btn btn-primary" %>
       <% end %>
       <!-- ########## -->
     <% else %>

@@ -1,6 +1,6 @@
 class UsersGroupsController < ApplicationController
-  before_action :must_be_proprietary, only: [:index, :new, :create, :update, :delete, :destroy]
-  before_action :must_be_logged,      only: [:ask_to_join, :join, :ask_to_leave, :leave]
+  before_action :must_be_group_proprietary, only: [:update, :destroy, :kick]
+  before_action :must_be_logged,            only: [:index, :new, :create, :ask_to_join, :join, :ask_to_leave, :leave]
 
   def index
     @groups = current_logged_user.users_groups
@@ -19,8 +19,8 @@ class UsersGroupsController < ApplicationController
       group_member.users_group = @group
       group_member.is_creator = true
       if group_member.save
-        flash.now[:success] = @group.name+" successfully created !"
-        render 'show'
+        flash[:success] = @group.name+" successfully created !"
+        redirect_to users_group_path(@group.id)
       end
     else
       flash.now[:danger] = "An error occurred while creating your group."
@@ -54,7 +54,7 @@ class UsersGroupsController < ApplicationController
         end
         if @group.save
           flash[:success] = @group.name+" has been updated successfully."
-          redirect_to show_group_path(@group.id)
+          redirect_to users_group_path(@group.id)
         else
           render 'show'
         end
@@ -70,14 +70,14 @@ class UsersGroupsController < ApplicationController
   end
 
   def ask_to_join
-    @group = UsersGroup.find_by(id: params[:id])
+    @group = UsersGroup.find_by(id: params[:users_group_id])
     if !@group
       render_404
     end
   end
 
   def join
-    @group = UsersGroup.find_by(id: params[:id])
+    @group = UsersGroup.find_by(id: params[:users_group_id])
     if !@group
       render_404
     elsif @group && ( @group.authenticate(params[:token]) || (params.has_key?(:users_group) && params[:users_group].has_key?(:password) && @group.authenticate(users_group_params[:password])) )
@@ -88,7 +88,7 @@ class UsersGroupsController < ApplicationController
         group_member.is_creator = false
         if group_member.save
           flash[:success] = "Welcome :) !"
-          redirect_to show_group_path(@group.id)
+          redirect_to users_group_path(@group.id)
         else
           flash.now[:danger] = "An error occurred while joining this group. "+group_member.errors.full_messages.to_sentence
           render 'ask_to_join'
@@ -104,22 +104,21 @@ class UsersGroupsController < ApplicationController
   end
 
   def ask_to_leave
-    @group = UsersGroup.find_by(id: params[:id])
+    @group = UsersGroup.find_by(id: params[:users_group_id])
     if !@group
       render_404
     end
   end
 
   def leave
-    @group = UsersGroup.find_by(id: params[:id])
+    @group = UsersGroup.find_by(id: params[:users_group_id])
     if @group
       if @group.is_user_already_group_member(current_logged_user)
         group_member = @group.group_members.find_by(user_id:current_logged_user.id)
         if group_member.destroy
           flash[:success] = "You're free :P, you successfully left "+@group.name
-          redirect_to show_group_path(@group.id)
+          redirect_to users_group_path(@group.id)
         else
-          flash.now[:danger] = "An error occurred while leaving this group."+group_member.errors.full_messages.to_sentence
           render 'ask_to_leave'
         end
       end
@@ -161,7 +160,7 @@ class UsersGroupsController < ApplicationController
   end
 
   def kick
-    @group = UsersGroup.find_by(id: params[:id])
+    @group = UsersGroup.find_by(id: params[:users_group_id])
     if @group
       if @group.is_proprietary(current_logged_user)
         group_member = GroupMember.find_by(id: params[:id_member])
@@ -169,9 +168,8 @@ class UsersGroupsController < ApplicationController
           if group_member.user != current_logged_user && !@group.is_proprietary(group_member.user)
             if group_member.destroy
               flash[:success] = group_member.user.name.capitalize+" has been kicked !"
-              redirect_to show_group_path(@group.id)
+              redirect_to users_group_path(@group.id)
             else
-              flash.now[:danger] = "Error while deleting the member "+group_member.user.name.capitalize
               render 'show'
             end
           else
@@ -185,6 +183,17 @@ class UsersGroupsController < ApplicationController
       else
         flash.now[:danger] = "You're not the proprietary of this group, you can't kick members."
         render 'show'
+      end
+    else
+      render_404
+    end
+  end
+
+  def must_be_group_proprietary
+    group = ( params.has_key?(:users_group) && UsersGroup.find_by(id: users_group_params[:id])) || UsersGroup.find_by(id: params[:users_group_id]) || UsersGroup.find_by(id: params[:id])
+    if group
+      if !current_logged_user || !group.is_proprietary(current_logged_user)
+        render_403
       end
     else
       render_404

@@ -1,4 +1,4 @@
-<%= form_for @group ,url: join_users_group_path(@group), method: :post, :html => {:class => 'form-horizontal'} do |f| %>
+<%= form_for @group ,url: users_group_join_path(@group), method: :post, :html => {:class => 'form-horizontal'} do |f| %>
 <div class="form-group">
   <%= label_tag 'password', "Password", class: 'col-sm-2 col-md-2 control-label'  %>
   <div class="col-sm-10 col-md-10">

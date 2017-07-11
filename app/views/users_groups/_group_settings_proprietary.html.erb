@@ -1,4 +1,4 @@
-<%= form_for [current_logged_user, @group], method: :put, :html => {:class => 'form-horizontal'} do |f| %>
+<%= form_for @group, method: :put, :html => {:class => 'form-horizontal'} do |f| %>
 <div class="form-group">
   <%= label_tag 'name', "Name", class: 'col-sm-4 col-md-4 control-label' %>
   <div class="col-sm-8 col-md-8">
@@ -24,5 +24,5 @@
 </div>
 <% end %>
 <div class="col-sm-12">
-  <%= link_to "Delete this group", user_users_group_destroy_path(current_logged_user.id, @group.id), class: "btn btn-danger btn-lg" %>
+  <%= link_to "Delete this group", users_group_ask_to_destroy_path(@group.id), class: "btn btn-danger btn-lg" %>
 </div>
