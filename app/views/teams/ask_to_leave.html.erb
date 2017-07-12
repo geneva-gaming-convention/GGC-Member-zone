@@ -1,0 +1,44 @@
+<% flash.each do |key, value| %>
+<div id="error_explanation" class="alert alert-<%=key%>" role="alert">
+  <p>
+    <%= value %>
+  </p>
+</div>
+<% end %>
+<% if @team.errors.any? %>
+<div id="error_explanation" class="alert alert-danger">
+  <h5><%= pluralize(@team.errors.count, "error") %> canceled your registration:</h5>
+  <ul>
+    <% @team.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card-pf card-pf-accented card-pf-aggregate-status">
+      <div class="card-pf-title">
+        <h1>Leave <%= @team.users_group.tag %> <%= @team.name %></h1>
+      </div>
+      <div class="card-pf-body">
+        <div class="col-md-12">
+          <p class="text-left">
+            <div class="text-center" style="margin-bottom:1em;">
+              <img src="<%= asset_path 'arnaud', size: 400 %>" alt="Arnaud Dassier" class="img-circle" height="96"
+              data-toggle="tooltip" data-placement="right" title="Arnaud Dassier, Entrepreneur internet, business angel, President @eclypsiaCOM">
+            </div>
+            If you use the below button, you will definitivly be delivered from <%= @team.users_group.tag %> <%= @team.name %>.
+          </p>
+        </div>
+        <%= render 'form_leave' %>
+        <p class="text-right">
+          <small>
+            Approuved by
+          </small>
+          <%= image_tag "eclypsia", height: '22' %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

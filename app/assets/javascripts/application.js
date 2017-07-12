@@ -14,6 +14,9 @@
 //= require select2
 //= require jquery_ujs
 //= require bootstrap
+//= require bootstrap/alert
+//= require bootstrap/dropdown
+//= require bootstrap-select
 //= require patternfly
 //= require snaptable
 //= require_tree .

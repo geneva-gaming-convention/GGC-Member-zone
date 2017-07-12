@@ -5,11 +5,11 @@
   </p>
 </div>
 <% end %>
-<% if @group.errors.any? %>
+<% if @team.errors.any? %>
 <div id="error_explanation" class="alert alert-danger">
-  <h5><%= pluralize(@group.errors.count, "error") %> canceled your registration:</h5>
+  <h5><%= pluralize(@team.errors.count, "error") %> canceled your creation:</h5>
   <ul>
-    <% @group.errors.full_messages.each do |msg| %>
+    <% @team.errors.full_messages.each do |msg| %>
     <li><%= msg %></li>
     <% end %>
   </ul>
@@ -19,10 +19,7 @@
   <div class="col-md-12">
     <div class="card-pf card-pf-accented card-pf-aggregate-status">
       <div class="card-pf-title">
-        <h1>
-          <span class="glyphicon pficon-project" aria-hidden="true"></span>
-          Create a friend's group
-        </h1>
+        <h1><span class="glyphicon pficon-project" aria-hidden="true"></span> Create a team</h1>
       </div>
       <div class="card-pf-body">
         <%= render 'form_new' %>

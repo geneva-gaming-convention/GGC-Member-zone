@@ -2,6 +2,7 @@ class UsersGroup < ApplicationRecord
   # Relations
   has_many :group_members, :dependent => :delete_all
   has_many :users, through: :group_members
+  has_many :teams, :dependent => :delete_all
   # -----
 
   # Hooks

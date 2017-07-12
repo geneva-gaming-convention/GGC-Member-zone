@@ -5,11 +5,11 @@
   </p>
 </div>
 <% end %>
-<% if @group.errors.any? %>
+<% if @team.errors.any? %>
 <div id="error_explanation" class="alert alert-danger">
-  <h5><%= pluralize(@group.errors.count, "error") %> canceled your registration:</h5>
+  <h5><%= pluralize(@team.errors.count, "error") %> canceled your modification:</h5>
   <ul>
-    <% @group.errors.full_messages.each do |msg| %>
+    <% @team.errors.full_messages.each do |msg| %>
     <li><%= msg %></li>
     <% end %>
   </ul>
@@ -21,11 +21,20 @@
       <div class="card-pf-title">
         <h1>
           <span class="glyphicon pficon-project" aria-hidden="true"></span>
-          Create a friend's group
+          <%= link_to @team.users_group.name, users_group_path(@team.users_group) %> >> <%= @team.name %><br/>
+          <small>tag: [<%= @team.tag.upcase %>]</small>
         </h1>
+        <small><%= @team.game.name %></small>
       </div>
       <div class="card-pf-body">
-        <%= render 'form_new' %>
+        <div class="row">
+          <div class="col-md-8">
+            <%= render 'show_team_members' %>
+          </div>
+          <div class="col-md-4">
+            <%= render 'show_team_settings' %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

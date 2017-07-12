@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Settings</h3>
+      </div>
+      <div class="panel-body">
+        <% if is_logged_in %>
+          <% if @group.is_user_already_group_member(current_logged_user) %>
+            <% if !@team.is_user_in_team(current_logged_user) %>
+              <!-- Group member && !Already team member -->
+              <%= link_to "Join "+@team.users_group.tag+" "+@team.name, users_group_team_join_path(@group, @team),method: :post, class:"btn btn-primary" %>
+            <% else %>
+              <% if @team.is_proprietary(current_logged_user)%>
+                <!-- Proprietary -->
+                <%= render 'team_settings_proprietary' %>
+              <% else %>
+                <!-- Already team member -->
+                <%= link_to "Leave "+@team.users_group.tag+" "+@team.name, users_group_team_ask_to_leave_path(@group, @team), class:"btn btn-danger" %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <!-- !Group member -->
+            <button class="btn btn-primary disabled"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="You need to be logged and member of <%= @group.name %> before you can join this team.">Join
+            <%= @group.tag %> <%= @team.name %>
+            </button>
+          <% end %>
+        <% else %>
+          <!-- anon user -->
+          <p>
+            Create a GGC account and log in to join teams.
+          </p>
+          <%= link_to "Login | Register ", login_path, class:"btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

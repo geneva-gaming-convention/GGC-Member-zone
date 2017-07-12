@@ -44,13 +44,13 @@
     </li>
     <li class="list-group-item secondary-nav-item-pf" data-target="#groups-secondary">
       <a>
-        <span class="fa pficon-project" data-toggle="tooltip" title="Groups & Friends"></span>
-        <span class="list-group-item-value">Groups & Friends</span>
+        <span class="fa pficon-project" data-toggle="tooltip" title="Groups & Teams"></span>
+        <span class="list-group-item-value">Groups & Teams</span>
       </a>
       <div id="groups-secondary" class="nav-pf-secondary-nav">
         <div class="nav-item-pf-header">
           <a class="secondary-collapse-toggle-pf" data-toggle="collapse-secondary-nav"></a>
-          <span>Groups & Friends</span>
+          <span>Groups & Teams</span>
         </div>
         <ul class="list-group">
           <li class="list-group-item">
@@ -86,14 +86,40 @@
             <% end %>
             <% end %>
           </li>
-
+          <li class="list-group-item spacer"></li>
+          <li class="list-group-item">
+            <% if is_logged_in %>
+            <%= link_to global_groups_list_path do %>
+            <span class="list-group-item-value">Join team</span>
+            <% end %>
+            <% else %>
+            <%= link_to login_path do %>
+            <span class="list-group-item-value">Join team</span>
+            <% end %>
+            <% end %>
+          </li>
+          <li class="list-group-item">
+            <% if is_logged_in %>
+            <%= link_to user_teams_path(current_logged_user) do %>
+            <span class="list-group-item-value">My teams</span>
+            <% end %>
+            <% else %>
+            <%= link_to login_path do %>
+            <span class="list-group-item-value">My teams</span>
+            <% end %>
+            <% end %>
+          </li>
           <li class="list-group-item spacer"></li>
           <li class="list-group-item">
             <%= link_to global_groups_list_path do %>
             <span class="list-group-item-value">All friend's groups</span>
             <% end %>
           </li>
-          
+          <li class="list-group-item">
+            <%= link_to global_teams_list_path do %>
+            <span class="list-group-item-value">All teams</span>
+            <% end %>
+          </li>
         </ul>
       </div>
     </li>

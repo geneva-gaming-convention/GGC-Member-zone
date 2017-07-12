@@ -1,6 +1,7 @@
 class Game < ApplicationRecord
   # Relations
   has_many :event_resources
+  has_many :teams
   belongs_to :game_provider
   # ---------
 

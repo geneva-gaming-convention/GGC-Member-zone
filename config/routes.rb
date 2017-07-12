@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :battlenet_accounts,   only: [:destroy]
     resources :steam_accounts,       only: [:destroy]
     get     'users_groups'           => 'users_groups#index'
+    get     'teams'                  => 'teams#list'
   end
   get   'validate/:token'            => 'users#validate',                       as: :validate
   # ---------------------------
@@ -50,8 +51,9 @@ Rails.application.routes.draw do
   end
   # ---------------------------
 
-  # Users Group ---------------
+  # Users Group & teams -------
   get     'users_groups'                                => 'users_groups#list',              as: :global_groups_list
+  get     'teams'                                       => 'teams#global_list',               as: :global_teams_list
   resources :users_groups, except: :index do
     get     'join'                                      => 'users_groups#ask_to_join',       as: :ask_join
     get     'join/:token'                               => 'users_groups#join',              as: :token_join
@@ -60,6 +62,14 @@ Rails.application.routes.draw do
     delete  'leave'                                     => 'users_groups#leave',             as: :leave
     delete  'members/:id_member/kick'                   => 'users_groups#kick',              as: :kick_group_member
     get     'destroy'                                   => 'users_groups#ask_to_destroy',    as: :ask_to_destroy
+    resources :teams do
+      get     'join/:token'                               => 'teams#join',              as: :token_join
+      post    'join'                                      => 'teams#join',              as: :join
+      get     'leave'                                     => 'teams#ask_to_leave',      as: :ask_to_leave
+      delete  'leave'                                     => 'teams#leave',             as: :leave
+      delete  'team_members/:id_member/kick'              => 'teams#kick',              as: :kick_group_member
+      get     'destroy'                                   => 'teams#ask_to_destroy',    as: :ask_to_destroy
+    end
   end
   # ---------------------------
 
