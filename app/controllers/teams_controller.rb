@@ -9,7 +9,7 @@ class TeamsController < ApplicationController
     @team = Team.new
     @group = UsersGroup.find_by(id: params[:users_group_id])
     @games = []
-    Game.all.each do |game|
+    Game.all.where(teambased: true).each do |game|
       @games.push([game.name, game.id])
     end
   end
@@ -17,7 +17,7 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     @games = []
-    Game.all.each do |game|
+    Game.all.where(teambased: true).each do |game|
       @games.push([game.name, game.id])
     end
     @team.game = Game.find_by(id: team_params[:game_id])
