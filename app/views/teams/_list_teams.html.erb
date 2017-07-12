@@ -1,0 +1,61 @@
+<div class="row">
+  <% if @teams.count > 0 %>
+  <% @teams.each do |team| %>
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <%= link_to users_group_team_path(team.users_group, team) do %>
+          <%= team.name %> [<%= team.tag.upcase %>]
+          <% end %>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="row" style="margin-bottom:1em;">
+          <div class="col-md-12">
+            <%= link_to "Show details", users_group_team_path(team.users_group, team), class:"btn btn-primary btn-xs" %>
+            <% if is_logged_in %>
+            <% if team.is_user_in_team(current_logged_user) %>
+            <button class="btn btn-primary btn-xs disabled"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="You're already in this team, genius 😆 !">Join</button>
+            <% else %>
+            <%= link_to "Join", users_group_team_join_path(team.users_group, team),methode: :post, class:"btn btn-primary btn-xs" %>
+            <% end %>
+            <% else %>
+            <button class="btn btn-primary btn-xs disabled"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="You need to be logged to join teams">Join</button>
+            <% end %>
+          </div>
+        </div>
+        <ul class="list-group">
+          <% team.team_members.each do |team_member| %>
+          <% user = team_member.user %>
+          <% game_account = team_member.user.game_accounts.find_by(game_provider: team.game.game_provider) %>
+          <li class="list-group-item">
+            <%= user.name.capitalize %>
+            <% if game_account %>
+            '<%= game_account.name %>'
+            <% else %>
+            '<span class="glyphicon pficon-error-circle-o" aria-hidden="true"
+            data-toggle="tooltip" data-placement="bottom" title="No game account yet..."></span>'
+            <% end %>
+            <%= user.lastname.capitalize %>
+            <% if team_member.is_creator %>
+            <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"
+            data-toggle="tooltip" data-placement="right" title="Team's admin"></span>
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <% else %>
+  <%= render 'application/empty_state', title: "Teams", info: "Create a team, you will be the first one 😉..." %>
+  <% end %>
+</div>

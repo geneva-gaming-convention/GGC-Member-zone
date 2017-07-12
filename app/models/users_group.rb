@@ -2,6 +2,7 @@ class UsersGroup < ApplicationRecord
   # Relations
   has_many :group_members, :dependent => :delete_all
   has_many :users, through: :group_members
+  has_many :teams, :dependent => :delete_all
   # -----
 
   # Hooks
@@ -9,8 +10,9 @@ class UsersGroup < ApplicationRecord
   # -----
 
   # Validations
-  validates :password, :length => {:within => 6..40}
-  validates :tag, length: {is: 4}, allow_blank: false
+  validates :name, :password, :tag, presence: true
+  validates :password, :length => { minimum: 7 }, allow_blank: false
+  validates :tag, uniqueness: true, length: {in: 2..4}
   validates :name, uniqueness: true
   # -----
 
@@ -22,14 +24,33 @@ class UsersGroup < ApplicationRecord
     end
   end
 
+  def is_proprietary(user)
+    if user == self.get_proprietary
+      return true
+    else
+      return false
+    end
+  end
+
+  def is_user_already_group_member(user)
+    self.group_members.each do |group_member|
+      if group_member.user == user
+        return true
+      end
+    end
+    return false
+  end
+
+  ## Crypto stuff
   def encrypt_password(password)
     return Digest::SHA2.new(512).hexdigest(password+self.salt)
   end
 
-  def authenticate(password)
-    if Digest::SHA2.new(512).hexdigest(password+self.salt) == self.password
-      true
+  def authenticate(authentication)
+    if authentication && (encrypt_password(authentication) == self.password || self.token == authentication)
+      return true
     end
+    return false
   end
 
   def change_password(password=self.password)
@@ -63,5 +84,6 @@ class UsersGroup < ApplicationRecord
       break salt unless User.exists?(salt: salt)
     end
   end
+  # -----
 
 end

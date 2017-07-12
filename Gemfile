@@ -43,7 +43,8 @@ gem 'rdoc'
 gem 'omniauth-steam'
 gem 'omniauth-bnet'
 gem 'google-analytics-rails'
-gem 'snaptable'#, path: "/Users/nkcr/GitHub/snaptable"
+gem 'snaptable'
+gem 'bootstrap-select-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

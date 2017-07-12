@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   validates :name, :lastname, :mail, :password, :password_confirmation, :salt, presence: true
   validates :name, :lastname, format: { without: /\@/ }
   validates :password, confirmation: true
-  validates :password, :length => {:within => 6..40}
+  validates :password, :length => { minimum: 7 }
   validates :mail, uniqueness: true
   # -----
 
@@ -21,23 +21,28 @@ class User < ActiveRecord::Base
   has_many :game_accounts
   has_many :group_members
   has_many :users_groups, through: :group_members
+  has_many :team_members
+  has_many :teams, through: :team_members
   # -----
 
-  def encrypt_password(password)
-    return Digest::SHA2.new(512).hexdigest(password+self.salt)
-  end
-
-  def authenticate(password)
-    if Digest::SHA2.new(512).hexdigest(password+self.salt) == self.password
-      true
-    end
-  end
 
   def has_already_game_provider(game_provider)
     self.game_accounts.each do |game_account|
       if game_account.game_provider == game_provider
         return true
       end
+    end
+    return false
+  end
+
+
+  def encrypt_password(password)
+    return Digest::SHA2.new(512).hexdigest(password+self.salt)
+  end
+
+  def authenticate(password)
+    if encrypt_password(password) == self.password
+      return true
     end
     return false
   end

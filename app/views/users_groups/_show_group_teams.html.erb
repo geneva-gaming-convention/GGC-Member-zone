@@ -1,0 +1,40 @@
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Team Name</th>
+      <th>Game</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @group.teams.each do |team| %>
+    <tr>
+      <th><%= @group.tag %> <%= team.name %></th>
+      <th><%= team.game.shortname %></th>
+      <th>
+        <%= link_to "show details", users_group_team_path(@group, team), :class => "btn btn-primary btn-xs" %>
+        <% if current_logged_user && @group.is_user_already_group_member(current_logged_user) %>
+        <% if !team.is_user_in_team(current_logged_user)%>
+        <%= link_to "join", users_group_team_join_path(@group, team),method: :post, :class => "btn btn-primary btn-xs" %>
+        <% else %>
+        <button class="btn btn-primary btn-xs disabled"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="You're already in this team, genius 😆 !">Join</button>
+        <% end %>
+        <% elsif current_logged_user && !@group.is_user_already_group_member(current_logged_user) %>
+        <button class="btn btn-primary btn-xs disabled"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="You need to join <%= @group.name %> before joining this team !">Join</button>
+        <% else %>
+        <button class="btn btn-primary btn-xs disabled"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="You need to be logged to join this team.">Join</button>
+        <% end %>
+      </th>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

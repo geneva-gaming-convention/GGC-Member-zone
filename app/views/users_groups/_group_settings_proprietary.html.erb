@@ -1,0 +1,28 @@
+<%= form_for @group, method: :put, :html => {:class => 'form-horizontal'} do |f| %>
+<div class="form-group">
+  <%= label_tag 'name', "Name", class: 'col-sm-4 col-md-4 control-label' %>
+  <div class="col-sm-8 col-md-8">
+    <%= f.text_field :name, class: 'form-control'%>
+  </div>
+</div>
+<div class="form-group">
+  <%= label_tag 'tag', "Tag", class: 'col-sm-4 col-md-4 control-label'  %>
+  <div class="col-sm-8 col-md-8">
+    <%= f.text_field :tag, class: 'form-control'%>
+  </div>
+</div>
+<div class="form-group">
+  <%= label_tag 'password', "New password", class: 'col-sm-4 col-md-4 control-label'  %>
+  <div class="col-sm-8 col-md-8">
+    <%= f.password_field :password, class: 'form-control'%>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-12">
+    <button type="submit" class="btn btn-primary btn-lg">Update</button>
+  </div>
+</div>
+<% end %>
+<div class="col-sm-12">
+  <%= link_to "Delete this group", users_group_ask_to_destroy_path(@group.id), class: "btn btn-danger btn-lg" %>
+</div>

@@ -14,9 +14,8 @@ Rails.application.routes.draw do
     get     'ask_validation'         => 'users#ask_validation'
     resources :battlenet_accounts,   only: [:destroy]
     resources :steam_accounts,       only: [:destroy]
-    resources :users_groups do
-      get 'leave'                    => 'users_groups#leave'
-    end
+    get     'users_groups'           => 'users_groups#index'
+    get     'teams'                  => 'teams#list'
   end
   get   'validate/:token'            => 'users#validate',                       as: :validate
   # ---------------------------
@@ -52,25 +51,42 @@ Rails.application.routes.draw do
   end
   # ---------------------------
 
-  # Users Group ---------------
-  get     'users_groups'            => 'users_groups#list',                     as: :global_groups_list
-  get     'users_groups/:id/join'   => 'users_groups#join',                     as: :join_users_group
+  # Users Group & teams -------
+  get     'users_groups'                                => 'users_groups#list',              as: :global_groups_list
+  get     'teams'                                       => 'teams#global_list',               as: :global_teams_list
+  resources :users_groups, except: :index do
+    get     'join'                                      => 'users_groups#ask_to_join',       as: :ask_join
+    get     'join/:token'                               => 'users_groups#join',              as: :token_join
+    post    'join'                                      => 'users_groups#join',              as: :join
+    get     'leave'                                     => 'users_groups#ask_to_leave',      as: :ask_to_leave
+    delete  'leave'                                     => 'users_groups#leave',             as: :leave
+    delete  'members/:id_member/kick'                   => 'users_groups#kick',              as: :kick_group_member
+    get     'destroy'                                   => 'users_groups#ask_to_destroy',    as: :ask_to_destroy
+    resources :teams do
+      get     'join/:token'                               => 'teams#join',              as: :token_join
+      post    'join'                                      => 'teams#join',              as: :join
+      get     'leave'                                     => 'teams#ask_to_leave',      as: :ask_to_leave
+      delete  'leave'                                     => 'teams#leave',             as: :leave
+      delete  'team_members/:id_member/kick'              => 'teams#kick',              as: :kick_group_member
+      get     'destroy'                                   => 'teams#ask_to_destroy',    as: :ask_to_destroy
+    end
+  end
   # ---------------------------
 
   # Statics pages -------------
-  get     'faq'                      => 'static#faq'
+  get     'faq'                            => 'static#faq'
   # ---------------------------
 
   # Sessions ------------------
-  get     'login'                    => 'sessions#new'
-  post    'login'                    => 'sessions#create'
-  delete  'logout'                   => 'sessions#destroy'
+  get     'login'                          => 'sessions#new'
+  post    'login'                          => 'sessions#create'
+  delete  'logout'                         => 'sessions#destroy'
   # ---------------------------
 
   # Admin ---------------------
-  namespace :admin do
-    resources :users, except: [:show]
-  end
+  #namespace :admin do
+  #  resources :users, except: [:show]
+  #end
   # ---------------------------
 
 end
