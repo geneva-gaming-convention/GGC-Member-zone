@@ -1,3 +1,5 @@
 class Admin::BaseController < ApplicationController
-	# layout "admin"
+	include SessionHelper
+	
+	before_action :must_be_admin
 end
