@@ -9,6 +9,21 @@ battlenet = GameProvider.find_or_initialize_by("name"=>"battlenet")
 battlenet.website = "http://eu.battle.net"
 battlenet.save
 puts "  "+battlenet.name.to_s+" ✅"
+
+electronic_arts = GameProvider.find_or_initialize_by("name"=>"electronic arts")
+electronic_arts.website = "https://www.ea.com/"
+electronic_arts.save
+puts "  "+electronic_arts.name.to_s+" ✅"
+
+riot_games = GameProvider.find_or_initialize_by("name"=>"riot games")
+riot_games.website = "https://www.riotgames.com/"
+riot_games.save
+puts "  "+riot_games.name.to_s+" ✅"
+
+nintendo = GameProvider.find_or_initialize_by("name"=>"nintendo")
+nintendo.website = "http://www.nintendo.com/"
+nintendo.save
+puts "  "+nintendo.name.to_s+" ✅"
 # ------------------------------------------------------------------------------
 
 # Create Games -----------------------------------------------------------------
@@ -29,6 +44,7 @@ lol = Game.find_or_initialize_by(
 "img"=>"",
 "teambased"=>true
 )
+lol.game_provider = riot_games
 lol.save
 puts "  "+lol.name.to_s+" ✅"
 
@@ -61,6 +77,25 @@ ow.game_provider = battlenet
 ow.save
 puts "  "+ow.name.to_s+" ✅"
 
+fifa = Game.find_or_initialize_by(
+"name"=>"Fifa 18",
+"shortname"=>"Fifa",
+"img"=>"",
+"teambased"=>false
+)
+fifa.game_provider = electronic_arts
+fifa.save
+puts "  "+fifa.name.to_s+" ✅"
+
+ssb = Game.find_or_initialize_by(
+"name"=>"Super Smash Bros",
+"shortname"=>"SSB",
+"img"=>"",
+"teambased"=>false
+)
+ssb.game_provider = nintendo
+ssb.save
+puts "  "+ssb.name.to_s+" ✅"
 # ------------------------------------------------------------------------------
 
 
