@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   # ---------------------------
 
   # Events --------------------
+  get 'archived'                    =>  'events#archived',                      as: :events_archived
   resources :events,                only: [:index, :show] do
     resources :event_resources,     only: [:index, :show] do
       get 'teams'                   => 'event_resources#get_teams',             as: :teams

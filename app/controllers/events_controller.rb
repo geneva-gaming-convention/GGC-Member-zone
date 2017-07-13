@@ -3,7 +3,14 @@ class EventsController < ApplicationController
   #before_action :must_be_ready_to_registration, only: [:show]
 
   def index
-    @events = Event.all.where(visible: true)
+    @events = Event.all.where("visible = ? and end_date > ?", true, DateTime.now)
+    @title = "upcoming event"
+  end
+
+  def archived
+    @events = Event.all.where("end_date < ?",  DateTime.now)
+    @title = "archived event"
+    render 'index'
   end
 
   def show

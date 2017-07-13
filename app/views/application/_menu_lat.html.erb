@@ -25,18 +25,25 @@
           <span>Events</span>
         </div>
         <ul class="list-group">
-          <% Event.all.where(visible: true).each do |event| %>
+          <% if Event.all.where("visible = ? and end_date > ?", true, DateTime.now).count > 0 %>
+          <% Event.all.where("visible = ? and end_date > ?", true, DateTime.now).each do |event| %>
           <li class="list-group-item">
             <%= link_to event_path(event.id) do %>
             <span class="list-group-item-value"><%= event.shortname %></span>
             <% end %>
           </li>
           <% end %>
-          <li class="list-group-item spacer">
-          </li>
+          <% else %>
           <li class="list-group-item">
             <%= link_to events_path do %>
-            <span class="list-group-item-value">All events</span>
+            <span class="list-group-item-value">No upcoming event yet...</span>
+            <% end %>
+          </li>
+          <% end %>
+          <li class="list-group-item spacer"></li>
+          <li class="list-group-item">
+            <%= link_to events_archived_path do %>
+            <span class="list-group-item-value">Archived events</span>
             <% end %>
           </li>
         </ul>
