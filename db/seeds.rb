@@ -105,6 +105,7 @@ ggcOT = Event.find_or_initialize_by("name"=>"Online Tournament - GGC 2017")
 ggcOT.shortname = "GGC Online Tournament"
 ggcOT.description = "Geneva Gaming Convention first online tournaments with a LAN entrance offered to the winning teams"
 ggcOT.date = "2017-06-03 15:00:00"
+ggcOT.end_date = "2017-06-05 20:00:00"
 ggcOT.chat_url = "https://discord.gg/yBVSU58"
 ggcOT.visible = true
 ggcOT.save

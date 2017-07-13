@@ -4,6 +4,7 @@
     <div class="card-pf-body">
       <p>
         <h5>Starting date: <%= event.date.strftime("%d %B %Y at %Hh%M") %></h5>
+        <h5>Ending date: <%= event.end_date.strftime("%d %B %Y at %Hh%M") %></h5>
       </p>
       <p>
         <%= event.description %>
