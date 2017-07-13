@@ -23,7 +23,7 @@ class WelcomeController < ApplicationController
   end
 
   def get_events
-    @events = Event.all.order(date: :desc)
+    @events = Event.all.where("visible = ? and end_date > ?", true, DateTime.now).order(date: :desc)
     if @events
       render 'events', :layout => false
     else
