@@ -1,0 +1,86 @@
+<%= form_for [@event_resource.event, Registration.new],:html => {:class => 'form-horizontal'} do |f| %>
+<%= hidden_field_tag 'event_resource_id', @event_resource.id %>
+<div class="row">
+  <div class="col-md-4">
+    <h2>1) Select a <%= @event_resource.event.shortname %>pack</h2>
+    <div class="form-group">
+      <% if @event_resource.event.event_packs.each do |pack| %>
+      <div class="div-radio">
+        <div class="row title-pack">
+          <div class="col-md-8">
+            <h2><%= pack.name.capitalize %></h2>
+          </div>
+          <div class="col-md-4 text-right">
+            <h3><%= pack.price %> CHF</h3>
+          </div>
+        </div>
+        <div class="div-description">
+          <%= pack.description.html_safe %>
+        </div>
+        <%= radio_button_tag(:registration_pack, pack.id) %>
+      </div>
+      <% end.empty? %>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title">Nope nope nope</h3>
+        </div>
+        <div class="panel-body">
+          There's actually no available packs for this event.
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h2>2) Choose your friend's group</h2>
+    <div class="form-group">
+      <div class="col-md-12">
+        <% if current_logged_user.users_groups.each do |group| %>
+        <div class="div-radio">
+          <div class="row title-pack">
+            <div class="col-md-8">
+              <h2><%= group.name.capitalize %></h2>
+            </div>
+            <div class="col-md-4 text-right">
+              <h3><%= group.tag %></h3>
+            </div>
+          </div>
+          <ul class="list-group">
+            <% group.group_members.each do |teammate| %>
+            <li class="list-group-item">
+              <%= teammate.user.name.capitalize %>
+              <%= teammate.user.lastname.capitalize %>
+            </li>
+            <% end %>
+          </ul>
+          <%= radio_button_tag(:registration_group, group.id) %>
+        </div>
+        <% end.empty? %>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Moon Moon</h3>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-12 text-center" style="margin-bottom:1em;">
+              <%= image_tag "moonmoon", size: "128x128", :class => "img-circle" %>
+            </div>
+            <p>
+              I'm a lone wolf dude, I'm going to <%= @event_resource.event.shortname %> alone!</br>
+              Otherwise, if you want to be placed near your friends during this event, <%= link_to "create a group", new_users_group_path %> ;) .
+            </p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h2>3) Payment</h2>
+    <div class="form-group">
+      <div class="col-md-12 text-center">
+        <button type="submit" class="btn btn-primary btn-lg">Go to payment</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

@@ -1,17 +1,19 @@
 <div>
   <div class="card-pf card-pf-accented card-pf-aggregate-status">
-    <h3><%= event.name %></h3>
+    <h2>
+      <%= event.name %></br>
+      <small>Starting date: <%= event.date.strftime("%d %B %Y at %Hh%M") %></small></br>
+      <small>Ending date: <%= event.end_date.strftime("%d %B %Y at %Hh%M") %></small>
+    </h2>
     <div class="card-pf-body">
-      <p>
-        <h5>Starting date: <%= event.date.strftime("%d %B %Y at %Hh%M") %></h5>
-        <h5>Ending date: <%= event.end_date.strftime("%d %B %Y at %Hh%M") %></h5>
-      </p>
-      <p>
-        <%= event.description %>
-      </p>
-      <p>
-        <%= link_to 'Show event\'s informations >', event_path(event.id), :class=>"btn btn-lg btn-primary"  %>
-      </p>
+      <div class="row">
+        <div class="col-md-12 text-left">
+          <%= event.description %>
+        </div>
+        <div class="col-md-12">
+          <%= link_to 'Show event\'s informations >', event_path(event.id), :class=>"btn btn-lg btn-primary"  %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -9,17 +9,21 @@
   p{
     padding-left: 1em;
   }
-  h4{
+  .title-pack{
     border-width:0px 0px 1px 0px;
     border-style:solid;
     border-color:#4CACD5;
   }
-}
+  .title-pack{
+    margin-bottom: 1em;
+  }
+  .list-group-item{
+    background: none;
+  }
 
-.div-radio .active{
-  h4{
-    border-width:0px 0px 1px 0px;
-    border-style:solid;
-    border-color:#FFF;
+  .div-description{
+    margin-left: auto;
+    margin-right: auto;
+    width: 97%;
   }
 }

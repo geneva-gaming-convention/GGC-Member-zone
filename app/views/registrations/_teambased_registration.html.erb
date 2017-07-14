@@ -1,0 +1,16 @@
+<% if is_logged_in %>
+  <% if current_logged_user.has_a_group %>
+  <!-- Logged and has a group-->
+    <% if current_logged_user.has_a_team(@event_resource.game) %>
+      <!-- Logged and has a group and a team-->
+      <%= render 'registrations/form_new' %>
+    <% else %>
+      <!-- Logged and has a group and NO team-->
+      <%= render 'registrations/form_new' %>
+    <% end %>
+  <% else %>
+  <!-- Logged and no group-->
+  <% end %>
+<% else %>
+  <!-- Not logged -->
+<% end %>

@@ -8,7 +8,7 @@ function select_radio_div(){
     radio_input = div.find("input");
     input_name = radio_input.attr("name");
     reset_radio_input(input_name);
-    radio_input.attr('checked',true);
+    radio_input.prop('checked',true);
     div.addClass("btn-primary active");
   })
 }

@@ -4,6 +4,7 @@ class Team < ApplicationRecord
   belongs_to :game
   has_many :team_members, :dependent => :delete_all
   has_many :users, through: :team_members
+  has_many :registrations
   # -----
 
   # Hooks
@@ -38,6 +39,10 @@ class Team < ApplicationRecord
     else
       return false
     end
+  end
+
+  def to_select
+    return [self.users_group.tag+" "+self.name, self.id]
   end
 
 end

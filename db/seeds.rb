@@ -101,6 +101,95 @@ puts "  "+ssb.name.to_s+" ✅"
 
 # Create GGC Events ------------------------------------------------------------
 puts "Events creation..."
+ggc2k17 = Event.find_or_initialize_by("name"=>"Geneva Gaming Convention 2017")
+ggc2k17.shortname = "GGC 2k17"
+ggc2k17.description = "The second edition of the Geneva Gaming Convention (GGC) arrives at the Palexpo center from the 22th to the 24th of september 2017. More than 15'000 people, 80 exhibitors and 500 athletes are expected for a total immersion in the gaming universe."
+ggc2k17.date = "2017-09-22 11:00:00"
+ggc2k17.end_date = "2017-09-24 18:00:00"
+ggc2k17.chat_url = "https://discord.gg/yBVSU58"
+ggc2k17.visible = true
+ggc2k17.save
+puts ggc2k17.name.to_s+" ✅"
+
+# GGC 2k17 tournaments
+event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Counter-Strike: Global Offensive", "event_id"=> ggc2k17.id)
+event_resource.description = ""
+event_resource.start_at = "2017-09-23 09:30:00"
+event_resource.remote = false
+event_resource.remote_url = "https://widget.toornament.com/tournaments/436333240044767895/"
+event_resource.game = csgo
+event_resource.banner = "csgo"
+event_resource.visible = true
+event_resource.save
+puts "  "+event_resource.title.to_s+" ✅"
+
+event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - League Of Legends ", "event_id"=> ggc2k17.id)
+event_resource.description = ""
+event_resource.start_at = "2017-09-23 09:30:00"
+event_resource.remote = false
+event_resource.remote_url = "https://widget.toornament.com/tournaments/436333176392008757/"
+event_resource.game = lol
+event_resource.banner = "lol"
+event_resource.visible = true
+event_resource.save
+puts "  "+event_resource.title.to_s+" ✅"
+
+event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Overwatch", "event_id"=> ggc2k17.id)
+event_resource.description = ""
+event_resource.start_at = "2017-09-23 09:30:00"
+event_resource.remote = false
+event_resource.remote_url = "https://widget.toornament.com/tournaments/436333241420499689/"
+event_resource.game = ow
+event_resource.banner = "ow"
+event_resource.visible = true
+event_resource.save
+puts "  "+event_resource.title.to_s+" ✅"
+
+event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Rocket League", "event_id"=> ggc2k17.id)
+event_resource.description = ""
+event_resource.start_at = "2017-09-23 09:30:00"
+event_resource.remote = false
+event_resource.remote_url = "https://widget.toornament.com/tournaments/436333243433765774/"
+event_resource.game = rl
+event_resource.banner = "rl"
+event_resource.visible = true
+event_resource.save
+puts "  "+event_resource.title.to_s+" ✅"
+
+event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Hearthstone", "event_id"=> ggc2k17.id)
+event_resource.description = ""
+event_resource.start_at = "2017-09-23 09:30:00"
+event_resource.remote = false
+event_resource.remote_url = "https://widget.toornament.com/tournaments/436334570645769838/"
+event_resource.game = hs
+event_resource.banner = "hs"
+event_resource.visible = true
+event_resource.save
+puts "  "+event_resource.title.to_s+" ✅"
+
+event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Super Smash Bros 1v1", "event_id"=> ggc2k17.id)
+event_resource.description = ""
+event_resource.start_at = "2017-09-23 09:30:00"
+event_resource.remote = false
+event_resource.remote_url = "https://widget.toornament.com/tournaments/436333247862950954/"
+event_resource.game = ssb
+event_resource.banner = "ssb"
+event_resource.visible = true
+event_resource.save
+puts "  "+event_resource.title.to_s+" ✅"
+
+event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Fifa", "event_id"=> ggc2k17.id)
+event_resource.description = ""
+event_resource.start_at = "2017-09-23 09:30:00"
+event_resource.remote = false
+event_resource.remote_url = "https://widget.toornament.com/tournaments/"
+event_resource.game = fifa
+event_resource.banner = "fifa"
+event_resource.visible = true
+event_resource.save
+puts "  "+event_resource.title.to_s+" ✅"
+
+# GGC Online tournaments
 ggcOT = Event.find_or_initialize_by("name"=>"Online Tournament - GGC 2017")
 ggcOT.shortname = "GGC Online Tournament"
 ggcOT.description = "Geneva Gaming Convention first online tournaments with a LAN entrance offered to the winning teams"
@@ -166,6 +255,59 @@ event_resource.visible = true
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 # ------------------------------------------------------------------------------
+
+
+# Create event's packs
+puts "Event's packs creation..."
+
+# => EventPack(id: integer, name: string, description: text, price: decimal, external_reference: string, event_id: integer, created_at: datetime, updated_at: datetime)
+pack = EventPack.find_or_initialize_by("name"=>"E-sport \"Starter\"", "event"=>ggc2k17)
+pack.description = "<p>No perks, only what is necessary!</p>
+<h5>Pack content:<h5>
+<ul class=\"list-group\">
+<li class=\"list-group-item\">Convention's access/Sunday Pass</li>
+<li class=\"list-group-item\">LAN access</li>
+<li class=\"list-group-item\">GGC's Competitions' access</li>
+</ul>
+</p>"
+pack.price = 75
+pack.external_reference = "369789"
+pack.save
+puts "  "+pack.name.to_s+" ✅"
+
+pack = EventPack.find_or_initialize_by("name"=>"E-sport \"Medium\"", "event"=>ggc2k17)
+pack.description = "<p>The most asked e-sport pack! Offers access for the 3 days of the convention AND for the competitions!</p>
+<h5>Pack content:<h5>
+<ul class=\"list-group\">
+<li class=\"list-group-item\">Access to the convention - 3 days Pass</li>
+<li class=\"list-group-item\">LAN access</li>
+<li class=\"list-group-item\">GGC's Competitions' access</li>
+<li class=\"list-group-item\">Rest area</li>
+<li class=\"list-group-item\">Goodies \"Second Year\"</li>
+</ul>
+</p>"
+pack.price = 95
+pack.external_reference = "369784"
+pack.save
+puts "  "+pack.name.to_s+" ✅"
+
+pack = EventPack.find_or_initialize_by("name"=>"E-sport \"Pro\"", "event"=>ggc2k17)
+pack.description = "<p>One of our signature packs, it allows you to save time and money!
+Enjoy those 3 days all-inclusive. Illimited catering, rest zone, convention access and even more!</p>
+<h5>Pack content:<h5>
+<ul class=\"list-group\">
+<li class=\"list-group-item\">Access to the convention - 3 days Pass</li>
+<li class=\"list-group-item\">LAN access</li>
+<li class=\"list-group-item\">GGC's Competitions' access</li>
+<li class=\"list-group-item\">Catering - 3 days</li>
+<li class=\"list-group-item\">Rest area</li>
+<li class=\"list-group-item\">Goodies \"Second Year\"</li>
+</ul>
+</p>"
+pack.price = 135
+pack.external_reference = "369778"
+pack.save
+puts "  "+pack.name.to_s+" ✅"
 
 # Create user's rules (later...)
 #puts "User's rules creation..."

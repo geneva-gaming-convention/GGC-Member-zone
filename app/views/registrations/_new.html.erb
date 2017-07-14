@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Registration <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></h3>
+  </div>
+  <div class="panel-body">
+    <% flash.each do |key, value| %>
+    <div id="error_explanation" class="alert alert-<%=key%>" role="alert">
+      <p>
+        <%= value %>
+      </p>
+    </div>
+    <% end %>
+    <% if @event_resource.game.teambased %>
+    <%= render 'registrations/teambased_registration' %>
+    <% else %>
+    <%= render 'registrations/solo_registration'%>
+    <% end %>
+  </div>
+</div>
