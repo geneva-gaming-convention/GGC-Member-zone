@@ -9,7 +9,7 @@
         <div class="panel-body text-center">
           <%= player.name.capitalize %>
           <% if @event_resource.game %>
-          <% game_account = player.game_accounts.find_by(game_provider: event_resource.game.game_provider) %>
+          <% game_account = player.game_accounts.find_by(game_provider: @event_resource.game.game_provider) %>
           <% if game_account %>
           '<%= game_account.name %>'
           <% else %>
