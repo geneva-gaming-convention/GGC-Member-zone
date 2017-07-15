@@ -10,7 +10,31 @@
     <% end %>
   <% else %>
   <!-- Logged and no group-->
-  
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">You had one job !</h3>
+    </div>
+    <div class="panel-body">
+      <p>
+        <%= @event_resource.game.name.capitalize %> is a team based game.</br>
+        You can't come here, ask for a registration and simply come to
+        <%= link_to @event_resource.event.name, event_path(@event_resource.event) %> alone dude.</br>
+        So let me explain what you have to do:
+        <ul>
+          <li>
+            <%= link_to "Create", new_users_group_path %> or <%= link_to "join", global_groups_list_path %> a friend's group
+          </li>
+          <li>
+            If you're a <strong>manager</strong>, you can come back here afterwards
+          </li>
+          <li>
+            If you're a <strong><%= @event_resource.game.shortname %> player</strong>,
+            then you have to <%= link_to "join or create", global_teams_list_path %> a team.
+          </li>
+        </ul>
+      </p>
+    </div>
+  </div>
   <% end %>
 <% else %>
   <!-- Not logged -->
