@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
 
   # ADD check payement for registrations
   def is_validated_for_event_resource(event_resource)
-    if self.registration.where(event_resource: event_resource).count > 0
+    if self.registrations.where(event_resource: event_resource).count > 0
       return true
     end
     return false
