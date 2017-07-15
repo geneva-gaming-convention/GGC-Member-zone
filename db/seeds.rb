@@ -193,18 +193,18 @@ event_resource.locked_quota = 1
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
-event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Super Smash Bros", "event_id"=> ggc2k17.id)
-event_resource.description = ""
-event_resource.start_at = "2017-09-23 09:30:00"
-event_resource.remote = false
-event_resource.remote_url = "https://widget.toornament.com/tournaments/436333247862950954/"
-event_resource.game = ssb
-event_resource.banner = "ssb"
-event_resource.visible = true
-event_resource.quota = 128
-event_resource.locked_quota = 0
-event_resource.save
-puts "  "+event_resource.title.to_s+" ✅"
+ssb_tournament = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Super Smash Bros", "event_id"=> ggc2k17.id)
+ssb_tournament.description = ""
+ssb_tournament.start_at = "2017-09-23 09:30:00"
+ssb_tournament.remote = false
+ssb_tournament.remote_url = "https://widget.toornament.com/tournaments/436333247862950954/"
+ssb_tournament.game = ssb
+ssb_tournament.banner = "ssb"
+ssb_tournament.visible = true
+ssb_tournament.quota = 128
+ssb_tournament.locked_quota = 0
+ssb_tournament.save
+puts "  "+ssb_tournament.title.to_s+" ✅"
 
 # event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Super Smash Bros 2v2", "event_id"=> ggc2k17.id)
 # event_resource.description = ""
@@ -219,18 +219,18 @@ puts "  "+event_resource.title.to_s+" ✅"
 # event_resource.save
 # puts "  "+event_resource.title.to_s+" ✅"
 
-event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Fifa", "event_id"=> ggc2k17.id)
-event_resource.description = ""
-event_resource.start_at = "2017-09-23 09:30:00"
-event_resource.remote = false
-event_resource.remote_url = "https://widget.toornament.com/tournaments/"
-event_resource.game = fifa
-event_resource.banner = "fifa"
-event_resource.visible = true
-event_resource.quota = 64
-event_resource.locked_quota = 0
-event_resource.save
-puts "  "+event_resource.title.to_s+" ✅"
+fifa_tournament = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Fifa", "event_id"=> ggc2k17.id)
+fifa_tournament.description = ""
+fifa_tournament.start_at = "2017-09-23 09:30:00"
+fifa_tournament.remote = false
+fifa_tournament.remote_url = "https://widget.toornament.com/tournaments/"
+fifa_tournament.game = fifa
+fifa_tournament.banner = "fifa"
+fifa_tournament.visible = true
+fifa_tournament.quota = 64
+fifa_tournament.locked_quota = 0
+fifa_tournament.save
+puts "  "+fifa_tournament.title.to_s+" ✅"
 
 # GGC Online tournaments
 ggcOT = Event.find_or_initialize_by("name"=>"Online Tournament - GGC 2017")
@@ -308,13 +308,37 @@ pack = EventPack.find_or_initialize_by("name"=>"E-sport \"Starter\"", "event"=>g
 pack.description = "<p>No perks, only what is necessary!</p>
 <h5>Pack content:<h5>
 <ul class=\"list-group\">
-<li class=\"list-group-item\">Convention's access/Sunday Pass</li>
+<li class=\"list-group-item\">Convention's access - Sunday Pass</li>
 <li class=\"list-group-item\">LAN access</li>
 <li class=\"list-group-item\">GGC's Competitions' access</li>
 </ul>
 </p>"
 pack.price = 75
 pack.external_reference = "369789"
+pack.save
+puts "  "+pack.name.to_s+" ✅"
+
+pack = EventPack.find_or_initialize_by("name"=>"E-sport \"Starter\"", "event"=>ggc2k17, "event_resource"=>ssb_tournament)
+pack.description = "<p>No perks, only what is necessary!</p>
+<h5>Pack content:<h5>
+<ul class=\"list-group\">
+<li class=\"list-group-item\">Convention's access - Saturday Pass</li>
+</ul>
+</p>"
+pack.price = 40
+pack.external_reference = ""
+pack.save
+puts "  "+pack.name.to_s+" ✅"
+
+pack = EventPack.find_or_initialize_by("name"=>"E-sport \"Starter\"", "event"=>ggc2k17, "event_resource"=>fifa_tournament)
+pack.description = "<p>No perks, only what is necessary!</p>
+<h5>Pack content:<h5>
+<ul class=\"list-group\">
+<li class=\"list-group-item\">Convention's access - Saturday Pass</li>
+</ul>
+</p>"
+pack.price = 40
+pack.external_reference = ""
 pack.save
 puts "  "+pack.name.to_s+" ✅"
 
@@ -334,6 +358,34 @@ pack.external_reference = "369784"
 pack.save
 puts "  "+pack.name.to_s+" ✅"
 
+pack = EventPack.find_or_initialize_by("name"=>"E-sport \"Medium\"", "event"=>ggc2k17, "event_resource"=>ssb_tournament)
+pack.description = "<p>The most asked e-sport pack! Offers access for the 3 days of the convention AND for the competitions!</p>
+<h5>Pack content:<h5>
+<ul class=\"list-group\">
+<li class=\"list-group-item\">Access to the convention - 3 days Pass</li>
+<li class=\"list-group-item\">Rest area</li>
+<li class=\"list-group-item\">Goodies \"Second Year\"</li>
+</ul>
+</p>"
+pack.price = 60
+pack.external_reference = ""
+pack.save
+puts "  "+pack.name.to_s+" ✅"
+
+pack = EventPack.find_or_initialize_by("name"=>"E-sport \"Medium\"", "event"=>ggc2k17, "event_resource"=>fifa_tournament)
+pack.description = "<p>The most asked e-sport pack! Offers access for the 3 days of the convention AND for the competitions!</p>
+<h5>Pack content:<h5>
+<ul class=\"list-group\">
+<li class=\"list-group-item\">Access to the convention - 3 days Pass</li>
+<li class=\"list-group-item\">Rest area</li>
+<li class=\"list-group-item\">Goodies \"Second Year\"</li>
+</ul>
+</p>"
+pack.price = 60
+pack.external_reference = ""
+pack.save
+puts "  "+pack.name.to_s+" ✅"
+
 pack = EventPack.find_or_initialize_by("name"=>"E-sport \"Pro\"", "event"=>ggc2k17)
 pack.description = "<p>One of our signature packs, it allows you to save time and money!
 Enjoy those 3 days all-inclusive. Illimited catering, rest zone, convention access and even more!</p>
@@ -349,6 +401,38 @@ Enjoy those 3 days all-inclusive. Illimited catering, rest zone, convention acce
 </p>"
 pack.price = 135
 pack.external_reference = "369778"
+pack.save
+puts "  "+pack.name.to_s+" ✅"
+
+pack = EventPack.find_or_initialize_by("name"=>"E-sport \"Pro\"", "event"=>ggc2k17, "event_resource"=>ssb_tournament)
+pack.description = "<p>One of our signature packs, it allows you to save time and money!
+Enjoy those 3 days all-inclusive. Illimited catering, rest zone, convention access and even more!</p>
+<h5>Pack content:<h5>
+<ul class=\"list-group\">
+<li class=\"list-group-item\">Access to the convention - 3 days Pass</li>
+<li class=\"list-group-item\">Catering - 3 days</li>
+<li class=\"list-group-item\">Rest area</li>
+<li class=\"list-group-item\">Goodies \"Second Year\"</li>
+</ul>
+</p>"
+pack.price = 100
+pack.external_reference = ""
+pack.save
+puts "  "+pack.name.to_s+" ✅"
+
+pack = EventPack.find_or_initialize_by("name"=>"E-sport \"Pro\"", "event"=>ggc2k17, "event_resource"=>fifa_tournament)
+pack.description = "<p>One of our signature packs, it allows you to save time and money!
+Enjoy those 3 days all-inclusive. Illimited catering, rest zone, convention access and even more!</p>
+<h5>Pack content:<h5>
+<ul class=\"list-group\">
+<li class=\"list-group-item\">Access to the convention - 3 days Pass</li>
+<li class=\"list-group-item\">Catering - 3 days</li>
+<li class=\"list-group-item\">Rest area</li>
+<li class=\"list-group-item\">Goodies \"Second Year\"</li>
+</ul>
+</p>"
+pack.price = 100
+pack.external_reference = ""
 pack.save
 puts "  "+pack.name.to_s+" ✅"
 

@@ -4,17 +4,21 @@
   <div class="col-md-4">
     <h2>Select a <%= @event_resource.event.shortname %> pack</h2>
     <div class="form-group">
-      <% if @event_resource.event.event_packs.each do |pack| %>
-      <%= render 'registrations/display_pack', :pack => pack %>
+      <% if @event_resource.event_packs.each do |pack| %>
+        <%= render 'registrations/display_pack', :pack => pack %>
       <% end.empty? %>
-      <div class="panel panel-danger">
-        <div class="panel-heading">
-          <h3 class="panel-title">Nope nope nope</h3>
+        <% if @event_resource.event.event_packs.where(event_resource: nil).each do |pack| %>
+        <%= render 'registrations/display_pack', :pack => pack %>
+        <% end.empty? %>
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title">Nope nope nope</h3>
+          </div>
+          <div class="panel-body">
+            There's actually no available packs for this event.
+          </div>
         </div>
-        <div class="panel-body">
-          There's actually no available packs for this event.
-        </div>
-      </div>
+        <% end %>
       <% end %>
     </div>
   </div>
