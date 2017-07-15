@@ -79,11 +79,11 @@ ow.save
 puts "  "+ow.name.to_s+" ✅"
 
 fifa = Game.find_or_initialize_by(
-"name"=>"Fifa 18",
 "shortname"=>"Fifa",
 "img"=>"",
 "teambased"=>false
 )
+fifa.name = "Fifa 17"
 fifa.game_provider = electronic_arts
 fifa.save
 puts "  "+fifa.name.to_s+" ✅"
@@ -92,19 +92,19 @@ ssb = Game.find_or_initialize_by(
 "shortname"=>"SSB",
 "teambased"=>false
 )
-ssb.name = "Super Smash Bros 1v1"
+ssb.name = "Super Smash Bros"
 ssb.game_provider = nintendo
 ssb.save
 puts "  "+ssb.name.to_s+" ✅"
 
-ssb_teambased = Game.find_or_initialize_by(
-"shortname"=>"SSB",
-"teambased"=>true
-)
-ssb_teambased.name = "Super Smash Bros 2v2"
-ssb_teambased.game_provider = nintendo
-ssb_teambased.save
-puts "  "+ssb_teambased.name.to_s+" ✅"
+# ssb_teambased = Game.find_or_initialize_by(
+# "shortname"=>"SSB",
+# "teambased"=>true
+# )
+# ssb_teambased.name = "Super Smash Bros 2v2"
+# ssb_teambased.game_provider = nintendo
+# ssb_teambased.save
+# puts "  "+ssb_teambased.name.to_s+" ✅"
 # ------------------------------------------------------------------------------
 
 
@@ -186,7 +186,7 @@ event_resource.locked_quota = 1
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
-event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Super Smash Bros 1v1", "event_id"=> ggc2k17.id)
+event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Super Smash Bros", "event_id"=> ggc2k17.id)
 event_resource.description = ""
 event_resource.start_at = "2017-09-23 09:30:00"
 event_resource.remote = false
@@ -199,18 +199,18 @@ event_resource.locked_quota = 0
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
-event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Super Smash Bros 2v2", "event_id"=> ggc2k17.id)
-event_resource.description = ""
-event_resource.start_at = "2017-09-23 09:30:00"
-event_resource.remote = false
-event_resource.remote_url = "https://widget.toornament.com/tournaments/436333247862950954/"
-event_resource.game = ssb_teambased
-event_resource.banner = "ssb"
-event_resource.visible = true
-event_resource.quota = 128
-event_resource.locked_quota = 0
-event_resource.save
-puts "  "+event_resource.title.to_s+" ✅"
+# event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Super Smash Bros 2v2", "event_id"=> ggc2k17.id)
+# event_resource.description = ""
+# event_resource.start_at = "2017-09-23 09:30:00"
+# event_resource.remote = false
+# event_resource.remote_url = "https://widget.toornament.com/tournaments/436333247862950954/"
+# event_resource.game = ssb_teambased
+# event_resource.banner = "ssb"
+# event_resource.visible = true
+# event_resource.quota = 128
+# event_resource.locked_quota = 0
+# event_resource.save
+# puts "  "+event_resource.title.to_s+" ✅"
 
 event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Fifa", "event_id"=> ggc2k17.id)
 event_resource.description = ""
