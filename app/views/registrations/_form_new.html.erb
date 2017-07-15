@@ -5,24 +5,25 @@
     <h2>Select a <%= @event_resource.event.shortname %> pack</h2>
     <div class="form-group">
       <% if @event_resource.event_packs.each do |pack| %>
-        <%= render 'registrations/display_pack', :pack => pack %>
+      <%= render 'registrations/display_pack', :pack => pack %>
       <% end.empty? %>
-        <% if @event_resource.event.event_packs.where(event_resource: nil).each do |pack| %>
-        <%= render 'registrations/display_pack', :pack => pack %>
-        <% end.empty? %>
-        <div class="panel panel-danger">
-          <div class="panel-heading">
-            <h3 class="panel-title">Nope nope nope</h3>
-          </div>
-          <div class="panel-body">
-            There's actually no available packs for this event.
-          </div>
+      <% if @event_resource.event.event_packs.where(event_resource: nil).each do |pack| %>
+      <%= render 'registrations/display_pack', :pack => pack %>
+      <% end.empty? %>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title">Nope nope nope</h3>
         </div>
-        <% end %>
+        <div class="panel-body">
+          There's actually no available packs for this event.
+        </div>
+      </div>
+      <% end %>
       <% end %>
     </div>
   </div>
   <div class="col-md-4">
+    <% if @event_resource.game %>
     <h2>Choose your team</h2>
     <div class="form-group">
       <div class="col-md-12">
@@ -47,7 +48,7 @@
           <%= radio_button_tag(:registration_team, team.id) %>
         </div>
         <% end.empty? %>
-        <div class="panel panel-danger">
+        <div class="panel panel-info">
           <div class="panel-heading">
             <h3 class="panel-title">Nope nope nope</h3>
           </div>
@@ -57,29 +58,39 @@
               It's a team based game dude, you need to have a team to participate.</br>
               <%= link_to "Create a team in one of my friend's group.", user_users_groups_path(current_logged_user) %>
             </p>
-            <p>
-              <h4>Hooo, sorry, you're maybe a manager ?</h4>
-              <div class="div-radio">
-                <div class="row ">
-                  <div class="col-md-12 title-pack">
-                    <h4>Yes 😎 , proud to support my team !</h4>
-                  </div>
-                  <div class="col-md-12">
-                    <p>
-                      You can only carry teams that are in the <%= link_to "same friend's groups", user_users_groups_path(current_logged_user) %> as you.</br>
-                      Select the team you wan't to support:
-                      <%= select_tag "registration_team", options_from_collection_for_select(current_logged_user.get_manageable_teams_by_game(@event_resource.game), "id", "name"), :class => "form-control" %>
-                    </p>
-                  </div>
-                </div>
-                <%= radio_button_tag(:is_manager, "true") %>
-              </div>
-            </p>
           </div>
         </div>
         <% end %>
       </div>
     </div>
+    <% else %>
+    <h2>Choose a friend's group</h2>
+    <div class="form-group">
+      <div class="col-md-12">
+        <% current_logged_user.users_groups.each do |group| %>
+        <div class="div-radio">
+          <div class="row title-pack">
+            <div class="col-md-8">
+              <h2><%= group.name.capitalize %></h2>
+            </div>
+            <div class="col-md-4 text-right">
+              <h3><%= group.tag %></h3>
+            </div>
+          </div>
+          <ul class="list-group">
+            <% group.group_members.each do |teammate| %>
+            <li class="list-group-item">
+              <%= teammate.user.name.capitalize %>
+              <%= teammate.user.lastname.capitalize %>
+            </li>
+            <% end %>
+          </ul>
+          <%= radio_button_tag(:registration_group, group.id) %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
   </div>
   <div class="col-md-4">
     <h2>Payment</h2>

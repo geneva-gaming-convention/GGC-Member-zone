@@ -10,7 +10,7 @@
       </p>
     </div>
     <% end %>
-    <% if @event_resource.game.teambased %>
+    <% if !@event_resource.game || @event_resource.game.teambased %>
     <%= render 'registrations/teambased_registration' %>
     <% else %>
     <%= render 'registrations/solo_registration'%>

@@ -60,10 +60,11 @@
       </div>
       <% else %>
       <%= render 'registrations/new', :resource => @resource %>
-      <% if @event_resource.game.teambased %>
+      <% if @event_resource.game && @event_resource.game.teambased %>
       <%= render 'teams/show_teams_by_resource' %>
       <% else %>
       <!-- DISPLAY PLAYERS -->
+      <%= render 'show_players_by_resource' %>
       <% end %>
       <% end %>
     </p>

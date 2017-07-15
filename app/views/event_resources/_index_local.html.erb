@@ -4,12 +4,16 @@
 <div class="col-md-4">
   <div class="card-pf card-pf-accented card-pf-aggregate-status">
     <h2 class="card-pf-title">
+      <% if game %>
       <a href="<%= event_event_resource_path(event.id, resource.id)%>"><%= game.name.capitalize %></a>
+      <% else %>
+      <a href="<%= event_event_resource_path(event.id, resource.id)%>"><%= resource.title %></a>
+      <% end %>
     </h2>
     <div class="card-pf-body">
       <%= image_tag resource.banner, size: "64x64", :class => "img-circle" %>
       <p class="card-pf-aggregate-status-notifications">
-        <% if resource.game.teambased %>
+        <% if resource.game && resource.game.teambased %>
         <span class="pficon pficon-users"></span>
         <% else %>
         <span class="pficon pficon-user"></span>
@@ -18,7 +22,7 @@
           <a href="<%= event_event_resource_path(event.id, resource.id)%>">
             <span class="pficon-ok" aria-hidden="true"
             data-toggle="tooltip" data-placement="top" title="Validated registrations"></span>
-            <% if resource.game.teambased %>
+            <% if resource.game && resource.game.teambased %>
             <%= resource.get_teams.count %>
             <% else %>
             <%= resource.get_players.count %>

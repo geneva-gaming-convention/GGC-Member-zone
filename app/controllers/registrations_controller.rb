@@ -13,15 +13,16 @@ class RegistrationsController < ApplicationController
     #<Registration id: nil, user_id: nil, event_id: nil, created_at: nil, updated_at: nil, event_resource_id: nil, event_pack_id: nil, team_id: nil>
     registration = Registration.new
     registration.user = current_logged_user
+    registration.is_a_player = true
     registration.event = @event
     registration.event_resource = @event_resource
     registration.event_pack = @event_pack
-    if @event_resource.game.teambased
+    if @event_resource.game && @event_resource.game.teambased && params.has_key?(:registration_team)
       registration.team = Team.find_by(id: params[:registration_team])
-      registration.users_group = team.users_group
+      registration.users_group = registration.team.users_group
     end
-    registration.is_a_player = true
-    if params.has_key?(:is_manager) && params[:is_manager] == "true"
+    if !@event_resource.game && params.has_key?(:registration_group)
+      registration.users_group = UsersGroup.find_by(id: params[:registration_group])
       registration.is_a_player = false
     end
 

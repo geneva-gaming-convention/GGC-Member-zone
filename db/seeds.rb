@@ -232,6 +232,32 @@ fifa_tournament.locked_quota = 0
 fifa_tournament.save
 puts "  "+fifa_tournament.title.to_s+" ✅"
 
+manager = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Manager", "event_id"=> ggc2k17.id)
+manager.description = ""
+manager.start_at = "2017-09-22 18:00:00"
+manager.remote = false
+manager.remote_url = ""
+manager.game = nil
+manager.banner = ""
+manager.visible = true
+manager.quota = 40
+manager.locked_quota = 0
+manager.save
+puts "  "+manager.title.to_s+" ✅"
+
+supporter = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Supporter", "event_id"=> ggc2k17.id)
+supporter.description = ""
+supporter.start_at = "2017-09-22 18:00:00"
+supporter.remote = false
+supporter.remote_url = ""
+supporter.game = nil
+supporter.banner = ""
+supporter.visible = true
+supporter.quota = 40
+supporter.locked_quota = 0
+supporter.save
+puts "  "+supporter.title.to_s+" ✅"
+
 # GGC Online tournaments
 ggcOT = Event.find_or_initialize_by("name"=>"Online Tournament - GGC 2017")
 ggcOT.shortname = "GGC Online Tournament"
@@ -342,6 +368,20 @@ pack.external_reference = ""
 pack.save
 puts "  "+pack.name.to_s+" ✅"
 
+pack = EventPack.find_or_initialize_by("name"=>"E-sport \"Starter\"", "event"=>ggc2k17, "event_resource"=>supporter)
+pack.description = "<p>No perks, only what is necessary!</p>
+<h5>Pack content:<h5>
+<ul class=\"list-group\">
+<li class=\"list-group-item\">Convention's access - Saturday Pass</li>
+<li class=\"list-group-item\">LAN access</li>
+<li class=\"list-group-item\">A chair to support your teammates (no table)</li>
+</ul>
+</p>"
+pack.price = 40
+pack.external_reference = ""
+pack.save
+puts "  "+pack.name.to_s+" ✅"
+
 pack = EventPack.find_or_initialize_by("name"=>"E-sport \"Medium\"", "event"=>ggc2k17)
 pack.description = "<p>The most asked e-sport pack! Offers access for the 3 days of the convention AND for the competitions!</p>
 <h5>Pack content:<h5>
@@ -379,6 +419,22 @@ pack.description = "<p>The most asked e-sport pack! Offers access for the 3 days
 <li class=\"list-group-item\">Access to the convention - 3 days Pass</li>
 <li class=\"list-group-item\">Rest area</li>
 <li class=\"list-group-item\">Goodies \"Second Year\"</li>
+</ul>
+</p>"
+pack.price = 60
+pack.external_reference = ""
+pack.save
+puts "  "+pack.name.to_s+" ✅"
+
+pack = EventPack.find_or_initialize_by("name"=>"E-sport \"Medium\"", "event"=>ggc2k17, "event_resource"=>supporter)
+pack.description = "<p>The most asked e-sport pack! Offers access for the 3 days of the convention AND for the competitions!</p>
+<h5>Pack content:<h5>
+<ul class=\"list-group\">
+<li class=\"list-group-item\">Access to the convention - 3 days Pass</li>
+<li class=\"list-group-item\">LAN access</li>
+<li class=\"list-group-item\">Rest area</li>
+<li class=\"list-group-item\">Goodies \"Second Year\"</li>
+<li class=\"list-group-item\">A chair to support your teammates (no table)</li>
 </ul>
 </p>"
 pack.price = 60
@@ -429,6 +485,24 @@ Enjoy those 3 days all-inclusive. Illimited catering, rest zone, convention acce
 <li class=\"list-group-item\">Catering - 3 days</li>
 <li class=\"list-group-item\">Rest area</li>
 <li class=\"list-group-item\">Goodies \"Second Year\"</li>
+</ul>
+</p>"
+pack.price = 100
+pack.external_reference = ""
+pack.save
+puts "  "+pack.name.to_s+" ✅"
+
+pack = EventPack.find_or_initialize_by("name"=>"E-sport \"Pro\"", "event"=>ggc2k17, "event_resource"=>supporter)
+pack.description = "<p>One of our signature packs, it allows you to save time and money!
+Enjoy those 3 days all-inclusive. Illimited catering, rest zone, convention access and even more!</p>
+<h5>Pack content:<h5>
+<ul class=\"list-group\">
+<li class=\"list-group-item\">Access to the convention - 3 days Pass</li>
+<li class=\"list-group-item\">LAN access</li>
+<li class=\"list-group-item\">Catering - 3 days</li>
+<li class=\"list-group-item\">Rest area</li>
+<li class=\"list-group-item\">Goodies \"Second Year\"</li>
+<li class=\"list-group-item\">A chair to support your teammates (no table)</li>
 </ul>
 </p>"
 pack.price = 100

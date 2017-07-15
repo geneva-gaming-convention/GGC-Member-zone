@@ -64,7 +64,7 @@ class EventResource < ApplicationRecord
 
   def get_validated_slots
     valid_partitipants = []
-    if self.game.teambased
+    if self.game && self.game.teambased
       valid_partitipants = self.get_teams
       valid_partitipants.each do |team_participating|
         if team_participating.is_validated_for_event_resource(self)
