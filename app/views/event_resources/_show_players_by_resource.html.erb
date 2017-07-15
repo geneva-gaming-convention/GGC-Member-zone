@@ -1,8 +1,28 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Registration <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></h3>
+    <h3 class="panel-title">Registered players</h3>
   </div>
   <div class="panel-body">
-    Players
+    <% if @event_resource.get_players.each do |player| %>
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-body text-center">
+          <%= player.name.capitalize %>
+          <% if @event_resource.game %>
+          <% game_account = player.game_accounts.find_by(game_provider: event_resource.game.game_provider) %>
+          <% if game_account %>
+          '<%= game_account.name %>'
+          <% else %>
+          '<span class="glyphicon pficon-error-circle-o" aria-hidden="true"
+          data-toggle="tooltip" data-placement="bottom" title="No game account yet..."></span>'
+          <% end %>
+          <% end %>
+          <%= player.lastname.capitalize %>
+        </div>
+      </div>
+    </div>
+    <% end.empty? %>
+    <%= render 'application/empty_state', title: "Players registered", info: "There is currently no registered players." %>
+    <% end %>
   </div>
 </div>
