@@ -7,7 +7,9 @@
       <% if game %>
       <a href="<%= event_event_resource_path(event.id, resource.id)%>"><%= game.name.capitalize %></a>
       <% else %>
-      <a href="<%= event_event_resource_path(event.id, resource.id)%>"><%= resource.title %></a>
+      <a href="<%= event_event_resource_path(event.id, resource.id)%>">
+        <%= resource.title %>
+      </a>
       <% end %>
     </h2>
     <div class="card-pf-body">
@@ -37,6 +39,11 @@
           </a>
         </span>
       </p>
+      <% if !resource.game %>
+      <p>
+        <%= resource.description %>
+      </p>
+      <% end %>
     </div>
   </div>
 </div>

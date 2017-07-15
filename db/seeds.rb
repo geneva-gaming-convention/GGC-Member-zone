@@ -233,7 +233,7 @@ fifa_tournament.save
 puts "  "+fifa_tournament.title.to_s+" ✅"
 
 manager = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Manager", "event_id"=> ggc2k17.id)
-manager.description = ""
+manager.description = "A manager has access to the Lan area and can come with a computer. A table is reserved for him."
 manager.start_at = "2017-09-22 18:00:00"
 manager.remote = false
 manager.remote_url = ""
@@ -246,7 +246,7 @@ manager.save
 puts "  "+manager.title.to_s+" ✅"
 
 supporter = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Supporter", "event_id"=> ggc2k17.id)
-supporter.description = ""
+supporter.description = "A support has access to the Lan area. He can't come with a computer, he is only here to support teammates. There is no table reservation for him."
 supporter.start_at = "2017-09-22 18:00:00"
 supporter.remote = false
 supporter.remote_url = ""
