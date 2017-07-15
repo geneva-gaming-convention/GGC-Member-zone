@@ -16,6 +16,16 @@ class Team < ApplicationRecord
   validates :name, :uniqueness => {:scope => :game, :message => "this team's name is already used !"}
   # -----
 
+
+
+  # ADD check payement for registrations
+  def is_validated_for_event_resource(event_resource)
+    if self.registration.where(event_resource: event_resource).count < self.game.nb_players
+      return false
+    end
+    return true
+  end
+
   def is_user_in_team(user)
     self.team_members.each do |team_member|
       if team_member.user == user

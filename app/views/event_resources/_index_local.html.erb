@@ -18,7 +18,11 @@
           <a href="<%= event_event_resource_path(event.id, resource.id)%>">
             <span class="pficon-ok" aria-hidden="true"
             data-toggle="tooltip" data-placement="top" title="Validated registrations"></span>
+            <% if resource.game.teambased %>
             <%= resource.get_teams.count %>
+            <% else %>
+            <%= resource.get_players.count %>
+            <% end %>
             /
             <%= resource.get_size %>
             <% if resource.locked_quota != 0 %>

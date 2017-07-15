@@ -14,4 +14,14 @@ class Registration < ApplicationRecord
   belongs_to :team
   belongs_to :users_group
   # -----
+
+  before_create :is_still_free_slots
+
+
+  def is_still_free_slots
+    if !self.event_resource.is_still_free_slots
+      flash[:danger] = "An error occurred while registering, this tournament is full."
+      redirect_to event_event_resource_path(self.event_resource.event, self.event_resource)
+    end
+  end
 end

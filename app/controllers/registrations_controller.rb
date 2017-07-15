@@ -1,7 +1,7 @@
 class RegistrationsController < ApplicationController
   before_action :must_be_logged
-  before_action :event_must_exist,                      only: [:create]
-  before_action :event_resource_must_exist,             only: [:create]
+  before_action :event_must_exist,                      only: [:create, :is_still_free_slots]
+  before_action :event_resource_must_exist,             only: [:create, :is_still_free_slots]
   before_action :event_pack_must_exist,                 only: [:create]
 
   def index

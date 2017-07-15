@@ -31,6 +31,21 @@ class EventResource < ApplicationRecord
     return teams
   end
 
+  def get_players
+    players = []
+    if self.remote
+      players = ToornamentHelper.get_tournament_teams_participants(self.get_resource_remote_id)
+    else
+      self.registrations.each do |registration|
+        player = registration.user
+        unless players.include?(player)
+          players << player
+        end
+      end
+    end
+    return players
+  end
+
   def get_size
     size = 0
     if self.remote
@@ -44,6 +59,34 @@ class EventResource < ApplicationRecord
       end
     end
     return size
+  end
+
+  def get_validated_slots
+    valid_partitipants = []
+    if self.game.teambased
+      valid_partitipants = self.get_teams
+      valid_partitipants.each do |team_participating|
+        if team_participating.is_validated_for_event_resource(self)
+          valid_partitipants.push(team_participating)
+        end
+      end
+    else
+      self.registrations.where(team: nil).each do |player_registration|
+        user = player_registration.user
+        if user.is_validated_for_event_resource(self)
+          valid_partitipants.push(user)
+        end
+      end
+    end
+    return valid_partitipants
+  end
+
+  def is_still_free_slots
+    if get_validated_slots.count < self.get_size
+      return true
+    else
+      return false
+    end
   end
 
   def get_teams_with_members
