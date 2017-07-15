@@ -2,23 +2,10 @@
 <%= hidden_field_tag 'event_resource_id', @event_resource.id %>
 <div class="row">
   <div class="col-md-4">
-    <h2>1) Select a <%= @event_resource.event.shortname %>pack</h2>
+    <h2>Select a <%= @event_resource.event.shortname %> pack</h2>
     <div class="form-group">
       <% if @event_resource.event.event_packs.each do |pack| %>
-      <div class="div-radio">
-        <div class="row title-pack">
-          <div class="col-md-8">
-            <h2><%= pack.name.capitalize %></h2>
-          </div>
-          <div class="col-md-4 text-right">
-            <h3><%= pack.price %> CHF</h3>
-          </div>
-        </div>
-        <div class="div-description">
-          <%= pack.description.html_safe %>
-        </div>
-        <%= radio_button_tag(:registration_pack, pack.id) %>
-      </div>
+      <%= render 'registrations/display_pack', :pack => pack %>
       <% end.empty? %>
       <div class="panel panel-danger">
         <div class="panel-heading">
@@ -32,7 +19,7 @@
     </div>
   </div>
   <div class="col-md-4">
-    <h2>2) Choose your friend's group</h2>
+    <h2>Choose your friend's group</h2>
     <div class="form-group">
       <div class="col-md-12">
         <% if current_logged_user.users_groups.each do |group| %>
@@ -56,7 +43,7 @@
           <%= radio_button_tag(:registration_group, group.id) %>
         </div>
         <% end.empty? %>
-        <div class="panel panel-info">
+        <div class="panel panel-info" style="margin-top:1em;">
           <div class="panel-heading">
             <h3 class="panel-title">Moon Moon</h3>
           </div>
@@ -75,7 +62,7 @@
     </div>
   </div>
   <div class="col-md-4">
-    <h2>3) Payment</h2>
+    <h2>Payment</h2>
     <div class="form-group">
       <div class="col-md-12 text-center">
         <button type="submit" class="btn btn-primary btn-lg">Go to payment</button>

@@ -1,5 +1,4 @@
 class Registration < ApplicationRecord
-  #<Registration id: nil, user_id: nil, event_id: nil, created_at: nil, updated_at: nil, event_resource_id: nil, event_pack_id: nil, team_id: nil>
   # Validation
   validates :user, :event, :event_resource, :event_pack, presence: true
   validates :user, :uniqueness => {:scope => [:event, :event_resource], :message => "can't be registered multiple times for the same event"}
