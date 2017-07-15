@@ -64,6 +64,7 @@ rl = Game.find_or_initialize_by(
 "img"=>"",
 "teambased"=>true
 )
+rl.game_provider = steam
 rl.save
 puts "  "+rl.name.to_s+" ✅"
 
@@ -88,14 +89,22 @@ fifa.save
 puts "  "+fifa.name.to_s+" ✅"
 
 ssb = Game.find_or_initialize_by(
-"name"=>"Super Smash Bros",
 "shortname"=>"SSB",
-"img"=>"",
 "teambased"=>false
 )
+ssb.name = "Super Smash Bros 1v1"
 ssb.game_provider = nintendo
 ssb.save
 puts "  "+ssb.name.to_s+" ✅"
+
+ssb_teambased = Game.find_or_initialize_by(
+"shortname"=>"SSB",
+"teambased"=>true
+)
+ssb_teambased.name = "Super Smash Bros 2v2"
+ssb_teambased.game_provider = nintendo
+ssb_teambased.save
+puts "  "+ssb_teambased.name.to_s+" ✅"
 # ------------------------------------------------------------------------------
 
 
@@ -120,6 +129,8 @@ event_resource.remote_url = "https://widget.toornament.com/tournaments/436333240
 event_resource.game = csgo
 event_resource.banner = "csgo"
 event_resource.visible = true
+event_resource.quota = 24
+event_resource.locked_quota = 1
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -131,6 +142,8 @@ event_resource.remote_url = "https://widget.toornament.com/tournaments/436333176
 event_resource.game = lol
 event_resource.banner = "lol"
 event_resource.visible = true
+event_resource.quota = 24
+event_resource.locked_quota = 1
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -142,6 +155,8 @@ event_resource.remote_url = "https://widget.toornament.com/tournaments/436333241
 event_resource.game = ow
 event_resource.banner = "ow"
 event_resource.visible = true
+event_resource.quota = 16
+event_resource.locked_quota = 1
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -153,6 +168,8 @@ event_resource.remote_url = "https://widget.toornament.com/tournaments/436333243
 event_resource.game = rl
 event_resource.banner = "rl"
 event_resource.visible = true
+event_resource.quota = 16
+event_resource.locked_quota = 1
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -164,6 +181,8 @@ event_resource.remote_url = "https://widget.toornament.com/tournaments/436334570
 event_resource.game = hs
 event_resource.banner = "hs"
 event_resource.visible = true
+event_resource.quota = 64
+event_resource.locked_quota = 1
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -175,6 +194,21 @@ event_resource.remote_url = "https://widget.toornament.com/tournaments/436333247
 event_resource.game = ssb
 event_resource.banner = "ssb"
 event_resource.visible = true
+event_resource.quota = 128
+event_resource.locked_quota = 0
+event_resource.save
+puts "  "+event_resource.title.to_s+" ✅"
+
+event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Super Smash Bros 2v2", "event_id"=> ggc2k17.id)
+event_resource.description = ""
+event_resource.start_at = "2017-09-23 09:30:00"
+event_resource.remote = false
+event_resource.remote_url = "https://widget.toornament.com/tournaments/436333247862950954/"
+event_resource.game = ssb_teambased
+event_resource.banner = "ssb"
+event_resource.visible = true
+event_resource.quota = 128
+event_resource.locked_quota = 0
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -186,6 +220,8 @@ event_resource.remote_url = "https://widget.toornament.com/tournaments/"
 event_resource.game = fifa
 event_resource.banner = "fifa"
 event_resource.visible = true
+event_resource.quota = 64
+event_resource.locked_quota = 0
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 

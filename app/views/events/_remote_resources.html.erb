@@ -1,0 +1,19 @@
+<script type="text/javascript">
+<%= render :partial => "event_resources/display_resources.js" %>
+</script>
+<div class="row" id="event_resources">
+  <div class="card-pf card-pf-accented card-pf-aggregate-status">
+    <h2 class="card-pf-title">
+      Loading content ...
+    </h2>
+    <div class="card-pf-body">
+      <p class="card-pf-aggregate-status-notifications">
+        <div class="spinner spinner-lg"></div>
+      </p>
+    </div>
+  </div>
+</div>
+<%= render 'application/toornament_powered' %>
+<script type="text/javascript">
+display_resources();
+</script>

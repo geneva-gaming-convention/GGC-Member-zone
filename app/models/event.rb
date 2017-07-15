@@ -5,6 +5,17 @@ class Event < ApplicationRecord
   has_many :event_packs, :dependent => :delete_all
   # ---------
 
+
+
+  def are_all_resources_locales
+    self.event_resources.each do |resource|
+      if resource.remote
+        return false
+      end
+    end
+    return true
+  end
+
   def get_all_played_games
     games = []
     self.event_resources.each do |resource|
