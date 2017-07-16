@@ -4,7 +4,7 @@ class Team < ApplicationRecord
   belongs_to :game
   has_many :team_members, :dependent => :delete_all
   has_many :users, through: :team_members
-  has_many :registrations
+  has_many :registrations, :dependent => :restrict_with_error
   # -----
 
   # Hooks

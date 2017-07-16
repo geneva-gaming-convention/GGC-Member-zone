@@ -2,7 +2,7 @@ class EventResource < ApplicationRecord
   # Relations
   belongs_to :event
   belongs_to :game
-  has_many :registrations
+  has_many :registrations, :dependent => :restrict_with_error
   has_many :event_packs
   # ---------
   validates :event, :title, :start_at, presence: true

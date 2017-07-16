@@ -21,8 +21,7 @@ class RegistrationsController < ApplicationController
       registration.team = Team.find_by(id: params[:registration_team])
       registration.users_group = registration.team.users_group
     end
-    if !@event_resource.game && params.has_key?(:registration_group)
-      registration.users_group = UsersGroup.find_by(id: params[:registration_group])
+    if !@event_resource.game
       registration.is_a_player = false
     end
 

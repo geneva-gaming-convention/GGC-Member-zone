@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   # Relations
   belongs_to :address
-  has_many :registrations
+  has_many :registrations, :dependent => :restrict_with_error
   has_many :privileges
   has_many :user_rules, through: :privileges
   has_many :game_accounts
@@ -32,6 +32,11 @@ class User < ActiveRecord::Base
       return true
     end
     return false
+  end
+
+  def get_registrations_by_event(event)
+    registrations = self.registrations.where(event: event)
+    return registrations
   end
 
   def has_already_game_provider(game_provider)

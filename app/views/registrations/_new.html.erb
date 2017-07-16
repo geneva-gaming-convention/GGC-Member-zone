@@ -10,10 +10,14 @@
       </p>
     </div>
     <% end %>
+    <% if current_logged_user && current_logged_user.get_registrations_by_event(@event_resource.event).count > 0 %>
+      <%= render 'registrations/show' %>
+    <% else %>
     <% if !@event_resource.game || @event_resource.game.teambased %>
     <%= render 'registrations/teambased_registration' %>
     <% else %>
     <%= render 'registrations/solo_registration'%>
+    <% end %>
     <% end %>
   </div>
 </div>

@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   # Relations
-  has_many :registrations
+  has_many :registrations, :dependent => :restrict_with_error
   has_many :event_resources, :dependent => :delete_all
   has_many :event_packs, :dependent => :delete_all
   # ---------

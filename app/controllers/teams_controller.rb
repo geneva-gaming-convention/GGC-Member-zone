@@ -45,10 +45,7 @@ class TeamsController < ApplicationController
 
   def list
     @user = current_logged_user
-    @teams = Array.new
-    @user.team_members.each do |team_member|
-      @teams.push(team_member.team)
-    end
+    @teams = @user.teams
   end
 
   def global_list

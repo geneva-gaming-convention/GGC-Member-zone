@@ -1,0 +1,107 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">You're ready to come !</h3>
+  </div>
+  <div class="panel-body">
+    <div class="col-md-12">
+      <p>
+        <% current_logged_user.get_registrations_by_event(@event_resource.event).each do |registration| %>
+        <div class="col-md-4">
+          <div class="div-radio">
+            <div class="row title-pack">
+              <div class="col-md-12">
+                <h2><%= registration.event_resource.title %></h2>
+              </div>
+            </div>
+            <div class="div-description text-center">
+              <%= image_tag registration.event_resource.banner, size: "64x64", :class => "img-circle" %>
+            </div>
+            <div class="div-description">
+              <%= registration.event_resource.description.html_safe %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <%= render 'registrations/display_pack', :pack => registration.event_pack %>
+        </div>
+        <div class="col-md-4">
+          <% if registration.team %>
+          <% team = registration.team %>
+          <div class="col-md-12">
+            <div class="div-radio">
+              <div class="row title-pack">
+                <div class="col-md-12">
+                  <h2><%= team.name %></h2>
+                </div>
+              </div>
+              <div class="div-description">
+                <ul class="list-group">
+                  <% team.team_members.each do |team_member| %>
+                  <% user = team_member.user %>
+                  <% game_account = team_member.user.game_accounts.find_by(game_provider: team.game.game_provider) %>
+                  <li class="list-group-item">
+                    <%= user.name.capitalize %>
+                    <% if game_account %>
+                    '<%= game_account.name %>'
+                    <% else %>
+                    '<span class="glyphicon pficon-error-circle-o" aria-hidden="true"
+                    data-toggle="tooltip" data-placement="bottom" title="No game account yet..."></span>'
+                    <% end %>
+                    <%= user.lastname.capitalize %>
+                    <% if team_member.is_creator %>
+                    <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"
+                    data-toggle="tooltip" data-placement="right" title="Team's admin"></span>
+                    <% end %>
+                  </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <% elsif registration.users_group %>
+          <% group = registration.users_group %>
+          <div class="col-md-12">
+            <div class="div-radio">
+              <div class="row title-pack">
+                <div class="col-md-12">
+                  <h2><%= group.name %></h2>
+                </div>
+              </div>
+              <div class="div-description">
+                <ul class="list-group text-center">
+                  <% group.group_members.each do |group_member| %>
+                  <% user = group_member.user %>
+                  <li class="list-group-item">
+                    <%= user.name.capitalize %>
+                    <%= user.lastname.capitalize %>
+                    <% if group_member.is_creator %>
+                    <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"
+                    data-toggle="tooltip" data-placement="right" title="Team's admin"></span>
+                    <% end %>
+                  </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <% else %>
+          <div class="panel panel-info" style="margin-top:1em;">
+            <div class="panel-heading">
+              <h3 class="panel-title">Moon Moon</h3>
+            </div>
+            <div class="panel-body">
+              <div class="col-md-12 text-center" style="margin-bottom:1em;">
+                <%= image_tag "moonmoon", size: "128x128", :class => "img-circle" %>
+              </div>
+              <p>
+                I'm a lone wolf dude, I'm going to <%= registration.event.shortname %> alone!</br>
+              </p>
+            </div>
+          </div>
+          <% end %>
+        </div>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
