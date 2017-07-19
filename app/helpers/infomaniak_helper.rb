@@ -9,12 +9,12 @@ module InfomaniakHelper
     }
   end
 
-  def self.get_login(email, password)
+  def self.get_login
     begin
       init_vars
       @header = {
-        "user" => email,
-        "password" => password
+        "user" => Rails.application.secrets.infomaniak_login_user,
+        "password" => Rails.application.secrets.infomaniak_login_password
       }
       url = @end_point+"login"
       response = RestClient.get(url, header=@header)
@@ -26,16 +26,29 @@ module InfomaniakHelper
   end
 
   def self.post_create_customer(payload, credential)
-    begin
+    # begin
       init_vars
       @header["credential"] = credential
       url = @end_point+"customer/create"
       response = RestClient.post(url, payload.to_json, header=@header)
       response = JSON.parse(response)
       return response
-    rescue
-      return JSON.parse('{"error":"User already exist"}')
-    end
+    # rescue
+    #   return JSON.parse('{"error":"User already exist"}')
+    # end
+  end
+
+  def self.post_create_customer_from_user(user, credential)
+    payload = {
+      "firstname"=> user.name.capitalize,
+      "lastname"=> user.lastname.capitalize,
+      "email"=> user.mail,
+      "address"=> user.address.street+" "+user.address.number,
+      "city"=> user.address.locality.name,
+      "zipcode"=> user.address.locality.postal_code,
+      "country"=> user.address.locality.state.country.name
+    }
+    return self.post_create_customer(payload, credential)
   end
 
   def self.get_customer(email, credential)
