@@ -71,16 +71,7 @@
       <div class="col-md-12 text-center">
         <div id="error_explanation">
         </div>
-        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="<%= Rails.application.secrets.stripe_pub_key %>"
-        data-name="Geneva Gaming Convention"
-        data-description="Convention ticket"
-        data-amount="<%= @amount %>"
-        data-email="<%= current_logged_user.mail%>"
-        data-image="https://s3.amazonaws.com/stripe-uploads/acct_1AhZodBBkcVyn4XPmerchant-icon-1500541901517-ggc_2017_logo.png"
-        data-locale="en"
-        data-currency="chf">
-        </script>
+        <%= render 'registrations/stripe_payment' %>
       </div>
     </div>
   </div>
