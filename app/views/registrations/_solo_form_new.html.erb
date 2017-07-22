@@ -5,20 +5,20 @@
     <h2>Select a <%= @event_resource.event.shortname %> pack</h2>
     <div class="form-group">
       <% if @event_resource.event_packs.each do |pack| %>
-        <%= render 'registrations/display_pack', :pack => pack %>
+      <%= render 'registrations/display_pack', :pack => pack %>
       <% end.empty? %>
-        <% if @event_resource.event.event_packs.where(event_resource: nil).each do |pack| %>
-        <%= render 'registrations/display_pack', :pack => pack %>
-        <% end.empty? %>
-        <div class="panel panel-danger">
-          <div class="panel-heading">
-            <h3 class="panel-title">Nope nope nope</h3>
-          </div>
-          <div class="panel-body">
-            There's actually no available packs for this event.
-          </div>
+      <% if @event_resource.event.event_packs.where(event_resource: nil).each do |pack| %>
+      <%= render 'registrations/display_pack', :pack => pack %>
+      <% end.empty? %>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title">Nope nope nope</h3>
         </div>
-        <% end %>
+        <div class="panel-body">
+          There's actually no available packs for this event.
+        </div>
+      </div>
+      <% end %>
       <% end %>
     </div>
   </div>
@@ -69,7 +69,18 @@
     <h2>Payment</h2>
     <div class="form-group">
       <div class="col-md-12 text-center">
-        <button type="submit" class="btn btn-primary btn-lg">Go to payment</button>
+        <div id="error_explanation">
+        </div>
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="<%= Rails.application.secrets.stripe_pub_key %>"
+        data-name="Geneva Gaming Convention"
+        data-description="Convention ticket"
+        data-amount="<%= @amount %>"
+        data-email="<%= current_logged_user.mail%>"
+        data-image="https://s3.amazonaws.com/stripe-uploads/acct_1AhZodBBkcVyn4XPmerchant-icon-1500541901517-ggc_2017_logo.png"
+        data-locale="en"
+        data-currency="chf">
+        </script>
       </div>
     </div>
   </div>

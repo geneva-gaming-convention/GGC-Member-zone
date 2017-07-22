@@ -33,6 +33,22 @@ class RegistrationsController < ApplicationController
     end
 
     if registration.save
+      begin
+        customer = Stripe::Customer.create(
+        :email => params[:stripeEmail],
+        :source  => params[:stripeToken]
+        )
+        charge = Stripe::Charge.create(
+        :customer    => customer.id,
+        :amount      => registration.event_pack.price.to_i*100,
+        :description => registration.user.name+" "+registration.user.lastname+" "+registration.event_pack.name,
+        :currency    => 'chf'
+        )
+      rescue Stripe::CardError => e
+        registration.destroy
+        flash[:danger] = e.message
+        redirect_to event_event_resource_path(@event, @event_resource)
+      end
       flash[:success] = "You're registered"
       redirect_to event_event_resource_path(@event, @event_resource)
     else
