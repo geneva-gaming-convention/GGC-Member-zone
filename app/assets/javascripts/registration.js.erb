@@ -77,6 +77,14 @@ function init_stripe(mail){
 }
 
 function beginApplePay() {
+
+  Stripe.setPublishableKey('<%= Rails.application.secrets.stripe_pub_key %>');
+  Stripe.applePay.checkAvailability(function(available) {
+    if (available) {
+      document.getElementById('apple-pay-button').style.display = 'block';
+    }
+  });
+
   var paymentRequest = {
     countryCode: 'CH',
     currencyCode: 'CHF',
