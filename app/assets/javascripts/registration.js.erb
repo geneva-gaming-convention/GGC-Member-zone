@@ -64,6 +64,7 @@ function init_stripe(mail){
       registration_team = $("input[name=registration_team]:checked").val();
       registration_group = $("input[name=registration_group]:checked").val();
       is_manager = $("input[name=is_manager]").val();
+      $('#payment_progress').show();
       $.post('/events/'+event_id+'/registrations/',
       {
         stripeToken: token.id,
@@ -110,6 +111,7 @@ function beginApplePay() {
     registration_team = $("input[name=registration_team]:checked").val();
     registration_group = $("input[name=registration_group]:checked").val();
     is_manager = $("input[name=is_manager]").val();
+    $('#payment_progress').show();
     $.post('/events/'+event_id+'/registrations/',
     {
       stripeToken: token.id,
