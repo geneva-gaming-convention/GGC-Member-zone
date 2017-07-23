@@ -2,6 +2,12 @@ $(document).ready(function() {
   select_radio_div();
   if(document.getElementById('apple-pay-button')){
     document.getElementById('apple-pay-button').addEventListener('click', beginApplePay);
+    Stripe.setPublishableKey('<%= Rails.application.secrets.stripe_pub_key %>');
+    Stripe.applePay.checkAvailability(function(available) {
+      if (available) {
+        document.getElementById('apple-pay-button').style.display = 'block';
+      }
+    });
   }
 });
 
@@ -77,14 +83,6 @@ function init_stripe(mail){
 }
 
 function beginApplePay() {
-
-  Stripe.setPublishableKey('<%= Rails.application.secrets.stripe_pub_key %>');
-  Stripe.applePay.checkAvailability(function(available) {
-    if (available) {
-      document.getElementById('apple-pay-button').style.display = 'block';
-    }
-  });
-
   var paymentRequest = {
     countryCode: 'CH',
     currencyCode: 'CHF',
