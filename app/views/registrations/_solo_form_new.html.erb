@@ -5,11 +5,11 @@
   <div class="col-md-4">
     <h2>Select a <%= @event_resource.event.shortname %> pack</h2>
     <div class="form-group">
-      <% if @event_resource.event_packs.each do |pack| %>
-      <%= render 'registrations/display_pack', :pack => pack %>
+      <% if @event_resource.event_packs.each_with_index do |pack, i| %>
+      <%= render 'registrations/display_pack', :pack => pack, :i => i %>
       <% end.empty? %>
-      <% if @event_resource.event.event_packs.where(event_resource: nil).each do |pack| %>
-      <%= render 'registrations/display_pack', :pack => pack %>
+      <% if @event_resource.event.event_packs.where(event_resource: nil).each_with_index do |pack, i| %>
+      <%= render 'registrations/display_pack', :pack => pack, :i => i %>
       <% end.empty? %>
       <div class="panel panel-danger">
         <div class="panel-heading">
