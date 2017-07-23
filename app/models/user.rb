@@ -25,6 +25,13 @@ class User < ActiveRecord::Base
   has_many :teams, through: :team_members
   # -----
 
+  def is_ready_for_registration
+    if self.validated && self.address
+      return true
+    else
+      return false
+    end
+  end
 
   # ADD check payement for registrations
   def is_validated_for_event_resource(event_resource)

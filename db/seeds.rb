@@ -137,7 +137,7 @@ event_resource.game = csgo
 event_resource.banner = "csgo"
 event_resource.visible = true
 event_resource.quota = 24
-event_resource.locked_quota = 1
+event_resource.locked_quota = 3
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -150,7 +150,7 @@ event_resource.game = lol
 event_resource.banner = "lol"
 event_resource.visible = true
 event_resource.quota = 24
-event_resource.locked_quota = 1
+event_resource.locked_quota = 3
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -163,7 +163,7 @@ event_resource.game = ow
 event_resource.banner = "ow"
 event_resource.visible = true
 event_resource.quota = 16
-event_resource.locked_quota = 1
+event_resource.locked_quota = 3
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -176,7 +176,7 @@ event_resource.game = rl
 event_resource.banner = "rl"
 event_resource.visible = true
 event_resource.quota = 16
-event_resource.locked_quota = 1
+event_resource.locked_quota = 3
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -189,7 +189,7 @@ event_resource.game = hs
 event_resource.banner = "hs"
 event_resource.visible = true
 event_resource.quota = 64
-event_resource.locked_quota = 1
+event_resource.locked_quota = 6
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -202,7 +202,7 @@ ssb_tournament.game = ssb
 ssb_tournament.banner = "ssb"
 ssb_tournament.visible = true
 ssb_tournament.quota = 128
-ssb_tournament.locked_quota = 0
+ssb_tournament.locked_quota = 3
 ssb_tournament.save
 puts "  "+ssb_tournament.title.to_s+" ✅"
 
@@ -228,7 +228,7 @@ fifa_tournament.game = fifa
 fifa_tournament.banner = "fifa"
 fifa_tournament.visible = true
 fifa_tournament.quota = 64
-fifa_tournament.locked_quota = 0
+fifa_tournament.locked_quota = 3
 fifa_tournament.save
 puts "  "+fifa_tournament.title.to_s+" ✅"
 
@@ -240,7 +240,7 @@ manager.remote_url = ""
 manager.game = nil
 manager.banner = ""
 manager.visible = true
-manager.quota = 40
+manager.quota = 20
 manager.locked_quota = 0
 manager.save
 puts "  "+manager.title.to_s+" ✅"
@@ -253,7 +253,7 @@ supporter.remote_url = ""
 supporter.game = nil
 supporter.banner = ""
 supporter.visible = true
-supporter.quota = 40
+supporter.quota = 20
 supporter.locked_quota = 0
 supporter.save
 puts "  "+supporter.title.to_s+" ✅"
