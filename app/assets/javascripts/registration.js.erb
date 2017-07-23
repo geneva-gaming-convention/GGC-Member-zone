@@ -1,0 +1,110 @@
+$(document).ready(function() {
+  select_radio_div();
+  if(document.getElementById('apple-pay-button')){
+    document.getElementById('apple-pay-button').addEventListener('click', beginApplePay);
+  }
+});
+
+function select_radio_div(){
+  $(".div-radio").click(function(){
+    div = $(this)
+    radio_input = div.find("input");
+    input_name = radio_input.attr("name");
+    reset_radio_input(input_name);
+    radio_input.prop('checked',true);
+    div.addClass("btn-primary active");
+    set_checkout_amount();
+  })
+}
+
+function reset_radio_input(input_name){
+  input_fields = $('input[name="'+input_name+'"]');
+  input_fields.each(function(){
+    $(this).attr('checked', false);
+    $(this).parent().removeClass("btn-primary active");
+  })
+}
+
+function set_checkout_amount(){
+  var amount = $(".div-radio.active .amount")[0];
+  if (amount){
+    amount = $(".div-radio.active .amount")[0].innerHTML;
+    amount = amount.replace(/\$/g, '').replace(/\,/g, '');
+    amount = parseFloat(amount);
+    $('#checkout_data').attr("data-amount",amount*100);
+    label_text = "Pay "+amount+"CHF"
+    $('#checkout_data').attr("data-panel-label",label_text);
+    $(".Button-content > span").html = label_text;
+    $(".Button-content > span").innerHTML = label_text;
+  }
+  return amount
+}
+
+
+function init_stripe(mail){
+  var handler = StripeCheckout.configure({
+    key: '<%= Rails.application.secrets.stripe_pub_key %>',
+    name: "Geneva Gaming Convention",
+    description: "Convention ticket & Lan",
+    email: mail,
+    locale: "en",
+    currency: "chf",
+    image: 'https://s3.amazonaws.com/stripe-uploads/acct_1AhZodBBkcVyn4XPmerchant-icon-1500541901517-ggc_2017_logo.png',
+    token: function(token) {
+      event_id = $("input[name=event_id]").val();
+      event_resource_id = $("input[name=event_resource_id]").val();
+      registration_pack = $("input[name=registration_pack]").val();
+      registration_team = $("input[name=registration_team]").val();
+      is_manager = $("input[name=is_manager]").val();
+      $.post('/events/'+event_id+'/registrations/', { stripeToken: token.id, event_resource_id: event_resource_id, registration_pack: registration_pack, registration_team: registration_team, is_manager: is_manager, event_id: event_id}).done(function() {
+        window.location.href = '/events/'+event_id+'/event_resources/'+event_resource_id;
+      }).fail(function() {
+        window.location.href = '/events/'+event_id+'/event_resources/'+event_resource_id;
+      });
+    }
+  });
+  document.getElementById('customButton').addEventListener('click', function(e) {
+    handler.open({
+      amount: set_checkout_amount()*100
+    });
+    e.preventDefault();
+  });
+
+  // Close Checkout on page navigation:
+  window.addEventListener('popstate', function() {
+    handler.close();
+  });
+}
+
+function beginApplePay() {
+  var paymentRequest = {
+    countryCode: 'CH',
+    currencyCode: 'CHF',
+    total: {
+      label: 'Geneva Gaming Convention',
+      amount: set_checkout_amount()
+    }
+  };
+
+var session = Stripe.applePay.buildSession(paymentRequest,
+  function(result, completion) {
+    event_id = $("input[name=event_id]").val();
+    event_resource_id = $("input[name=event_resource_id]").val();
+    registration_pack = $("input[name=registration_pack]").val();
+    registration_team = $("input[name=registration_team]").val();
+    is_manager = $("input[name=is_manager]").val();
+    $.post('/events/'+event_id+'/event_resources/'+event_resource_id, { stripeToken: result.token.id, event_resource_id: event_resource_id, registration_pack: registration_pack, registration_team: registration_team, is_manager: is_manager, event_id: event_id}).done(function() {
+      completion(ApplePaySession.STATUS_SUCCESS);
+      window.location.href = '/events/'+event_id+'/event_resources/'+event_resource_id;
+    }).fail(function() {
+      completion(ApplePaySession.STATUS_FAILURE);
+      window.location.href = '/events/'+event_id+'/event_resources/'+event_resource_id;
+    });
+  }, function(error) {
+    console.log(error.message);
+  });
+  session.oncancel = function() {
+    console.log("User hit the cancel button in the payment window");
+  };
+  session.begin();
+}

@@ -53,6 +53,7 @@ class RegistrationsController < ApplicationController
             "firstname"=>current_logged_user.name.capitalize,
             "lastname"=>current_logged_user.lastname.capitalize,
           }
+          customer.source = params[:stripeToken]
           customer.save
         end
         charge = Stripe::Charge.create(
@@ -70,12 +71,14 @@ class RegistrationsController < ApplicationController
         )
         registration.paid = true
         registration.save
+        flash[:success] = "You're registered"
       rescue Stripe::CardError => e
         registration.destroy
         flash[:danger] = e.message
-        redirect_to event_event_resource_path(@event, @event_resource)
+      rescue => error
+        registration.destroy
+        flash[:danger] = "An error occurred while registering "+error.to_s
       end
-      flash[:success] = "You're registered"
       redirect_to event_event_resource_path(@event, @event_resource)
     else
       flash[:danger] = "An error occurred while registering, "+registration.errors.full_messages.to_sentence+". Don't worry, you didn't paid anything."

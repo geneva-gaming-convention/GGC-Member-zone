@@ -1,85 +1,26 @@
 <% if current_logged_user && current_logged_user.is_ready_for_registration %>
-<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-data-key="<%= Rails.application.secrets.stripe_pub_key %>"
-data-name="Geneva Gaming Convention"
-data-description="Convention ticket"
-data-amount=""
-data-email="<%= current_logged_user.mail%>"
-data-image="https://s3.amazonaws.com/stripe-uploads/acct_1AhZodBBkcVyn4XPmerchant-icon-1500541901517-ggc_2017_logo.png"
-data-locale="en"
-data-currency="chf">
-</script>
-<style>
-#apple-pay-button {
-  display: none;
-  background-color: black;
-  background-image: -webkit-named-image(apple-pay-logo-white);
-  background-size: 100% 100%;
-  background-origin: content-box;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 44px;
-  padding: 10px 0;
-  border-radius: 10px;
-}
-</style>
+<script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<button id="customButton" class="btn btn-primary btn-lg">Purchase</button>
 <script>
-Stripe.setPublishableKey('<%= Rails.application.secrets.stripe_pub_key %>');
-Stripe.applePay.checkAvailability(function(available) {
-  if (available) {
-    document.getElementById('apple-pay-button').style.display = 'block';
-  }
-});
-function beginApplePay() {
-  var paymentRequest = {
-    countryCode: 'CH',
-    currencyCode: 'CHF',
-    total: {
-      label: 'GGC',
-      amount: '19.99'
-    }
-  };
-
-  var session = Stripe.applePay.buildSession(paymentRequest,
-    function(result, completion) {
-
-      $.post('<%= event_registrations_path(@event_resource.event) %>', { token: result.token.id }).done(function() {
-        completion(ApplePaySession.STATUS_SUCCESS);
-        // You can now redirect the user to a receipt page, etc.
-        window.location.href = '/success.html';
-      }).fail(function() {
-        completion(ApplePaySession.STATUS_FAILURE);
-      });
-
-    }, function(error) {
-      console.log(error.message);
-    });
-
-    session.oncancel = function() {
-      console.log("User hit the cancel button in the payment window");
-    };
-
-    session.begin();
-  }
-  document.getElementById('apple-pay-button').addEventListener('click', beginApplePay);
-  </script>
-  <button id="apple-pay-button"></button>
-  <% else %>
-  <div class="panel panel-info" style="margin-top:1em;">
-    <div class="panel-heading">
-      <h3 class="panel-title">You are not prepared !</h3>
-    </div>
-    <div class="panel-body">
-      <div class="col-md-12 text-center" style="margin-bottom:1em;">
-        <%= image_tag "illidan", size: "128x128", :class => "img-circle" %>
-      </div>
-      <p>
-        Your GGC account is not ready for registration yet.</br>
-        <% if current_logged_user %>
-        Check your <%= link_to "account status", user_path(current_logged_user) %> and come back later.
-        <% end %>
-      </p>
-    </div>
+init_stripe("<%= current_logged_user.mail %>")
+</script>
+<button id="apple-pay-button" type="button"></button>
+<% else %>
+<div class="panel panel-info" style="margin-top:1em;">
+  <div class="panel-heading">
+    <h3 class="panel-title">You are not prepared !</h3>
   </div>
-  <% end %>
+  <div class="panel-body">
+    <div class="col-md-12 text-center" style="margin-bottom:1em;">
+      <%= image_tag "illidan", size: "128x128", :class => "img-circle" %>
+    </div>
+    <p>
+      Your GGC account is not ready for registration yet.</br>
+      <% if current_logged_user %>
+      Check your <%= link_to "account status", user_path(current_logged_user) %> and come back later.
+      <% end %>
+    </p>
+  </div>
+</div>
+<% end %>
