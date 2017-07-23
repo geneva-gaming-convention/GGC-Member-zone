@@ -17,10 +17,9 @@ class Team < ApplicationRecord
   # -----
 
 
-
   # ADD check payement for registrations
   def is_validated_for_event_resource(event_resource)
-    if self.registration.where(event_resource: event_resource).count < self.game.nb_players
+    if self.registrations.where(event_resource: event_resource).count < self.game.nb_players
       return false
     end
     return true
