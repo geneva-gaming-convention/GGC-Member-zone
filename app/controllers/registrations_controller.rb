@@ -35,8 +35,14 @@ class RegistrationsController < ApplicationController
         customer = nil
         user = User.find_by(id: current_logged_user.id)
         if !current_logged_user.remote_id
+          mail=""
+          if params.has_key?(:stripeEmail)
+            mail = params[:stripeEmail]
+          else
+            mail = current_logged_user.mail
+          end
           customer = Stripe::Customer.create(
-          :email => params[:stripeEmail],
+          :email => mail,
           :source  => params[:stripeToken],
           :metadata => {
             "firstname"=>current_logged_user.name.capitalize,

@@ -61,8 +61,18 @@ function init_stripe(mail){
       event_resource_id = $("input[name=event_resource_id]").val();
       registration_pack = $("input[name=registration_pack]").val();
       registration_team = $("input[name=registration_team]").val();
+      registration_group = $("input[name=registration_group]").val();
       is_manager = $("input[name=is_manager]").val();
-      $.post('/events/'+event_id+'/registrations/', { stripeToken: token.id, event_resource_id: event_resource_id, registration_pack: registration_pack, registration_team: registration_team, is_manager: is_manager, event_id: event_id}).done(function() {
+      $.post('/events/'+event_id+'/registrations/',
+      {
+        stripeToken: token.id,
+        event_resource_id: event_resource_id,
+        registration_pack: registration_pack,
+        registration_team: registration_team,
+        registration_group: registration_group,
+        is_manager: is_manager,
+        event_id: event_id
+      }).done(function() {
         window.location.href = '/events/'+event_id+'/event_resources/'+event_resource_id;
       }).fail(function() {
         window.location.href = '/events/'+event_id+'/event_resources/'+event_resource_id;
@@ -92,14 +102,23 @@ function beginApplePay() {
     }
   };
 
-var session = Stripe.applePay.buildSession(paymentRequest,
-  function(result, completion) {
+  var session = Stripe.applePay.buildSession(paymentRequest, function(result, completion) {
     event_id = $("input[name=event_id]").val();
     event_resource_id = $("input[name=event_resource_id]").val();
     registration_pack = $("input[name=registration_pack]").val();
     registration_team = $("input[name=registration_team]").val();
+    registration_group = $("input[name=registration_group]").val();
     is_manager = $("input[name=is_manager]").val();
-    $.post('/events/'+event_id+'/registrations/', { stripeToken: result.token.id, event_resource_id: event_resource_id, registration_pack: registration_pack, registration_team: registration_team, is_manager: is_manager, event_id: event_id}).done(function() {
+    $.post('/events/'+event_id+'/registrations/',
+    {
+      stripeToken: token.id,
+      event_resource_id: event_resource_id,
+      registration_pack: registration_pack,
+      registration_team: registration_team,
+      registration_group: registration_group,
+      is_manager: is_manager,
+      event_id: event_id
+    }).done(function() {
       completion(ApplePaySession.STATUS_SUCCESS);
       window.location.href = '/events/'+event_id+'/event_resources/'+event_resource_id;
     }).fail(function() {
