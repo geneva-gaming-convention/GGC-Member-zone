@@ -114,7 +114,7 @@ function beginApplePay() {
     $('#payment_progress').show();
     $.post('/events/'+event_id+'/registrations/',
     {
-      stripeToken: token.id,
+      stripeToken: result.token.id,
       event_resource_id: event_resource_id,
       registration_pack: registration_pack,
       registration_team: registration_team,
