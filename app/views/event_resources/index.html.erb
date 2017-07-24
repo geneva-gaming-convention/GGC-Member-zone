@@ -5,9 +5,9 @@
   <div class="card-pf card-pf-accented card-pf-aggregate-status">
     <h2 class="card-pf-title">
       <% if game %>
-      <a href="<%= event_event_resource_path(event.id, resource.id)%>"><%= game.name.capitalize %></a>
+      <a href="<%= event_event_resource_path(event.id, resource.id)%>"><%= game.name %></a>
       <% else %>
-      <a href="<%= event_event_resource_path(event.id, resource.id)%>"><%= resource.title.capitalize %></a>
+      <a href="<%= event_event_resource_path(event.id, resource.id)%>"><%= resource.title %></a>
       <% end %>
     </h2>
     <div class="card-pf-body">

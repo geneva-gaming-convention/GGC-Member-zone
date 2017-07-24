@@ -89,7 +89,7 @@ fifa = Game.find_or_initialize_by(
 "teambased"=>false
 )
 csgo.nb_players = 1
-fifa.name = "Fifa 17"
+fifa.name = "FIFA 17"
 fifa.game_provider = electronic_arts
 fifa.save
 puts "  "+fifa.name.to_s+" ✅"
@@ -99,7 +99,7 @@ ssb = Game.find_or_initialize_by(
 "teambased"=>false
 )
 csgo.nb_players = 1
-ssb.name = "Super Smash Bros"
+ssb.name = "Super Smash Bros."
 ssb.game_provider = nintendo
 ssb.save
 puts "  "+ssb.name.to_s+" ✅"
