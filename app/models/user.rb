@@ -15,14 +15,14 @@ class User < ActiveRecord::Base
 
   # Relations
   belongs_to :address
-  has_many :registrations, :dependent => :restrict_with_error
+  has_many :registrations,                                            :dependent => :restrict_with_error
   has_many :privileges
-  has_many :user_rules, through: :privileges
-  has_many :game_accounts
-  has_many :group_members
-  has_many :users_groups, through: :group_members
-  has_many :team_members
-  has_many :teams, through: :team_members
+  has_many :user_rules,     through: :privileges
+  has_many :game_accounts,                                            :dependent => :delete_all
+  has_many :group_members,                                            :dependent => :delete_all
+  has_many :users_groups,   through: :group_members
+  has_many :team_members,                                             :dependent => :delete_all
+  has_many :teams,          through: :team_members
   # -----
 
   def is_ready_for_registration
