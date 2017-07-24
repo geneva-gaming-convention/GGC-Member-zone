@@ -194,7 +194,7 @@ event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
 ssb_tournament = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Super Smash Bros", "event_id"=> ggc2k17.id)
-ssb_tournament.description = ""
+ssb_tournament.description = "A Smasher has access to all the Smash Bros. animations and tournaments. No Access to the LAN zone through this registration! For seeding purposes, the registration is 100% confirmed only when registered on the smash.gg page after payment."
 ssb_tournament.start_at = "2017-09-23 09:30:00"
 ssb_tournament.remote = false
 ssb_tournament.remote_url = "https://widget.toornament.com/tournaments/436333247862950954/"
