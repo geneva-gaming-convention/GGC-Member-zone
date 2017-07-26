@@ -194,7 +194,7 @@ event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
 ssb_tournament = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Super Smash Bros", "event_id"=> ggc2k17.id)
-ssb_tournament.description = "A Smasher has access to all the Smash Bros. animations and tournaments. No Access to the LAN zone through this registration! For seeding purposes, the registration is 100% confirmed only when registered on the smash.gg page after payment."
+ssb_tournament.description = "A Smasher has access to all the Smash Bros. animations and tournaments. No Access to the LAN zone through this registration! For seeding purposes, the registration is 100% confirmed only when registered on the smash.gg/ggconvention page after payment."
 ssb_tournament.start_at = "2017-09-23 09:30:00"
 ssb_tournament.remote = false
 ssb_tournament.remote_url = "https://widget.toornament.com/tournaments/436333247862950954/"
@@ -220,7 +220,7 @@ puts "  "+ssb_tournament.title.to_s+" ✅"
 # puts "  "+event_resource.title.to_s+" ✅"
 
 fifa_tournament = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Fifa", "event_id"=> ggc2k17.id)
-fifa_tournament.description = ""
+fifa_tournament.description = "The FIFA tournament will take place in the visitors area. No Access to the LAN zone through this registration!"
 fifa_tournament.start_at = "2017-09-23 09:30:00"
 fifa_tournament.remote = false
 fifa_tournament.remote_url = "https://widget.toornament.com/tournaments/"
@@ -240,7 +240,7 @@ manager.remote_url = ""
 manager.game = nil
 manager.banner = "manager"
 manager.visible = true
-manager.quota = 20
+manager.quota = 16
 manager.locked_quota = 0
 manager.save
 puts "  "+manager.title.to_s+" ✅"

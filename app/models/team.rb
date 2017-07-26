@@ -12,7 +12,8 @@ class Team < ApplicationRecord
 
   # Validations
   validates :name, :tag, :game, :users_group, presence: true
-  validates :tag, uniqueness: true, length: {in: 2..4}
+  validates :tag, length: {in: 2..4}
+  validates :tag, :uniqueness => {:scope => :game, :message => "this team's tag is already used for the same game !"}
   validates :name, :uniqueness => {:scope => :game, :message => "this team's name is already used !"}
   # -----
 
