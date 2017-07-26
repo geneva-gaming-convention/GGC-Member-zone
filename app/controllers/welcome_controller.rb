@@ -13,7 +13,7 @@ class WelcomeController < ApplicationController
         data = github.repos.commits.list 'geneva-gaming-convention', 'GGC-Member-zone', :sha => branch.name, per_page: 5
       else
         @branch_title = ""
-        data = github.repos.commits.all 'geneva-gaming-convention', 'GGC-Member-zone', per_page: 5
+        data = github.repos.commits.all 'geneva-gaming-convention', 'GGC-Member-zone', :sha => "preprod",per_page: 5
       end
     end
     data.each do |commit|
@@ -23,7 +23,7 @@ class WelcomeController < ApplicationController
   end
 
   def get_events
-    @events = Event.all.order(date: :desc)
+    @events = Event.all.where("visible = ? and end_date > ?", true, DateTime.now).order(date: :desc)
     if @events
       render 'events', :layout => false
     else

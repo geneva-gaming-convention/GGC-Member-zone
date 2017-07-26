@@ -1,29 +1,50 @@
 .banner{
-  -webkit-background-size: cover;
-  background-size: cover;
   padding: 2em;
   color: #FFF;
   background-color: #000;
   margin-bottom: -20px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+  background-size: contain;
 }
 
 .ow{
-  background: image-url('ow.jpg') repeat-x top right fixed;
+  background: image-url('ow_big.png') no-repeat right;
+  background-size: auto 100%;
+  background-color: #000;
 }
 
 .csgo{
-  background: image-url('csgo.jpg') repeat-x top right fixed;
+  background: image-url('csgo_big.png') no-repeat right;
+  background-size: auto 100%;
+  background-color: #000;
 }
 
 .lol{
-  background: image-url('lol.jpg') repeat-x top right fixed;
+  background: image-url('lol_big.png') no-repeat right;
+  background-size: auto 100%;
+  background-color: #000;
 }
 
 .hs{
-  background: image-url('hs.jpg') repeat-x top right fixed;
+  background: image-url('hs_big.png') no-repeat right;
+  background-size: auto 100%;
+  background-color: #000;
 }
 
 .rl{
-  background: image-url('rl.jpg') repeat-x top right fixed;
+  background: image-url('rl_big.png') no-repeat right;
+  background-size: auto 100%;
+  background-color: #000;
+}
+
+.fifa{
+  background: image-url('fifa_big.png') no-repeat right;
+  background-size: auto 100%;
+  background-color: #000;
+}
+
+.ssb{
+  background: image-url('ssb_big.png') no-repeat right;
+  background-size: auto 100%;
+  background-color: #000;
 }

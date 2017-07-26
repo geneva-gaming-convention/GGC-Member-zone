@@ -1,0 +1,38 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Registered teams</h3>
+  </div>
+  <div class="panel-body">
+    <% if @event_resource.get_teams.each do |team| %>
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= team.users_group.tag %> <%= team.name %></h3>
+        </div>
+        <div class="panel-body text-center">
+          <% team.team_members.each do |team_member| %>
+          <% user = team_member.user %>
+          <% game_account = team_member.user.game_accounts.find_by(game_provider: team.game.game_provider) %>
+          <li class="list-group-item">
+            <%= user.name.capitalize %>
+            <% if game_account %>
+            '<%= game_account.name %>'
+            <% else %>
+            '<span class="glyphicon pficon-error-circle-o" aria-hidden="true"
+            data-toggle="tooltip" data-placement="bottom" title="No game account yet..."></span>'
+            <% end %>
+            <%= user.lastname.capitalize %>
+            <% if team_member.is_creator %>
+            <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"
+            data-toggle="tooltip" data-placement="right" title="Team's admin"></span>
+            <% end %>
+          </li>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end.empty? %>
+    <%= render 'application/empty_state', title: "Teams registered", info: "There is currently no registered team." %>
+    <% end %>
+  </div>
+</div>

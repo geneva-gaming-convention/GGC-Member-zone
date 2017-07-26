@@ -11,7 +11,16 @@
         <div class="product-versions-pf">
           <ul class="list-unstyled">
             <li>
-              <strong>Clément Hampaï</strong>
+              <strong>
+                <%= link_to "Clément Hampaï", "https://github.com/CypressXt", :target => "_blank", :style => "color:#FFF;"%>
+              </strong></br>
+              <strong>
+                <%= link_to "Noémien Kocher", "https://github.com/nkcr", :target => "_blank", :style => "color:#FFF;"%>
+              </strong></br>
+              <strong>
+                <%= link_to "Luc Perusse", "https://github.com/Luckystrike561", :target => "_blank", :style => "color:#FFF;"%>
+              </strong>
+              <p class="text-right">
               v.<small>
                 <% if get_revision.to_s != "unknown 😳" %>
                 <%= link_to get_revision(7), 'https://github.com/geneva-gaming-convention/GGC-Member-zone/commit/'+get_revision, target: :_blank %>
@@ -19,6 +28,7 @@
                 <%= get_revision %>
                 <% end %>
               </small>
+              <p>
             </li>
           </ul>
         </div>

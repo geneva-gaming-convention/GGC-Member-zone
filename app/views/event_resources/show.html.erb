@@ -19,6 +19,7 @@
   </div>
   <div class="card-pf-body">
     <p>
+      <% if @event_resource.remote %>
       <% if is_logged_in && is_ready_for_registration %>
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -57,6 +58,15 @@
           <%= render 'application/toornament_powered' %>
         </div>
       </div>
+      <% else %>
+      <%= render 'registrations/new', :resource => @resource %>
+      <% if @event_resource.game && @event_resource.game.teambased %>
+      <%= render 'teams/show_teams_by_resource' %>
+      <% else %>
+      <!-- DISPLAY PLAYERS -->
+      <%= render 'show_players_by_resource' %>
+      <% end %>
+      <% end %>
     </p>
   </div>
 </div>

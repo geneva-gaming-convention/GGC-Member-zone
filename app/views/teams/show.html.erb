@@ -1,0 +1,41 @@
+<% flash.each do |key, value| %>
+<div id="error_explanation" class="alert alert-<%=key%>" role="alert">
+  <p>
+    <%= value %>
+  </p>
+</div>
+<% end %>
+<% if @team.errors.any? %>
+<div id="error_explanation" class="alert alert-danger">
+  <h5><%= pluralize(@team.errors.count, "error") %> canceled your modification:</h5>
+  <ul>
+    <% @team.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card-pf card-pf-accented card-pf-aggregate-status">
+      <div class="card-pf-title">
+        <h1>
+          <span class="glyphicon pficon-project" aria-hidden="true"></span>
+          <%= link_to @team.users_group.name, users_group_path(@team.users_group) %> >> <%= @team.name %><br/>
+          <small>tag: [<%= @team.tag.upcase %>]</small>
+        </h1>
+        <small><%= @team.game.name %></small>
+      </div>
+      <div class="card-pf-body">
+        <div class="row">
+          <div class="col-md-8">
+            <%= render 'show_team_members' %>
+          </div>
+          <div class="col-md-4">
+            <%= render 'show_team_settings' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

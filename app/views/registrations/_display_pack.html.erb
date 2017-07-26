@@ -1,0 +1,14 @@
+<div class="div-radio">
+  <div class="row title-pack">
+    <div class="col-md-8">
+      <h2><%= pack.name.capitalize %></h2>
+    </div>
+    <div class="col-md-4 text-right">
+      <h3 class="amount"><%= pack.price %> CHF</h3>
+    </div>
+  </div>
+  <div class="div-description">
+    <%= pack.description.html_safe %>
+  </div>
+  <%= radio_button_tag(:registration_pack, pack.id) %>
+</div>

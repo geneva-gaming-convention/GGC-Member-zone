@@ -1,0 +1,53 @@
+<div class="row">
+  <% if @groups.count > 0 %>
+  <% @groups.each do |group| %>
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <%= link_to users_group_path(group) do %>
+          <%= group.name %> [<%= group.tag.upcase %>]
+          <% end %>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="row" style="margin-bottom:1em;">
+          <div class="col-md-12">
+            <%= link_to "Show details", users_group_path(group), class:"btn btn-primary btn-xs" %>
+            <% if is_logged_in %>
+            <% if group.is_user_already_group_member(current_logged_user) %>
+              <button class="btn btn-primary btn-xs disabled"
+                      data-toggle="tooltip"
+                      data-placement="top"
+                      title="You're already in this group, genius 😆 !">Join</button>
+            <% else %>
+            <%= link_to "Join", users_group_ask_join_path(group), class:"btn btn-primary btn-xs" %>
+            <% end %>
+            <% else %>
+            <button class="btn btn-primary btn-xs disabled"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="You need to be logged to join groups">Join</button>
+            <% end %>
+          </div>
+        </div>
+        <ul class="list-group">
+          <% group.group_members.each do |group_member| %>
+          <% user = group_member.user %>
+          <li class="list-group-item">
+            <%= user.name.capitalize %> <%= user.lastname.capitalize %>
+            <% if group_member.is_creator %>
+            <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"
+            data-toggle="tooltip" data-placement="right" title="Group's admin"></span>
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <% else %>
+  <%= render 'application/empty_state', title: "Friend's groups", info: "Create a friend group, you will be the first one 😉..." %>
+  <% end %>
+</div>

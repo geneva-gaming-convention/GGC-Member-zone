@@ -1,0 +1,52 @@
+<% if is_logged_in %>
+  <% if current_logged_user.has_a_group %>
+  <!-- Logged and has a group-->
+    <% if current_logged_user.has_a_team(@event_resource.game) %>
+      <!-- Logged and has a group and a team-->
+      <%= render 'registrations/form_new' %>
+    <% else %>
+      <!-- Logged and has a group and NO team-->
+      <%= render 'registrations/form_new' %>
+    <% end %>
+  <% else %>
+  <!-- Logged and no group-->
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">You had one job !</h3>
+    </div>
+    <div class="panel-body">
+      <p>
+        <% if !@event_resource.game %>
+        You're a manager or supporter dude, you need to have peaple with you to support / manage.</br>
+        So let me explain what you have to do:
+        <ul>
+          <li>
+            <%= link_to "Create", new_users_group_path %> or <%= link_to "join", global_groups_list_path %> a friend's group
+          </li>
+          <li>
+            If you're a <strong>manager</strong> or a <strong>supporter</strong>, you can come back here afterwards
+          </li>
+        </ul>
+        <% else %>
+        <%= @event_resource.game.name.capitalize %> is a team based game.</br>
+        You can't come here, ask for a registration and simply come to
+        <%= link_to @event_resource.event.name, event_path(@event_resource.event) %> alone dude.</br>
+        So let me explain what you have to do:
+        <ul>
+          <li>
+            <%= link_to "Create", new_users_group_path %> or <%= link_to "join", global_groups_list_path %> a friend's group
+          </li>
+          <li>
+            If you're a <strong><%= @event_resource.game.shortname %> player</strong>,
+            then you have to <%= link_to "join or create", global_teams_list_path %> a team.
+          </li>
+        </ul>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <% end %>
+<% else %>
+  <!-- Not logged -->
+  <%= render 'registrations/say_your_name' %>
+<% end %>

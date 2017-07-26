@@ -3,6 +3,10 @@
     <a href="<%= event_path(@event_resource.event.id)%>"><%= @event_resource.event.name %></a>
   </li>
   <li class="active"> <strong><%= @event_resource.event.name %></strong>
+    <% if @event_resource.game %>
     <%= @event_resource.game.name %>
+    <% else %>
+    <%= @event_resource.title %>
+    <% end %>
   </li>
 </ol>

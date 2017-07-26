@@ -4,28 +4,46 @@ class User < ActiveRecord::Base
   validates :name, :lastname, :mail, :password, :password_confirmation, :salt, presence: true
   validates :name, :lastname, format: { without: /\@/ }
   validates :password, confirmation: true
+  validates :password, :length => { minimum: 7 }
   validates :mail, uniqueness: true
   # -----
+
   # Hooks
   before_create :change_password
   before_save :set_lowercase
   # -----
+
   # Relations
   belongs_to :address
-  has_many :registrations
+  has_many :registrations,                                            :dependent => :restrict_with_error
   has_many :privileges
-  has_many :user_rules, through: :privileges
-  has_many :game_accounts
+  has_many :user_rules,     through: :privileges
+  has_many :game_accounts,                                            :dependent => :delete_all
+  has_many :group_members,                                            :dependent => :delete_all
+  has_many :users_groups,   through: :group_members
+  has_many :team_members,                                             :dependent => :delete_all
+  has_many :teams,          through: :team_members
   # -----
 
-  def encrypt_password(password)
-    return Digest::SHA2.new(512).hexdigest(password+self.salt)
+  def is_ready_for_registration
+    if self.validated && self.address
+      return true
+    else
+      return false
+    end
   end
 
-  def authenticate(password)
-    if Digest::SHA2.new(512).hexdigest(password+self.salt) == self.password
-      true
+  # ADD check payement for registrations
+  def is_validated_for_event_resource(event_resource)
+    if self.registrations.where(event_resource: event_resource).count > 0
+      return true
     end
+    return false
+  end
+
+  def get_registrations_by_event(event)
+    registrations = self.registrations.where(event: event)
+    return registrations
   end
 
   def has_already_game_provider(game_provider)
@@ -33,6 +51,75 @@ class User < ActiveRecord::Base
       if game_account.game_provider == game_provider
         return true
       end
+    end
+    return false
+  end
+
+  def has_a_group
+    if self.users_groups.count > 0
+      return true
+    else
+      return false
+    end
+  end
+
+  def has_a_team(game)
+    self.teams.each do |team|
+      if team.game == game
+        return true
+      end
+    end
+    return false
+  end
+
+  def get_teams_by_game(game)
+    teams = []
+    self.teams.each do |team|
+      if team.game == game
+        teams.push(team)
+      end
+    end
+    return teams
+  end
+
+  def get_teams_select_by_game(game)
+    teams = []
+    self.teams.each do |team|
+      if team.game == game
+        teams.push(team.to_select)
+      end
+    end
+    return teams
+  end
+
+  def get_manageable_teams
+    teams = []
+    self.users_groups.each do |group|
+      group.teams.each do |team|
+        teams.push(team)
+      end
+    end
+    return teams
+  end
+
+  def get_manageable_teams_by_game(game)
+    teams_by_games = []
+    teams = get_manageable_teams
+    teams.each do |team|
+      if team.game == game
+        teams_by_games.push(team)
+      end
+    end
+    return teams_by_games
+  end
+
+  def encrypt_password(password)
+    return Digest::SHA2.new(512).hexdigest(password+self.salt)
+  end
+
+  def authenticate(password)
+    if encrypt_password(password) == self.password
+      return true
     end
     return false
   end

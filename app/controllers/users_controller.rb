@@ -42,10 +42,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     old_mail = @user.mail
     if @user.update_attributes(user_params)
-      @user.password = user_params["password"]
-      @user.password_confirmation = user_params["password_confirmation"]
-      @user.gen_token_and_salt
-      @user.change_password(@user.password)
+      if params.has_key?(:password) && params.has_key?(:password_confirmation)
+        @user.password = user_params["password"]
+        @user.password_confirmation = user_params["password_confirmation"]
+        @user.gen_token_and_salt
+        @user.change_password(@user.password)
+      else
+        @user.password_confirmation = @user.password
+      end
       if old_mail != user_params["mail"]
         @user.validated = false
       end
@@ -142,11 +146,11 @@ class UsersController < ApplicationController
           flash[:success] = 'Your email has been validated sucessfully !'
           redirect_to login_path
         else
-          flash[:danger] = 'Your email has not been validated, try again.'
+          flash[:danger] = 'Your email has not been validated, try again.'+user.errors.full_messages.to_sentence
           redirect_to login_path
         end
       else
-        flash[:danger] = 'Your email has not been validated, try again.'
+        flash[:danger] = 'Your email has not been validated, try again.'+user.errors.full_messages.to_sentence
         redirect_to login_path
       end
     else

@@ -1,0 +1,107 @@
+<%= form_for [@event_resource.event, Registration.new],:html => {:class => 'form-horizontal'} do |f| %>
+<%= hidden_field_tag 'event_resource_id', @event_resource.id %>
+<%= hidden_field_tag 'event_id', @event_resource.event.id %>
+<div class="row">
+  <div class="col-md-4">
+    <h2><strong>Select a <%= @event_resource.event.shortname %> pack</strong></h2>
+    <div class="form-group">
+      <% if @event_resource.event_packs.each_with_index do |pack, i| %>
+      <%= render 'registrations/display_pack', :pack => pack, :i => i  %>
+      <% end.empty? %>
+      <% if @event_resource.event.event_packs.where(event_resource: nil).each_with_index do |pack, i| %>
+      <%= render 'registrations/display_pack', :pack => pack, :i => i  %>
+      <% end.empty? %>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title">Nope nope nope</h3>
+        </div>
+        <div class="panel-body">
+          There's actually no available packs for this event.
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <% if @event_resource.game %>
+    <h2><strong>Choose your team</strong></h2>
+    <div class="form-group">
+      <div class="col-md-12">
+        <% if current_logged_user.get_teams_by_game(@event_resource.game).each do |team| %>
+        <div class="div-radio">
+          <div class="row title-pack">
+            <div class="col-md-8">
+              <h2><%= team.name.capitalize %></h2>
+            </div>
+            <div class="col-md-4 text-right">
+              <h3><%= team.users_group.name %></h3>
+            </div>
+          </div>
+          <ul class="list-group">
+            <% team.team_members.each do |teammate| %>
+            <li class="list-group-item">
+              <%= teammate.user.name.capitalize %>
+              <%= teammate.user.lastname.capitalize %>
+            </li>
+            <% end %>
+          </ul>
+          <%= radio_button_tag(:registration_team, team.id) %>
+        </div>
+        <% end.empty? %>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title text-center">Nope nope nope</h3>
+          </div>
+          <div class="panel-body">
+            <p>
+              <h4>I'm a player</h4>
+              It's a team based game dude, you need to have a team to participate.</br>
+              <%= link_to "Create a team in one of my friend's group.", user_users_groups_path(current_logged_user) %>
+            </p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <% else %>
+    <h2><strong>Choose a friend's group</strong></h2>
+    <div class="form-group">
+      <div class="col-md-12">
+        <% current_logged_user.users_groups.each do |group| %>
+        <div class="div-radio">
+          <div class="row title-pack">
+            <div class="col-md-8">
+              <h2><%= group.name.capitalize %></h2>
+            </div>
+            <div class="col-md-4 text-right">
+              <h3><%= group.tag %></h3>
+            </div>
+          </div>
+          <ul class="list-group">
+            <% group.group_members.each do |teammate| %>
+            <li class="list-group-item">
+              <%= teammate.user.name.capitalize %>
+              <%= teammate.user.lastname.capitalize %>
+            </li>
+            <% end %>
+          </ul>
+          <%= radio_button_tag(:registration_group, group.id) %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <h2><strong>Payment</strong></h2>
+    <div class="form-group">
+      <div class="col-md-12 text-center">
+        <div id="error_explanation">
+        </div>
+        <%= render 'registrations/stripe_payment' %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

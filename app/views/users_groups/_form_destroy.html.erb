@@ -1,0 +1,16 @@
+<p>
+  Do you really want to delete <%= @group.name %> ??
+</p>
+<p>
+  This action will kick out all group members and delete this group afterward.
+</p>
+<%= form_for @group, method: :delete, :html => {:class => 'form-horizontal'} do |f| %>
+<div class="form-group">
+  <div class="col-sm-12">
+    <button type="submit" class="btn btn-danger btn-lg">
+      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+      Delete this group
+    </button>
+  </div>
+</div>
+<% end %>

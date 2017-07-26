@@ -1,0 +1,7 @@
+<%= form_for [@team.users_group, @team] ,url: users_group_team_leave_path(@team.users_group, @team), method: :delete, :html => {:class => 'form-horizontal'} do |f| %>
+<div class="form-group">
+  <div class="col-sm-12">
+    <button type="submit" class="btn btn-danger btn-lg">Free yourself, leave <%= @team.users_group.tag %> <%=  @team.name %></button>
+  </div>
+</div>
+<% end %>

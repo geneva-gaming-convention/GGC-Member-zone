@@ -1,0 +1,32 @@
+<% flash.each do |key, value| %>
+<div id="error_explanation" class="alert alert-<%=key%>" role="alert">
+  <p>
+    <%= value %>
+  </p>
+</div>
+<% end %>
+<% if @group.errors.any? %>
+<div id="error_explanation" class="alert alert-danger">
+  <h5><%= pluralize(@group.errors.count, "error") %> canceled your registration:</h5>
+  <ul>
+    <% @group.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card-pf card-pf-accented card-pf-aggregate-status">
+      <div class="card-pf-title">
+        <h1>
+          <span class="glyphicon pficon-project" aria-hidden="true"></span>
+          Create a friend's group
+        </h1>
+      </div>
+      <div class="card-pf-body">
+        <%= render 'form_new' %>
+      </div>
+    </div>
+  </div>
+</div>

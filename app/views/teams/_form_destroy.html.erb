@@ -1,0 +1,10 @@
+<%= form_for [@team.users_group, @team], method: :delete, :html => {:class => 'form-horizontal'} do |f| %>
+<div class="form-group">
+  <div class="col-sm-12">
+    <button type="submit" class="btn btn-danger btn-lg">
+      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+      Delete this team
+    </button>
+  </div>
+</div>
+<% end %>
