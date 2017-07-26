@@ -3,7 +3,7 @@
 <%= hidden_field_tag 'event_id', @event_resource.event.id %>
 <div class="row">
   <div class="col-md-4">
-    <h2>Select a <%= @event_resource.event.shortname %> pack</h2>
+    <h2><strong>Select a <%= @event_resource.event.shortname %> pack</strong></h2>
     <div class="form-group">
       <% if @event_resource.event_packs.each_with_index do |pack, i| %>
       <%= render 'registrations/display_pack', :pack => pack, :i => i  %>
@@ -25,7 +25,7 @@
   </div>
   <div class="col-md-4">
     <% if @event_resource.game %>
-    <h2>Choose your team</h2>
+    <h2><strong>Choose your team</strong></h2>
     <div class="form-group">
       <div class="col-md-12">
         <% if current_logged_user.get_teams_by_game(@event_resource.game).each do |team| %>
@@ -65,7 +65,7 @@
       </div>
     </div>
     <% else %>
-    <h2>Choose a friend's group</h2>
+    <h2><strong>Choose a friend's group</strong></h2>
     <div class="form-group">
       <div class="col-md-12">
         <% current_logged_user.users_groups.each do |group| %>
@@ -94,7 +94,7 @@
     <% end %>
   </div>
   <div class="col-md-4">
-    <h2>Payment</h2>
+    <h2><strong>Payment</strong></h2>
     <div class="form-group">
       <div class="col-md-12 text-center">
         <div id="error_explanation">
