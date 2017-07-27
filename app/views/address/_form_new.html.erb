@@ -1,4 +1,4 @@
-<%= form_for(@address, remote: true, :html => {:class => 'form-horizontal', :id => 'new_address_form'}) do |f| %>
+<%= form_for(Address.new(), remote: true, :html => {:class => 'form-horizontal', :id => 'new_address_form'}) do |f| %>
 <div class="form-group">
   <label class="col-sm-3 control-label" for="street-modal-markup">
     Street and n°

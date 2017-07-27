@@ -1,0 +1,12 @@
+<ol class="breadcrumb">
+  <li>
+    <% if params.has_key?(:user_id) %>
+    <a href="<%= global_groups_list_path %>">My friend's groups</a>
+    <% else %>
+    <a href="<%= global_groups_list_path %>">Friend's groups</a>
+    <% end %>
+  </li>
+  <li class="active">
+    <strong><%= @group.name %></strong>
+  </li>
+</ol>
