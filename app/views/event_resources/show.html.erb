@@ -13,9 +13,11 @@
     <p>
       <h5>Starting date: <%= @event_resource.start_at.strftime("%d %B %Y at %Hh%M") %></h5>
     </p>
-    <p>
-      <%= @event_resource.description %>
-    </p>
+    <div class="row">
+      <div class="col-md-8" style="text-shadow: 2px 1px 3px rgba(0, 0, 0, 1);padding-left:0px;">
+        <%= @event_resource.description %>
+      </div>
+    </div>
   </div>
   <div class="card-pf-body">
     <p>
