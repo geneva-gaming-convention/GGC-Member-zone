@@ -45,7 +45,7 @@ lol = Game.find_or_initialize_by(
 "img"=>"",
 "teambased"=>true
 )
-csgo.nb_players = 5
+lol.nb_players = 5
 lol.game_provider = riot_games
 lol.save
 puts "  "+lol.name.to_s+" ✅"
@@ -56,7 +56,7 @@ hs = Game.find_or_initialize_by(
 "img"=>"",
 "teambased"=>false
 )
-csgo.nb_players = 1
+hs.nb_players = 1
 hs.game_provider = battlenet
 hs.save
 puts "  "+hs.name.to_s+" ✅"
@@ -67,7 +67,7 @@ rl = Game.find_or_initialize_by(
 "img"=>"",
 "teambased"=>true
 )
-csgo.nb_players = 2
+rl.nb_players = 2
 rl.game_provider = steam
 rl.save
 puts "  "+rl.name.to_s+" ✅"
@@ -78,7 +78,7 @@ ow = Game.find_or_initialize_by(
 "img"=>"",
 "teambased"=>true
 )
-csgo.nb_players = 6
+ow.nb_players = 6
 ow.game_provider = battlenet
 ow.save
 puts "  "+ow.name.to_s+" ✅"
@@ -88,7 +88,7 @@ fifa = Game.find_or_initialize_by(
 "img"=>"",
 "teambased"=>false
 )
-csgo.nb_players = 1
+fifa.nb_players = 1
 fifa.name = "FIFA 17"
 fifa.game_provider = electronic_arts
 fifa.save
@@ -98,7 +98,7 @@ ssb = Game.find_or_initialize_by(
 "shortname"=>"SSB",
 "teambased"=>false
 )
-csgo.nb_players = 1
+ssb.nb_players = 1
 ssb.name = "Super Smash Bros."
 ssb.game_provider = nintendo
 ssb.save

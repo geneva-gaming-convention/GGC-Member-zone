@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # ---------------------------
 
   # Users ---------------------
-  resources :users do
+  resources :users, except: :index  do
     get     'delete'                 => 'users#delete'
     put     'phone'                  => 'users#update_phone'
     delete  'phone'                  => 'users#delete_phone'
