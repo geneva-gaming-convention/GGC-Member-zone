@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     old_mail = @user.mail
     if @user.update_attributes(user_params)
-      if params.has_key?(:password) && params.has_key?(:password_confirmation)
+      if user_params.has_key?(:password) && user_params.has_key?(:password_confirmation)
         @user.password = user_params["password"]
         @user.password_confirmation = user_params["password_confirmation"]
         @user.gen_token_and_salt
