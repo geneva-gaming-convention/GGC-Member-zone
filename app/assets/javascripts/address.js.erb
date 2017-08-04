@@ -59,11 +59,11 @@ function select2_changed(addr){
 
 function add_new_address_submit_listener(){
   $("#submit_btn_addr").click(function() {
-    submit_form_new_phone();
+    submit_form_new_addr();
   });
 }
 
-function submit_form_new_phone(){
+function submit_form_new_addr(){
   var $form = $("#new_address_form");
   url = $form.attr('action');
   data_to_send = $form.serialize();
@@ -73,7 +73,6 @@ function submit_form_new_phone(){
     dataType: "json",
     data: data_to_send,
     complete : function(resultat){
-      console.log(resultat);
       status = resultat.status;
       if(status=="200"){
         $('#new_addr_modal').modal('hide');
