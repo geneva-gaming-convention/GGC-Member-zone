@@ -20,11 +20,11 @@ function phone_input_changed(e){
 
 function add_new_phone_submit_listener(){
   $("#submit_btn_phone").click(function() {
-    submit_form_new_addr();
+    submit_form_new_phone();
   });
 }
 
-function submit_form_new_addr(){
+function submit_form_new_phone(){
   var $form = $("#new_phone_form");
   url = $form.attr('action');
   method = "put";
