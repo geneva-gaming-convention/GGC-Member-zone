@@ -20,10 +20,10 @@ class Team < ApplicationRecord
 
   # ADD check payement for registrations
   def is_validated_for_event_resource(event_resource)
-    if self.registrations.where(event_resource: event_resource).count < self.game.nb_players
-      return false
+    if self.registrations.where(event_resource: event_resource).count == self.game.nb_players
+      return true
     end
-    return true
+    return false
   end
 
   def is_user_in_team(user)
