@@ -31,59 +31,65 @@ class RegistrationsController < ApplicationController
     end
 
     if registration.save
-      begin
-        customer = nil
-        user = User.find_by(id: current_logged_user.id)
-        if !current_logged_user.remote_id
-          mail=""
-          if params.has_key?(:stripeEmail)
-            mail = params[:stripeEmail]
+      if params.has_key?(:stripeToken)
+        begin
+          customer = nil
+          user = User.find_by(id: current_logged_user.id)
+          if !current_logged_user.remote_id
+            mail=""
+            if params.has_key?(:stripeEmail)
+              mail = params[:stripeEmail]
+            else
+              mail = current_logged_user.mail
+            end
+            customer = Stripe::Customer.create(
+            :email => mail,
+            :source  => params[:stripeToken],
+            :metadata => {
+              "firstname"=>current_logged_user.name.capitalize,
+              "lastname"=>current_logged_user.lastname.capitalize,
+            }
+            )
+            user.password_confirmation = user.password
+            user.remote_id = customer.id
+            user.save
           else
-            mail = current_logged_user.mail
+            customer = Stripe::Customer.retrieve(user.remote_id)
+            customer.email = user.mail
+            customer.metadata = {
+              "firstname"=>current_logged_user.name.capitalize,
+              "lastname"=>current_logged_user.lastname.capitalize,
+            }
+            customer.source = params[:stripeToken]
+            customer.save
           end
-          customer = Stripe::Customer.create(
-          :email => mail,
-          :source  => params[:stripeToken],
-          :metadata => {
-            "firstname"=>current_logged_user.name.capitalize,
-            "lastname"=>current_logged_user.lastname.capitalize,
+          charge = Stripe::Charge.create(
+          :customer    => customer.id,
+          :amount      => registration.event_pack.price.to_i*100,
+          :description => registration.user.name.capitalize+" "+registration.user.lastname.capitalize+" | "+registration.event_pack.name,
+          :currency    => 'chf',
+          :metadata    => {
+            "firstname" => registration.user.name.capitalize,
+            "lastname" => registration.user.lastname.capitalize,
+            "event" => registration.event.name,
+            "event_resource" => registration.event_resource.title,
+            "event_pack" => registration.event_pack.name,
           }
           )
-          user.password_confirmation = user.password
-          user.remote_id = customer.id
-          user.save
-        else
-          customer = Stripe::Customer.retrieve(user.remote_id)
-          customer.email = user.mail
-          customer.metadata = {
-            "firstname"=>current_logged_user.name.capitalize,
-            "lastname"=>current_logged_user.lastname.capitalize,
-          }
-          customer.source = params[:stripeToken]
-          customer.save
+          registration.paid = true
+          registration.save
+          flash[:success] = "You're registered"
+        rescue Stripe::CardError => e
+          registration.destroy
+          flash[:danger] = e.message
+        rescue => error
+          registration.destroy
+          flash[:danger] = "An error occurred while registering "+error.to_s
         end
-        charge = Stripe::Charge.create(
-        :customer    => customer.id,
-        :amount      => registration.event_pack.price.to_i*100,
-        :description => registration.user.name.capitalize+" "+registration.user.lastname.capitalize+" | "+registration.event_pack.name,
-        :currency    => 'chf',
-        :metadata    => {
-          "firstname" => registration.user.name.capitalize,
-          "lastname" => registration.user.lastname.capitalize,
-          "event" => registration.event.name,
-          "event_resource" => registration.event_resource.title,
-          "event_pack" => registration.event_pack.name,
-        }
-        )
-        registration.paid = true
+      else
+        registration.paid = false
         registration.save
-        flash[:success] = "You're registered"
-      rescue Stripe::CardError => e
-        registration.destroy
-        flash[:danger] = e.message
-      rescue => error
-        registration.destroy
-        flash[:danger] = "An error occurred while registering "+error.to_s
+        flash[:warning] = "You're registered, wait for GGC payment validation. This process could take some days."
       end
       redirect_to event_event_resource_path(@event, @event_resource)
     else
