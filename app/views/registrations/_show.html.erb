@@ -1,8 +1,26 @@
-<div class="panel panel-info">
+<% paid = current_logged_user.get_registrations_by_event(@event_resource.event).first.paid %>
+<% if paid %>
+<div class="panel panel-success">
+<% else %>
+<div class="panel panel-warning">
+<% end %>
   <div class="panel-heading">
+    <% if paid %>
     <h3 class="panel-title">You're ready to come !</h3>
+    <% else %>
+    <h3 class="panel-title">You're not yet ready to come. Your payment need to be accepted by the GGC crew. It could take some days...</h3>
+    <% end %>
   </div>
   <div class="panel-body">
+    <% if !paid %>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= render 'registrations/bank_data' %>
+          </div>
+        </div>
+    </div>
+    <% end %>
     <div class="col-md-12">
       <p>
         <% current_logged_user.get_registrations_by_event(@event_resource.event).each_with_index do |registration, i| %>
