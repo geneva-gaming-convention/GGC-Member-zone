@@ -4,6 +4,7 @@ class TeamsController < ApplicationController
   before_action :users_group_must_exist,                    except: [:list, :global_list]
   before_action :team_must_exist,                           except: [:new, :create, :list, :global_list]
   before_action :must_be_admin_of_team,                     only:   [:ask_to_destroy, :destroy, :update, :kick]
+  before_action :are_some_places_available,                 only:   [:join]
 
   def new
     @team = Team.new
@@ -174,6 +175,13 @@ class TeamsController < ApplicationController
       end
     else
       render_404
+    end
+  end
+
+  def are_some_places_available
+    if @team.game.nb_players <= @team.team_members.count
+      flash.now[:danger] = "This team is already full."
+      render 'show'
     end
   end
 
