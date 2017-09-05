@@ -6,6 +6,8 @@ class Registration < ApplicationRecord
   validates :users_group, :presence => true, :if => "!event_resource.game"
   validates :is_a_player, inclusion: { in: [ true, false ] }
   validate :event_pack_must_be_in_event_resource
+  validate :is_still_free_slots
+  validate :is_user_ready_for_registration
   # -----
 
   # Relations
@@ -16,8 +18,6 @@ class Registration < ApplicationRecord
   belongs_to :team
   belongs_to :users_group
   # -----
-
-  before_create :is_still_free_slots, :is_user_ready_for_registration
 
   def event_pack_must_be_in_event_resource
     if self.event_pack && self.event_resource
@@ -41,15 +41,15 @@ class Registration < ApplicationRecord
 
   def is_still_free_slots
     if !self.event_resource.is_still_free_slots
-      flash[:danger] = "An error occurred while registering, this tournament is full."
-      redirect_to event_event_resource_path(self.event_resource.event, self.event_resource)
+      message = "An error occurred while registering, this tournament is full."
+      errors.add(:base,message)
     end
   end
 
   def is_user_ready_for_registration
     if !self.user.is_ready_for_registration
-      flash[:danger] = "An error occurred while registering, your GGC account is not yet ready for registration."
-      redirect_to event_event_resource_path(self.event_resource.event, self.event_resource)
+      message = "An error occurred while registering, your GGC account is not yet ready for registration."
+      errors.add(:base,message)
     end
   end
 
