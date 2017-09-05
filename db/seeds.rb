@@ -67,7 +67,7 @@ rl = Game.find_or_initialize_by(
 "img"=>"",
 "teambased"=>true
 )
-rl.nb_players = 2
+rl.nb_players = 3
 rl.game_provider = steam
 rl.save
 puts "  "+rl.name.to_s+" ✅"
