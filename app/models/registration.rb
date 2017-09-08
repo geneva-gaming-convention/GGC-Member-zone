@@ -6,7 +6,7 @@ class Registration < ApplicationRecord
   validates :users_group, :presence => true, :if => "!event_resource.game"
   validates :is_a_player, inclusion: { in: [ true, false ] }
   validate :event_pack_must_be_in_event_resource
-  validate :is_still_free_slots
+  validate :is_still_free_slots, :on => :create
   validate :is_user_ready_for_registration
   # -----
 
