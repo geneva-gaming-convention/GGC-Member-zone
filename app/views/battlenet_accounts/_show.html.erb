@@ -2,7 +2,9 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md-6">
+        <% if game_account.name %>
         <h3><%= game_account.name.capitalize %></h3>
+        <% end %>
       </div>
       <div class="col-md-6">
         <%= image_tag("bnet_logo", class: "img-circle", width: "54") %>
