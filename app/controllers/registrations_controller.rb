@@ -43,12 +43,12 @@ class RegistrationsController < ApplicationController
               mail = current_logged_user.mail
             end
             customer = Stripe::Customer.create(
-            :email => mail,
-            :source  => params[:stripeToken],
-            :metadata => {
-              "firstname"=>current_logged_user.name.capitalize,
-              "lastname"=>current_logged_user.lastname.capitalize,
-            }
+              :email => mail,
+              :source  => params[:stripeToken],
+              :metadata => {
+                "firstname"=>current_logged_user.name.capitalize,
+                "lastname"=>current_logged_user.lastname.capitalize,
+              }
             )
             user.password_confirmation = user.password
             user.remote_id = customer.id
