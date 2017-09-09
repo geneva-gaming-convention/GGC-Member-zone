@@ -42,7 +42,12 @@ class User < ActiveRecord::Base
   end
 
   def get_registrations_by_event(event)
-    registrations = self.registrations.where(event: event)
+    registrations = self.registrations.where(event: event).where.not(event_pack: nil)
+    return registrations
+  end
+
+  def get_invitation_by_event(event)
+    registrations = self.registrations.where(event: event).where(invitation: true)
     return registrations
   end
 

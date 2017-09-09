@@ -22,6 +22,19 @@
       <% if current_logged_user && current_logged_user.get_registrations_by_event(@event_resource.event).count > 0 %>
       <%= render 'registrations/show' %>
       <% else %>
+      <% if current_logged_user && current_logged_user.get_invitation_by_event(@event_resource.event).count > 0%>
+        <% invitation = current_logged_user.get_invitation_by_event(@event_resource.event).first %>
+        <% if invitation.event_resource == @event_resource && !invitation.invitation_used %>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4 text-center panel panel-default" style="font-size:18px;">
+            <div class="panel-body">
+              You have an invitation for this tournament.
+              You're a <span class="glyphicon glyphicon-star" aria-hidden="true"></span> 😎.
+            </div>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
       <% if !@event_resource.game || @event_resource.game.teambased %>
       <%= render 'registrations/teambased_registration' %>
       <% else %>

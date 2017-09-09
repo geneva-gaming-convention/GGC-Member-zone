@@ -32,6 +32,23 @@ class EventResource < ApplicationRecord
     return teams
   end
 
+  def get_invited_teams
+    teams = []
+    if self.remote
+      teams = ToornamentHelper.get_tournament_teams_participants(self.get_resource_remote_id)
+    else
+      self.registrations.where(invitation: true).each do |registration|
+        registration_team = registration.team
+        if registration_team
+          unless teams.include?(registration_team)
+            teams << registration_team
+          end
+        end
+      end
+    end
+    return teams
+  end
+
   def get_players
     players = []
     if self.remote
@@ -84,6 +101,34 @@ class EventResource < ApplicationRecord
 
   def is_still_free_slots
     if get_validated_slots.count < self.get_size
+      return true
+    else
+      return false
+    end
+  end
+
+  def get_validated_invitation_slots
+    valid_partitipants = []
+    if self.game && self.game.teambased
+      registered_teams = self.get_invited_teams
+      registered_teams.each do |team_participating|
+        if team_participating.is_validated_for_event_resource(self)
+          valid_partitipants.push(team_participating)
+        end
+      end
+    else
+      self.registrations.where(team: nil).where(invitation: true).each do |player_registration|
+        user = player_registration.user
+        if user.is_validated_for_event_resource(self)
+          valid_partitipants.push(user)
+        end
+      end
+    end
+    return valid_partitipants
+  end
+
+  def is_still_free_invitation_slots
+    if get_validated_invitation_slots.count < self.locked_quota
       return true
     else
       return false

@@ -9,8 +9,13 @@ class RegistrationsController < ApplicationController
   end
 
   def create
+    preregistered_invitation = nil
     registration = Registration.new
     registration.user = current_logged_user
+    if current_logged_user.get_invitation_by_event(@event).count == 1 && current_logged_user.get_invitation_by_event(@event).first.event_resource == @event_resource
+      registration = current_logged_user.get_invitation_by_event(@event).first
+      preregistered_invitation=registration
+    end
     registration.is_a_player = true
     registration.event = @event
     registration.event_resource = @event_resource
@@ -29,7 +34,6 @@ class RegistrationsController < ApplicationController
         registration.users_group = users_group
       end
     end
-
     if registration.save
       if params.has_key?(:stripeToken)
         begin
@@ -77,17 +81,31 @@ class RegistrationsController < ApplicationController
           }
           )
           registration.paid = true
+          if registration.invitation
+            registration.invitation_used = true
+          end
           registration.save
           flash[:success] = "You're registered"
         rescue Stripe::CardError => e
           registration.destroy
+          if preregistered_invitation != nil
+            # Restore pre-config invitation
+            preregistered_invitation.save
+          end
           flash[:danger] = e.message
         rescue => error
           registration.destroy
+          if preregistered_invitation != nil
+            # Restore pre-config invitation
+            preregistered_invitation.save
+          end
           flash[:danger] = "An error occurred while registering "+error.to_s
         end
       else
         registration.paid = false
+        if registration.invitation
+          registration.invitation_used = true
+        end
         registration.save
         flash[:warning] = "You're registered, wait for GGC payment validation. This process could take some days."
       end

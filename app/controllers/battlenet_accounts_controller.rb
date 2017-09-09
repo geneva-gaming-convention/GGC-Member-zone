@@ -38,11 +38,15 @@ class BattlenetAccountsController < ApplicationController
 
   def destroy
     bnet_account = GameAccount.find(params[:id])
+    if !bnet_account
+      flash[:danger] = "Error while Battle.net deleting process. This Battle.net account doesn't exist..."
+      redirect_to edit_user_path(current_logged_user.id)
+    end
     begin
       bnet_account.destroy
       flash[:success] =  "Your Battle.net account has successfully been deleted !"
     rescue
-      flash[:danger] = "Error while Battle.net authentication process."
+      flash[:danger] = "Error while Battle.net deleting process."
     end
     redirect_to edit_user_path(current_logged_user.id)
   end
