@@ -12,6 +12,7 @@ class WelcomeController < ApplicationController
         if Rails.application.secrets.github_branch && branch.name == Rails.application.secrets.github_branch
           @branch_title = branch.name.capitalize
           data = github.repos.commits.list 'geneva-gaming-convention', 'GGC-Member-zone', :sha => branch.name, per_page: 5
+          break
         else
           @branch_title = ""
           data = github.repos.commits.all 'geneva-gaming-convention', 'GGC-Member-zone', :sha => "preprod",per_page: 5

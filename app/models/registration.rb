@@ -1,9 +1,13 @@
 class Registration < ApplicationRecord
-  # Validation
-  validates :user, :event, :event_resource, :event_pack, presence: true
+  # Validation (goes ballistic)
+  validates :user, :event, :event_resource, presence: true
+  validates :event_pack, :presence  => true, :if => "!invitation"
+  validates :event_pack, :presence  => true, :if => "invitation", on: :update
   validates :user, :uniqueness => {:scope => [:event], :message => "can't be registered multiple times for the same event"}
-  validates :team, :users_group, :presence => true, :if => "event_resource.game && event_resource.game.teambased?"
-  validates :users_group, :presence => true, :if => "!event_resource.game"
+  validates :team, :users_group, :presence => true, :if => "!invitation && event_resource.game && event_resource.game.teambased?"
+  validates :team, :users_group, :presence => true, :if => "invitation && event_resource.game && event_resource.game.teambased?", on: :update
+  validates :users_group, :presence => true, :if => "!invitation && !event_resource.game"
+  validates :users_group, :presence => true, :if => "invitation && !event_resource.game", on: :update
   validates :is_a_player, inclusion: { in: [ true, false ] }
   validate :event_pack_must_be_in_event_resource
   validate :is_still_free_slots, :on => :create
@@ -40,7 +44,11 @@ class Registration < ApplicationRecord
   end
 
   def is_still_free_slots
-    if !self.event_resource.is_still_free_slots
+    if self.invitation && !self.event_resource.is_still_free_invitation_slots
+      message = "An error occurred while registering, this tournament is full, event for invitation."
+      errors.add(:base,message)
+    end
+    if !self.invitation && !self.event_resource.is_still_free_slots
       message = "An error occurred while registering, this tournament is full."
       errors.add(:base,message)
     end
