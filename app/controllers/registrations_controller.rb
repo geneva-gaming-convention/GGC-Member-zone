@@ -1,12 +1,8 @@
 class RegistrationsController < ApplicationController
   before_action :must_be_logged
-  before_action :event_must_exist,                      only: [:create]
+  before_action :event_must_exist,                      only: [:create, :show_ticket]
   before_action :event_resource_must_exist,             only: [:create]
   before_action :event_pack_must_exist,                 only: [:create]
-
-  def index
-
-  end
 
   def create
     preregistered_invitation = nil
@@ -47,12 +43,12 @@ class RegistrationsController < ApplicationController
               mail = current_logged_user.mail
             end
             customer = Stripe::Customer.create(
-              :email => mail,
-              :source  => params[:stripeToken],
-              :metadata => {
-                "firstname"=>current_logged_user.name.capitalize,
-                "lastname"=>current_logged_user.lastname.capitalize,
-              }
+            :email => mail,
+            :source  => params[:stripeToken],
+            :metadata => {
+              "firstname"=>current_logged_user.name.capitalize,
+              "lastname"=>current_logged_user.lastname.capitalize,
+            }
             )
             user.password_confirmation = user.password
             user.remote_id = customer.id
@@ -116,6 +112,17 @@ class RegistrationsController < ApplicationController
     end
   end
 
+  def show_ticket
+    @ticket = nil
+    if params.has_key?(:token)
+      @ticket = Registration.find_by(token: params[:token])
+    end
+    if !@ticket
+      render_404
+    end
+    render 'show_ticket'
+  end
+
   def event_must_exist
     @event = Event.find_by(id: params[:event_id])
     if !@event
@@ -131,7 +138,7 @@ class RegistrationsController < ApplicationController
   end
 
   def event_pack_must_exist
-    if params[:registration_pack]
+    if params.has_key?(:registration_pack)
       @event_pack = EventPack.find_by(id: params[:registration_pack])
       if !@event_pack
         render_404

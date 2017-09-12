@@ -61,4 +61,11 @@ class Registration < ApplicationRecord
     end
   end
 
+  def gen_token
+    self.token = loop do
+      token = SecureRandom.hex(24)
+      break token unless User.exists?(token: token)
+    end
+  end
+
 end
