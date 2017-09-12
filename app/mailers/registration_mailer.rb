@@ -1,5 +1,4 @@
 class RegistrationMailer < ApplicationMailer
-  require 'rqrcode'
   default from: Rails.application.secrets.mail_user
 
   def send_ticket(user, event)

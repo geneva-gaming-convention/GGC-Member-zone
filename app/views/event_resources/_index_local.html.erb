@@ -32,7 +32,7 @@
             /
             <%= resource.get_size %>
             <% if resource.locked_quota != 0 %>
-            / <span class="pficon-warning-triangle-o" aria-hidden="true"
+            + <span class="pficon-warning-triangle-o" aria-hidden="true"
             data-toggle="tooltip" data-placement="top" title="Reserved slots for invitations"></span>
             <%= resource.locked_quota %>
             <% end %>
