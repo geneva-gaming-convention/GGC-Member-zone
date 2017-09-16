@@ -10,7 +10,7 @@ module ElasticsearchHelper
       scheme: 'https'}], log: true
 
       # Set a custom index name
-      index :ggc_registrations
+      index Rails.application.secrets.elastic_index
 
       # Set a custom document type
       type  :ggc_registration
