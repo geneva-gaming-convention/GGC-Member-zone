@@ -102,6 +102,7 @@ class RegistrationsController < ApplicationController
         if registration.invitation
           registration.invitation_used = true
         end
+        registration.gen_token
         registration.save
         flash[:warning] = "You're registered, wait for GGC payment validation. This process could take some days."
       end
