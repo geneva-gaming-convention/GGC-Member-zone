@@ -113,16 +113,19 @@ class Registration < ApplicationRecord
       }
     end
     if self.event_resource
-      registration_hash[:event_resource] = {
-        "id" => self.event_resource.id,
-        "name" => self.event_resource.title
-      }
       if self.event_resource.game
         registration_hash[:event_resource] = {
+          "id" => self.event_resource.id,
+          "name" => self.event_resource.title,
           "game" => {
             "id" => self.event_resource.game.id,
             "name" => self.event_resource.game.name
           }
+        }
+      else
+        registration_hash[:event_resource] = {
+          "id" => self.event_resource.id,
+          "name" => self.event_resource.title
         }
       end
     end
