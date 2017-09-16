@@ -49,12 +49,6 @@
         <dt>Name</dt><dd class="text-left"><%= @ticket.user.name.capitalize %> <%= @ticket.user.lastname.upcase %></dd>
         <dt>Pass</dt><dd class="text-left"><%= @ticket.event_pack.name.capitalize %></dd>
         <dt>tournament</dt><dd class="text-left"><%= @ticket.event_resource.title %></dd>
-        <% if @ticket.users_group %>
-        <dt>Group</dt><dd class="text-left"><%= @ticket.users_group.name.capitalize %></dd>
-        <% end %>
-        <% if @ticket.team %>
-        <dt>Team</dt><dd class="text-left"><%= @ticket.team.name.capitalize %></dd>
-        <% end %>
         <dt>Price</dt><dd class="text-left"><%= @ticket.event_pack.price %> CHF</dd>
       </dl>
       <% else %>

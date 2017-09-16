@@ -19,12 +19,12 @@
                 <td data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="left" style="font:bold 16px/25px Arial, Helvetica, sans-serif; color:#888; padding:0 0 23px;">
                   You recently bought a GGC pass, right 😃 ? <br/>
                   Here is your entrance ticket for the <%= @event.name.capitalize %> event.
-                  Don't forget it, it's used for access control at the <%= @event.shortname.capitalize %>'s entrance gates.
+                  Don't forget it, it's used for access control at the <%= @event.shortname %>'s entrance gates.
                 </td>
               </tr>
               <tr>
                 <td>
-                  <table cellspacing="0" width="100%" class="row" style="font:25px/28px Arial, Helvetica, sans-serif; color:#292c34; padding:0 0 24px;">
+                  <table cellspacing="0" width="100%" class="row" style="font:18px/20px Arial, Helvetica, sans-serif; color:#292c34; padding:0 0 24px;">
                     <% if @registration.user %>
                     <tr>
                       <td>
@@ -78,17 +78,6 @@
                       <td class="expander"></td>
                     </tr>
                     <% end %>
-                    <% if @registration.event_pack %>
-                    <tr>
-                      <td>
-                        Price:
-                      </td>
-                      <td>
-                        <%= @registration.event_pack.price.to_i %> CHF
-                      </td>
-                      <td class="expander"></td>
-                    </tr>
-                    <% end %>
                   </table>
                 </td>
               </tr>
@@ -116,10 +105,115 @@
               #qrcontainer td.black { border-color: #000; }
               #qrcontainer td.white { border-color: #fff; }
               </style>
-              <td id="qrcontainer" data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="center" style="font:bold 16px/25px Arial, Helvetica, sans-serif; color:#888; padding:0 0 1em;">
-                Scan me at <%= @event.shortname %> entrance:
-                <%= link_to @qrURL,@qrURL %>
-                <%= raw @qrcode.as_html %>
+              <td id="qrcontainer" data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="center" style="font:bold 12px/12px Arial, Helvetica, sans-serif; color:#888; padding:0 0 1em;">
+                Scan me at <%= @event.shortname %> entrance:</br>
+                <img src="<%= @qrcode.as_png(
+                    resize_gte_to: false,
+                    resize_exactly_to: true,
+                    fill: 'white',
+                    color: 'black',
+                    size: 280,
+                    border_modules: 4,
+                    module_px_size: 6,
+                    file: nil
+                    ).to_data_url %>" />
+              </td>
+            </tr>
+            <tr>
+              <td data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="left" style="font:bold 16px/25px Arial, Helvetica, sans-serif; color:#888; padding:0 0 1em;">
+              </td>
+            </tr>
+            <tr>
+              <td data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="left" style="font:bold 16px/25px Arial, Helvetica, sans-serif; color:#888; padding:0 0 23px;">
+                Reminder, don't forget 📝:
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table cellspacing="0" width="100%" class="row" style="font:17px/19px Arial, Helvetica, sans-serif; color:#292c34; padding:0 0 24px;">
+                  <% if @registration.user %>
+                  <tr>
+                    <td>
+                      Doors opening:
+                    </td>
+                    <td>
+                      22 September 2017 at 10h00
+                    </td>
+                    <td class="expander"></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Entrance:
+                    </td>
+                    <td>
+                      Bring this email and an ID card at the <%= @registration.event.shortname %> gates to claim your pass.
+                    </td>
+                    <td class="expander"></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Access plan & Parking:
+                    </td>
+                    <td>
+                      <%= link_to "plan", "#" %>
+                    </td>
+                    <td class="expander"></td>
+                  </tr>
+                  <% if @registration.is_a_player %>
+                  <tr>
+                    <td>
+                      Your tournament begin:
+                    </td>
+                    <td>
+                      <% start_time = @registration.event_resource.start_at - 1.hour %>
+                      <%= start_time.strftime("%d %B %Y at %Hh%M") %>
+                    </td>
+                    <td class="expander"></td>
+                  </tr>
+                  <% end %>
+                  <% if EventPack.where("name like ?", "%pro%").include?(@registration.event_pack) || EventPack.where("name like ?", "%medium%").include?(@registration.event_pack) %>
+                  <tr>
+                    <td>
+                      Include in your pass:
+                    </td>
+                    <td>
+                      Sleeping mattress. Just bring a pillow and a blanket.
+                    </td>
+                    <td class="expander"></td>
+                  </tr>
+                  <% elsif EventPack.where("name like ?", "%starter%").include?(@registration.event_pack) %>
+                  <tr>
+                    <td>
+                      Include in your pass:
+                    </td>
+                    <td>
+                      The convention access for sunday.
+                    </td>
+                    <td class="expander"></td>
+                  </tr>
+                  <% end %>
+                  <% if @registration.is_a_player %>
+                  <tr>
+                    <td>
+                      Take with you:
+                    </td>
+                    <td>
+                      A 10m RJ45 cable and <%= link_to "swiss power cords", "https://en.wikipedia.org/wiki/AC_power_plugs_and_sockets#/media/File:J_plug_-_1.jpg"%> 🇨🇭.
+                    </td>
+                    <td class="expander"></td>
+                  </tr>
+                  <% end %>
+                  <tr>
+                    <td>
+                      ⛔️ Forbidden inside:
+                    </td>
+                    <td>
+                      Picnic, Alcohol, smoking, overboard and other rolling stuff.
+                    </td>
+                    <td class="expander"></td>
+                  </tr>
+                  <% end %>
+                </table>
               </td>
             </tr>
             <tr>

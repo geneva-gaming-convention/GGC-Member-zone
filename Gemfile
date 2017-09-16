@@ -47,6 +47,7 @@ gem 'snaptable'
 gem 'bootstrap-select-rails'
 gem 'stripe'
 gem 'rqrcode'
+gem 'elasticsearch-persistence'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
