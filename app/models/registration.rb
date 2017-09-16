@@ -77,7 +77,7 @@ class Registration < ApplicationRecord
   def paid_value_changed
     should_send_it = self.paid_changed? && self.paid == true
     if should_send_it && self.user && self.event
-      RegistrationMailer.send_ticket(self.user, self.event).deliver_now
+      #RegistrationMailer.send_ticket(self.user, self.event).deliver_now
     end
   end
 
