@@ -18,7 +18,7 @@ class EventsController < ApplicationController
     if !@event
       render_404
     else
-      @event_resources = @event.event_resources
+      @event_resources = @event.event_resources.where(visible: true)
     end
   end
 

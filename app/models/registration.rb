@@ -23,6 +23,12 @@ class Registration < ApplicationRecord
   belongs_to :users_group
   # -----
 
+  # Callbacks
+  after_save :paid_value_changed
+  after_save :store_in_elastic
+  after_destroy :delete_from_elastic
+  # -----
+
   def event_pack_must_be_in_event_resource
     if self.event_pack && self.event_resource
       if self.event_resource.event_packs.count > 0
@@ -59,6 +65,93 @@ class Registration < ApplicationRecord
       message = "An error occurred while registering, your GGC account is not yet ready for registration."
       errors.add(:base,message)
     end
+  end
+
+  def gen_token
+    self.token = loop do
+      token = SecureRandom.hex(24)
+      break token unless User.exists?(token: token)
+    end
+  end
+
+  def paid_value_changed
+    should_send_it = self.paid_changed? && self.paid == true
+    if should_send_it && self.user && self.event
+      RegistrationMailer.send_ticket(self.user, self.event).deliver_now
+    end
+  end
+
+  def store_in_elastic
+    ElasticsearchHelper.store_in_elastic(self)
+  end
+
+  def delete_from_elastic
+    ElasticsearchHelper.delete_from_elastic(self)
+  end
+
+  # Gen a registration hash with usefull data
+  def to_hash
+    registration_hash = {}
+    registration_hash[:id] = self.id
+    registration_hash[:created_at] = self.created_at
+    registration_hash[:updated_at] = self.updated_at
+    if self.user
+      registration_hash[:user] = {
+        "id" => self.user.id,
+        "firstname" => self.user.name,
+        "lastname" => self.user.lastname,
+        "mail" => self.user.mail,
+        "phone" => self.user.phone,
+        "validated" => self.user.validated,
+      }
+    end
+    if self.event
+      registration_hash[:event] = {
+        "id" => self.event.id,
+        "name" => self.event.name,
+        "shortname" => self.event.shortname
+      }
+    end
+    if self.event_resource
+      registration_hash[:event_resource] = {
+        "id" => self.event_resource.id,
+        "name" => self.event_resource.title
+      }
+      if self.event_resource.game
+        registration_hash[:event_resource] = {
+          "game" => {
+            "id" => self.event_resource.game.id,
+            "name" => self.event_resource.game.name
+          }
+        }
+      end
+    end
+    if self.event_pack
+      registration_hash[:event_pack] = {
+        "id" => self.event_pack.id,
+        "name" => self.event_pack.name,
+        "price" => self.event_pack.price
+      }
+    end
+    if self.users_group
+      registration_hash[:group] = {
+        "id" => self.users_group.id,
+        "name" => self.users_group.name,
+        "tag" => self.users_group.tag
+      }
+    end
+    if self.team
+      registration_hash[:team] = {
+        "id" => self.team.id,
+        "name" => self.team.name,
+        "tag" => self.team.tag
+      }
+    end
+    registration_hash[:is_a_player] = self.invitation
+    registration_hash[:is_a_player] = self.invitation_used
+    registration_hash[:is_a_player] = self.is_a_player
+    registration_hash[:paid] = self.paid
+    return registration_hash
   end
 
 end

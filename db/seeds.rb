@@ -137,7 +137,7 @@ event_resource.game = csgo
 event_resource.banner = "csgo"
 event_resource.visible = true
 event_resource.quota = 24
-event_resource.locked_quota = 3
+event_resource.locked_quota = 0
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -149,8 +149,8 @@ event_resource.remote_url = "https://widget.toornament.com/tournaments/436333176
 event_resource.game = lol
 event_resource.banner = "lol"
 event_resource.visible = true
-event_resource.quota = 24
-event_resource.locked_quota = 3
+event_resource.quota = 16
+event_resource.locked_quota = 0
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -163,7 +163,7 @@ event_resource.game = ow
 event_resource.banner = "ow"
 event_resource.visible = true
 event_resource.quota = 16
-event_resource.locked_quota = 3
+event_resource.locked_quota = 0
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -176,7 +176,7 @@ event_resource.game = rl
 event_resource.banner = "rl"
 event_resource.visible = true
 event_resource.quota = 16
-event_resource.locked_quota = 3
+event_resource.locked_quota = 0
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -202,7 +202,7 @@ ssb_tournament.game = ssb
 ssb_tournament.banner = "ssb"
 ssb_tournament.visible = true
 ssb_tournament.quota = 128
-ssb_tournament.locked_quota = 3
+ssb_tournament.locked_quota = 0
 ssb_tournament.save
 puts "  "+ssb_tournament.title.to_s+" ✅"
 
@@ -228,7 +228,8 @@ fifa_tournament.game = fifa
 fifa_tournament.banner = "fifa"
 fifa_tournament.visible = true
 fifa_tournament.quota = 64
-fifa_tournament.locked_quota = 3
+fifa_tournament.locked_quota = 64
+fifa_tournament.visible = false
 fifa_tournament.save
 puts "  "+fifa_tournament.title.to_s+" ✅"
 
@@ -240,7 +241,7 @@ manager.remote_url = ""
 manager.game = nil
 manager.banner = "manager"
 manager.visible = true
-manager.quota = 16
+manager.quota = 56
 manager.locked_quota = 0
 manager.save
 puts "  "+manager.title.to_s+" ✅"
