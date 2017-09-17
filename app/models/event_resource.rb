@@ -100,7 +100,7 @@ class EventResource < ApplicationRecord
   end
 
   def is_still_free_slots
-    if get_validated_slots.count < self.get_size
+    if get_validated_slots.count <= self.get_size
       return true
     else
       return false
@@ -128,7 +128,7 @@ class EventResource < ApplicationRecord
   end
 
   def is_still_free_invitation_slots
-    if get_validated_invitation_slots.count < self.locked_quota
+    if get_validated_invitation_slots.count <= self.locked_quota
       return true
     else
       return false
