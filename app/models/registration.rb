@@ -150,8 +150,8 @@ class Registration < ApplicationRecord
         "tag" => self.team.tag
       }
     end
-    registration_hash[:is_a_player] = self.invitation
-    registration_hash[:is_a_player] = self.invitation_used
+    registration_hash[:invitation] = self.invitation
+    registration_hash[:invitation_used] = self.invitation_used
     registration_hash[:is_a_player] = self.is_a_player
     registration_hash[:paid] = self.paid
     return registration_hash
