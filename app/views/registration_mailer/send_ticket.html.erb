@@ -107,16 +107,7 @@
               </style>
               <td id="qrcontainer" data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="center" style="font:bold 12px/12px Arial, Helvetica, sans-serif; color:#888; padding:0 0 1em;">
                 Scan me at <%= @event.shortname %> entrance:</br>
-                <img src="<%= @qrcode.as_png(
-                    resize_gte_to: false,
-                    resize_exactly_to: true,
-                    fill: 'white',
-                    color: 'black',
-                    size: 280,
-                    border_modules: 4,
-                    module_px_size: 6,
-                    file: nil
-                    ).to_data_url %>" />
+                <%= raw @qrcode.as_html %>
               </td>
             </tr>
             <tr>
