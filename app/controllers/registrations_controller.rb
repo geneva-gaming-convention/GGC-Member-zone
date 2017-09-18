@@ -43,12 +43,12 @@ class RegistrationsController < ApplicationController
               mail = current_logged_user.mail
             end
             customer = Stripe::Customer.create(
-            :email => mail,
-            :source  => params[:stripeToken],
-            :metadata => {
-              "firstname"=>current_logged_user.name.capitalize,
-              "lastname"=>current_logged_user.lastname.capitalize,
-            }
+              :email => mail,
+              :source  => params[:stripeToken],
+              :metadata => {
+                "firstname"=>current_logged_user.name.capitalize,
+                "lastname"=>current_logged_user.lastname.capitalize,
+              }
             )
             user.password_confirmation = user.password
             user.remote_id = customer.id
@@ -64,17 +64,17 @@ class RegistrationsController < ApplicationController
             customer.save
           end
           charge = Stripe::Charge.create(
-          :customer    => customer.id,
-          :amount      => registration.event_pack.price.to_i*100,
-          :description => registration.user.name.capitalize+" "+registration.user.lastname.capitalize+" | "+registration.event_pack.name,
-          :currency    => 'chf',
-          :metadata    => {
-            "firstname" => registration.user.name.capitalize,
-            "lastname" => registration.user.lastname.capitalize,
-            "event" => registration.event.name,
-            "event_resource" => registration.event_resource.title,
-            "event_pack" => registration.event_pack.name,
-          }
+            :customer    => customer.id,
+            :amount      => registration.event_pack.price.to_i*100,
+            :description => registration.user.name.capitalize+" "+registration.user.lastname.capitalize+" | "+registration.event_pack.name,
+            :currency    => 'chf',
+            :metadata    => {
+              "firstname" => registration.user.name.capitalize,
+              "lastname" => registration.user.lastname.capitalize,
+              "event" => registration.event.name,
+              "event_resource" => registration.event_resource.title,
+              "event_pack" => registration.event_pack.name,
+            }
           )
           registration.paid = true
           if registration.invitation
@@ -123,6 +123,31 @@ class RegistrationsController < ApplicationController
       render_404
     end
     render 'show_ticket'
+  end
+
+  def show_qrcode
+    @ticket = nil
+    if params.has_key?(:token)
+      @ticket = Registration.find_by(token: params[:token])
+    end
+    if !@ticket
+      render :status => 404
+    end
+    if @ticket && @ticket.event && @ticket.token
+      @qrURL = event_qr_registration_url(@ticket.event, @ticket.token)
+      @qrcode = RQRCode::QRCode.new(@qrURL, :size => 8, :level => :h)
+      png = @qrcode.as_png(
+        resize_gte_to: false,
+        resize_exactly_to: true,
+        fill: 'white',
+        color: 'black',
+        size: 280,
+        border_modules: 4,
+        module_px_size: 6,
+        file: nil
+      )
+      send_data(png, type: "" || 'image/png', disposition: 'inline')
+    end
   end
 
   def event_must_exist

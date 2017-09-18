@@ -86,28 +86,9 @@
                 </td>
               </tr>
               <tr>
-              <style>
-              #qrcontainer table {
-                border-width: 0;
-                border-style: none;
-                border-color: #0000ff;
-                border-collapse: collapse;
-              }
-
-              #qrcontainer td {
-                border-left: solid 5px #000;
-                padding: 0;
-                margin: 0;
-                width: 0px;
-                height: 5px;
-              }
-
-              #qrcontainer td.black { border-color: #000; }
-              #qrcontainer td.white { border-color: #fff; }
-              </style>
               <td id="qrcontainer" data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="center" style="font:bold 12px/12px Arial, Helvetica, sans-serif; color:#888; padding:0 0 1em;">
                 Scan me at <%= @event.shortname %> entrance:</br>
-                <%= raw @qrcode.as_html %>
+                <%= image_tag(event_ticket_qr_registration_url(@event, @registration.token)) %>
               </td>
             </tr>
             <tr>
