@@ -135,7 +135,7 @@ class RegistrationsController < ApplicationController
     end
     if @ticket && @ticket.event && @ticket.token
       @qrURL = event_qr_registration_url(@ticket.event, @ticket.token)
-      @qrcode = RQRCode::QRCode.new(@qrURL, :size => 8, :level => :h)
+      @qrcode = RQRCode::QRCode.new(@qrURL)
       png = @qrcode.as_png(
         resize_gte_to: false,
         resize_exactly_to: true,
