@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       get 'teams_and_players'       => 'event_resources#get_teams_and_players', as: :team_players
     end
     get 'tickets/:token'             => 'registrations#show_ticket',            as: :qr_registration
+    get 'tickets/:token/qrcode'      => 'registrations#show_qrcode',            as: :ticket_qr_registration
     resources :registrations,       only: [:create]
   end
   # ---------------------------
