@@ -131,7 +131,7 @@ class RegistrationsController < ApplicationController
       @ticket = Registration.find_by(token: params[:token])
     end
     if !@ticket
-      render :status => 404
+      head 404, "content_type" => 'text/plain'
     end
     if @ticket && @ticket.event && @ticket.token
       @qrURL = event_qr_registration_url(@ticket.event, @ticket.token)
@@ -146,7 +146,7 @@ class RegistrationsController < ApplicationController
         module_px_size: 6,
         file: nil
       )
-      send_data(png, type: "" || 'image/png', disposition: 'inline')
+      send_data(png, type: "png" || 'image/png', disposition: 'inline')
     end
   end
 
