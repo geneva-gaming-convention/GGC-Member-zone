@@ -8,7 +8,7 @@ class RegistrationMailer < ApplicationMailer
     @registration = @user.registrations.find_by(event: @event)
     if @event && @registration && @registration.token
       @qrURL = event_qr_registration_url(@event, @registration.token)
-      @qrcode = RQRCode::QRCode.new(@qrURL)
+      @qrcode = RQRCode::QRCode.new(@qrURL, :size => 8, :level => :h)
       mail(to: @user.mail, subject: @mail_title)
     end
   end
