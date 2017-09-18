@@ -155,7 +155,7 @@
                       Access plan & Parking:
                     </td>
                     <td>
-                      <%= link_to "plan", "#" %>
+                      10.- parking, ask the staff in P12 parking: <%= link_to "plan", "https://en.ggc.ch/wp-content/uploads/2017/09/GENEVA_GAMING_2017_SITUATION_05.07.17.pdf", target: '_blank' %>
                     </td>
                     <td class="expander"></td>
                   </tr>
@@ -171,7 +171,7 @@
                     <td class="expander"></td>
                   </tr>
                   <% end %>
-                  <% if EventPack.where("name like ?", "%pro%").include?(@registration.event_pack) || EventPack.where("name like ?", "%medium%").include?(@registration.event_pack) %>
+                  <% if EventPack.where("name like ?", "%Pro%").include?(@registration.event_pack) || EventPack.where("name like ?", "%Medium%").include?(@registration.event_pack) %>
                   <tr>
                     <td>
                       Include in your pass:
@@ -181,7 +181,7 @@
                     </td>
                     <td class="expander"></td>
                   </tr>
-                  <% elsif EventPack.where("name like ?", "%starter%").include?(@registration.event_pack) %>
+                  <% elsif EventPack.where("name like ?", "%Starter%").include?(@registration.event_pack) %>
                   <tr>
                     <td>
                       Include in your pass:

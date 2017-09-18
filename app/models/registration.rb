@@ -77,7 +77,7 @@ class Registration < ApplicationRecord
   def paid_value_changed
     should_send_it = self.paid_changed? && self.paid == true
     if should_send_it && self.user && self.event
-      #RegistrationMailer.send_ticket(self.user, self.event).deliver_now
+      RegistrationMailer.send_ticket(self.user, self.event).deliver_now
     end
   end
 
@@ -152,6 +152,7 @@ class Registration < ApplicationRecord
     end
     registration_hash[:invitation] = self.invitation
     registration_hash[:invitation_used] = self.invitation_used
+    registration_hash[:token] = self.token
     registration_hash[:is_a_player] = self.is_a_player
     registration_hash[:paid] = self.paid
     return registration_hash
