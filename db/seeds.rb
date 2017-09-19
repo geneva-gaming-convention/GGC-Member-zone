@@ -131,6 +131,7 @@ puts ggc2k17.name.to_s+" ✅"
 event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Counter-Strike: Global Offensive", "event_id"=> ggc2k17.id)
 event_resource.description = ""
 event_resource.start_at = "2017-09-23 09:30:00"
+event_resource.registration_end_at = "2017-09-19 23:59:59"
 event_resource.remote = false
 event_resource.remote_url = "https://widget.toornament.com/tournaments/436333240044767895/"
 event_resource.game = csgo
@@ -144,6 +145,7 @@ puts "  "+event_resource.title.to_s+" ✅"
 event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - League Of Legends ", "event_id"=> ggc2k17.id)
 event_resource.description = ""
 event_resource.start_at = "2017-09-23 09:00:00"
+event_resource.registration_end_at = "2017-09-19 23:59:59"
 event_resource.remote = false
 event_resource.remote_url = "https://widget.toornament.com/tournaments/436333176392008757/"
 event_resource.game = lol
@@ -157,6 +159,7 @@ puts "  "+event_resource.title.to_s+" ✅"
 event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Overwatch", "event_id"=> ggc2k17.id)
 event_resource.description = ""
 event_resource.start_at = "2017-09-23 09:30:00"
+event_resource.registration_end_at = "2017-09-19 23:59:59"
 event_resource.remote = false
 event_resource.remote_url = "https://widget.toornament.com/tournaments/436333241420499689/"
 event_resource.game = ow
@@ -170,6 +173,7 @@ puts "  "+event_resource.title.to_s+" ✅"
 event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Rocket League", "event_id"=> ggc2k17.id)
 event_resource.description = ""
 event_resource.start_at = "2017-09-23 09:30:00"
+event_resource.registration_end_at = "2017-09-19 23:59:59"
 event_resource.remote = false
 event_resource.remote_url = "https://widget.toornament.com/tournaments/436333243433765774/"
 event_resource.game = rl
@@ -183,6 +187,7 @@ puts "  "+event_resource.title.to_s+" ✅"
 event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Hearthstone", "event_id"=> ggc2k17.id)
 event_resource.description = ""
 event_resource.start_at = "2017-09-23 09:30:00"
+event_resource.registration_end_at = "2017-09-19 23:59:59"
 event_resource.remote = false
 event_resource.remote_url = "https://widget.toornament.com/tournaments/436334570645769838/"
 event_resource.game = hs
@@ -196,6 +201,7 @@ puts "  "+event_resource.title.to_s+" ✅"
 ssb_tournament = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Super Smash Bros", "event_id"=> ggc2k17.id)
 ssb_tournament.description = "A Smasher has access to all the Smash Bros. animations and tournaments. No Access to the LAN zone through this registration! For seeding purposes, the registration is 100% confirmed only when registered on the smash.gg/ggconvention page after payment."
 ssb_tournament.start_at = "2017-09-23 09:30:00"
+ssb_tournament.registration_end_at = "2017-09-19 23:59:59"
 ssb_tournament.remote = false
 ssb_tournament.remote_url = "https://widget.toornament.com/tournaments/436333247862950954/"
 ssb_tournament.game = ssb
@@ -222,6 +228,7 @@ puts "  "+ssb_tournament.title.to_s+" ✅"
 fifa_tournament = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Fifa", "event_id"=> ggc2k17.id)
 fifa_tournament.description = "The FIFA tournament will take place in the visitors area. No Access to the LAN zone through this registration!"
 fifa_tournament.start_at = "2017-09-23 09:30:00"
+fifa_tournament.registration_end_at = "2017-09-19 23:59:59"
 fifa_tournament.remote = false
 fifa_tournament.remote_url = "https://widget.toornament.com/tournaments/"
 fifa_tournament.game = fifa
@@ -236,6 +243,7 @@ puts "  "+fifa_tournament.title.to_s+" ✅"
 manager = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Manager", "event_id"=> ggc2k17.id)
 manager.description = "A manager has access to the LAN area and can come with a computer. A table is reserved for him."
 manager.start_at = "2017-09-22 11:00:00"
+manager.registration_end_at = "2017-09-19 23:59:59"
 manager.remote = false
 manager.remote_url = ""
 manager.game = nil
@@ -249,6 +257,7 @@ puts "  "+manager.title.to_s+" ✅"
 supporter = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Supporter", "event_id"=> ggc2k17.id)
 supporter.description = "A support has access to the LAN area. He can't come with a computer, he is only here to support teammates. There is no table reservation for him."
 supporter.start_at = "2017-09-22 11:00:00"
+supporter.registration_end_at = "2017-09-19 23:59:59"
 supporter.remote = false
 supporter.remote_url = ""
 supporter.game = nil
