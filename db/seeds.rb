@@ -136,14 +136,14 @@ event_resource.remote_url = "https://widget.toornament.com/tournaments/436333240
 event_resource.game = csgo
 event_resource.banner = "csgo"
 event_resource.visible = true
-event_resource.quota = 24
-event_resource.locked_quota = 0
+event_resource.quota = 16
+event_resource.locked_quota = 16
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
 event_resource = EventResource.find_or_initialize_by("title"=>"GGC 2017 - League Of Legends ", "event_id"=> ggc2k17.id)
 event_resource.description = ""
-event_resource.start_at = "2017-09-23 09:30:00"
+event_resource.start_at = "2017-09-23 09:00:00"
 event_resource.remote = false
 event_resource.remote_url = "https://widget.toornament.com/tournaments/436333176392008757/"
 event_resource.game = lol
@@ -189,7 +189,7 @@ event_resource.game = hs
 event_resource.banner = "hs"
 event_resource.visible = true
 event_resource.quota = 64
-event_resource.locked_quota = 6
+event_resource.locked_quota = 0
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -235,7 +235,7 @@ puts "  "+fifa_tournament.title.to_s+" ✅"
 
 manager = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Manager", "event_id"=> ggc2k17.id)
 manager.description = "A manager has access to the LAN area and can come with a computer. A table is reserved for him."
-manager.start_at = "2017-09-22 18:00:00"
+manager.start_at = "2017-09-22 11:00:00"
 manager.remote = false
 manager.remote_url = ""
 manager.game = nil
@@ -248,7 +248,7 @@ puts "  "+manager.title.to_s+" ✅"
 
 supporter = EventResource.find_or_initialize_by("title"=>"GGC 2017 - Supporter", "event_id"=> ggc2k17.id)
 supporter.description = "A support has access to the LAN area. He can't come with a computer, he is only here to support teammates. There is no table reservation for him."
-supporter.start_at = "2017-09-22 18:00:00"
+supporter.start_at = "2017-09-22 11:00:00"
 supporter.remote = false
 supporter.remote_url = ""
 supporter.game = nil
