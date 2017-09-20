@@ -135,6 +135,17 @@ class EventResource < ApplicationRecord
     end
   end
 
+  def is_my_team_registered(team)
+    if self.game && self.game.teambased
+      self.get_teams.each do |registered_team|
+        if team == registered_team
+          return true
+        end
+      end
+    end
+    return false
+  end
+
   def get_teams_with_members
     self.get_teams.each do |team|
       team["members"] = []

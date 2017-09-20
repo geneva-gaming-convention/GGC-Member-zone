@@ -24,15 +24,20 @@
           <a href="<%= event_event_resource_path(event.id, resource.id)%>">
             <span class="pficon-ok" aria-hidden="true"
             data-toggle="tooltip" data-placement="top" title="Validated registrations"></span>
+            <%= resource.get_validated_slots.count %>
+            (
             <% if resource.game && resource.game.teambased %>
             <%= resource.get_teams.count %>
             <% else %>
             <%= resource.get_players.count %>
             <% end %>
+            <span class="pficon-warning-triangle-o" aria-hidden="true"
+            data-toggle="tooltip" data-placement="top" title="waiting for full payement"></span>
+            )
             /
             <%= resource.get_size %>
             <% if resource.locked_quota != 0 %>
-            + <span class="pficon-warning-triangle-o" aria-hidden="true"
+            + <span class="glyphicon glyphicon-star" aria-hidden="true"
             data-toggle="tooltip" data-placement="top" title="Reserved slots for invitations"></span>
             <%= resource.locked_quota %>
             <% end %>
