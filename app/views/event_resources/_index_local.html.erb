@@ -24,31 +24,31 @@
         <% end %>
         <span class="card-pf-aggregate-status-notification">
           <div class="row text-center" style="font-size:20px;">
-            <div class="col-md-4">
+            <div class="col-xs-4">
               <span class="pficon-ok" aria-hidden="true"
               data-toggle="tooltip" data-placement="top" title="Validated locked registrations"></span>
             </div>
-            <div class="col-md-4">
+            <div class="col-xs-4">
               <span class="pficon-warning-triangle-o" aria-hidden="true"
               data-toggle="tooltip" data-placement="top" title="waiting for full payement"></span>
             </div>
-            <div class="col-md-4">
+            <div class="col-xs-4">
               <span class="glyphicon glyphicon-star" aria-hidden="true"
               data-toggle="tooltip" data-placement="top" title="Reserved slots for invitations"></span>
             </div>
           </div>
           <div class="row text-center" style="font-size:20px;">
-            <div class="col-md-4">
+            <div class="col-xs-4">
               <%= resource.get_validated_slots.count %>
             </div>
-            <div class="col-md-4">
+            <div class="col-xs-4">
               <% if resource.game && resource.game.teambased %>
               <%= resource.get_teams.count - resource.get_validated_slots.count %>
               <% else %>
               <%= resource.get_players.count - resource.get_validated_slots.count %>
               <% end %>
             </div>
-            <div class="col-md-4">
+            <div class="col-xs-4">
               <%= resource.locked_quota %>
             </div>
           </div>
