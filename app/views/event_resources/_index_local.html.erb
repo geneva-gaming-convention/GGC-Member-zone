@@ -13,35 +13,45 @@
       <% end %>
     </h2>
     <div class="card-pf-body">
-      <%= image_tag resource.banner, size: "64x64", :class => "img-circle" %>
+      <a href="<%= event_event_resource_path(event.id, resource.id)%>">
+        <%= image_tag resource.banner, size: "64x64", :class => "img-circle" %>
+      </a>
       <p class="card-pf-aggregate-status-notifications">
         <% if resource.game && resource.game.teambased %>
         <span class="pficon pficon-users"></span>
         <% else %>
         <span class="pficon pficon-user"></span>
-        <% end %></br>
+        <% end %>
         <span class="card-pf-aggregate-status-notification">
-          <a href="<%= event_event_resource_path(event.id, resource.id)%>">
-            <span class="pficon-ok" aria-hidden="true"
-            data-toggle="tooltip" data-placement="top" title="Validated registrations"></span>
-            <%= resource.get_validated_slots.count %>
-            (
-            <% if resource.game && resource.game.teambased %>
-            <%= resource.get_teams.count - resource.get_validated_slots.count %>
-            <% else %>
-            <%= resource.get_players.count - resource.get_validated_slots.count %>
-            <% end %>
-            <span class="pficon-warning-triangle-o" aria-hidden="true"
-            data-toggle="tooltip" data-placement="top" title="waiting for full payement"></span>
-            )
-            /
-            <%= resource.get_size %>
-            <% if resource.locked_quota != 0 %>
-            + <span class="glyphicon glyphicon-star" aria-hidden="true"
-            data-toggle="tooltip" data-placement="top" title="Reserved slots for invitations"></span>
-            <%= resource.locked_quota %>
-            <% end %>
-          </a>
+          <div class="row text-center" style="font-size:20px;">
+            <div class="col-md-4">
+              <span class="pficon-ok" aria-hidden="true"
+              data-toggle="tooltip" data-placement="top" title="Validated locked registrations"></span>
+            </div>
+            <div class="col-md-4">
+              <span class="pficon-warning-triangle-o" aria-hidden="true"
+              data-toggle="tooltip" data-placement="top" title="waiting for full payement"></span>
+            </div>
+            <div class="col-md-4">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"
+              data-toggle="tooltip" data-placement="top" title="Reserved slots for invitations"></span>
+            </div>
+          </div>
+          <div class="row text-center" style="font-size:20px;">
+            <div class="col-md-4">
+              <%= resource.get_validated_slots.count %>
+            </div>
+            <div class="col-md-4">
+              <% if resource.game && resource.game.teambased %>
+              <%= resource.get_teams.count - resource.get_validated_slots.count %>
+              <% else %>
+              <%= resource.get_players.count - resource.get_validated_slots.count %>
+              <% end %>
+            </div>
+            <div class="col-md-4">
+              <%= resource.locked_quota %>
+            </div>
+          </div>
         </span>
       </p>
       <% if !resource.game %>
