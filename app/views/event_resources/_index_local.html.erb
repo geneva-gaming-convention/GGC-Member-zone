@@ -27,9 +27,9 @@
             <%= resource.get_validated_slots.count %>
             (
             <% if resource.game && resource.game.teambased %>
-            <%= resource.get_teams.count %>
+            <%= resource.get_teams.count - resource.get_validated_slots.count %>
             <% else %>
-            <%= resource.get_players.count %>
+            <%= resource.get_players.count - resource.get_validated_slots.count %>
             <% end %>
             <span class="pficon-warning-triangle-o" aria-hidden="true"
             data-toggle="tooltip" data-placement="top" title="waiting for full payement"></span>
