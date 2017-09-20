@@ -50,13 +50,20 @@ class Registration < ApplicationRecord
   end
 
   def is_still_free_slots
-    if self.invitation && !self.event_resource.is_still_free_invitation_slots
-      message = "An error occurred while registering, this tournament is full, event for invitation."
-      errors.add(:base,message)
-    end
-    if !self.invitation && !self.event_resource.is_still_free_slots
-      message = "An error occurred while registering, this tournament is full."
-      errors.add(:base,message)
+    if self.team && !self.event_resource.is_my_team_registered(self.team)
+      if self.event_resource.registration_end_at && self.event_resource.registration_end_at < DateTime.now.to_date
+        message = "An error occurred while registering, this tournament is full and locked."
+        errors.add(:base,message)
+      else
+        if self.invitation && !self.event_resource.is_still_free_invitation_slots
+          message = "An error occurred while registering, this tournament is full, event for invitation."
+          errors.add(:base,message)
+        end
+        if !self.invitation && !self.event_resource.is_still_free_slots
+          message = "An error occurred while registering, this tournament is full."
+          errors.add(:base,message)
+        end
+      end
     end
   end
 

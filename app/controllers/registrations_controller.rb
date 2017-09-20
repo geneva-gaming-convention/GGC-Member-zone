@@ -119,9 +119,6 @@ class RegistrationsController < ApplicationController
     if params.has_key?(:token)
       @ticket = Registration.find_by(token: params[:token])
     end
-    if !@ticket
-      render_404
-    end
     render 'show_ticket'
   end
 

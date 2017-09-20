@@ -12,11 +12,12 @@
     padding-right: 2em;
   }
   </style>
-  <% if @ticket.paid %>
+  <% if @ticket && @ticket.paid %>
   <div class="card-pf card-pf-accented bg-success">
   <% else %>
   <div class="card-pf card-pf-accented bg-danger">
   <% end %>
+  <% if @ticket %>
     <div class="col-md-offset-2">
       <% flash.each do |key, value| %>
       <div id="error_explanation" class="alert alert-<%=key%>" role="alert">
@@ -36,6 +37,7 @@
       </div>
       <% end %>
     </div>
+    <% end %>
     <div class="card-pf-body" style="font-size: 30px;">
       <% if @ticket && @ticket.user %>
       <div class="text-center">
@@ -52,6 +54,10 @@
         <dt>Price</dt><dd class="text-left"><%= @ticket.event_pack.price %> CHF</dd>
       </dl>
       <% else %>
+      <div class="text-center">
+        <h1 style="font-size:38px;">Unvalid <span class="glyphicon pficon-error-circle-o" aria-hidden="true"></span></h1>
+      </div>
+      <h2 class="text-center">This is not a valid ticket</h2>
       <% end %>
     </div>
   </div>
