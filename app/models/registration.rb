@@ -149,7 +149,7 @@ class Registration < ApplicationRecord
             "id" => game_acc.id,
             "pseudo" => game_acc.name,
             "profile_url" => game_acc.profile_url,
-            "account_id" => game_acc.account_id
+            "account_id" => game_acc.account_id,
             "game_provider" => {
               "id" => game_acc.game_provider.id,
               "name" => game_acc.game_provider.name,
