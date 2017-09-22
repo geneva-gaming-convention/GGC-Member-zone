@@ -64,7 +64,7 @@ class Registration < ApplicationRecord
           errors.add(:base,message)
         end
       end
-    else
+    elsif !self.team
       if self.event_resource.registration_end_at && self.event_resource.registration_end_at < DateTime.now.to_date && !self.invitation
         message = "An error occurred while registering, this tournament locked."
         errors.add(:base,message)
@@ -143,6 +143,9 @@ class Registration < ApplicationRecord
             "name" => self.event_resource.game.name
           }
         }
+        if self.user.game_accounts.find_by(game_provider: self.event_resource.game.game_provider)
+
+        end
       else
         registration_hash[:event_resource] = {
           "id" => self.event_resource.id,
