@@ -143,8 +143,19 @@ class Registration < ApplicationRecord
             "name" => self.event_resource.game.name
           }
         }
-        if self.user.game_accounts.find_by(game_provider: self.event_resource.game.game_provider)
-
+        game_acc = self.user.game_accounts.find_by(game_provider: self.event_resource.game.game_provider)
+        if game_acc != nil
+          registration_hash[:game_account] = {
+            "id" => game_acc.id,
+            "pseudo" => game_acc.name,
+            "profile_url" => game_acc.profile_url,
+            "account_id" => game_acc.account_id,
+            "game_provider" => {
+              "id" => game_acc.game_provider.id,
+              "name" => game_acc.game_provider.name,
+              "website" => game_acc.game_provider.website
+            }
+          }
         end
       else
         registration_hash[:event_resource] = {

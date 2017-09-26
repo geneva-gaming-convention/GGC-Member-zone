@@ -138,7 +138,7 @@ event_resource.game = csgo
 event_resource.banner = "csgo"
 event_resource.visible = true
 event_resource.quota = 16
-event_resource.locked_quota = 16
+event_resource.locked_quota = 0
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
 
@@ -151,7 +151,7 @@ event_resource.remote_url = "https://widget.toornament.com/tournaments/436333176
 event_resource.game = lol
 event_resource.banner = "lol"
 event_resource.visible = true
-event_resource.quota = 16
+event_resource.quota = 18
 event_resource.locked_quota = 0
 event_resource.save
 puts "  "+event_resource.title.to_s+" ✅"
