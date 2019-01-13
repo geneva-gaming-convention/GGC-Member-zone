@@ -78,7 +78,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { :host => 'https://preprod.ggc.ch' }
+  config.action_mailer.default_url_options = { :host => 'https://preprod.ggc.cyprx.cloud' }
 
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
@@ -95,12 +95,12 @@ Rails.application.configure do
   #    :ssl => true
   # }
 
-  config.action_controller.asset_host = 'https://preprod.ggc.ch'
-  config.action_controller.default_url_options = { :host => 'https://preprod.ggc.ch' }
+  config.action_controller.asset_host = 'https://preprod.ggc.cyprx.cloud'
+  config.action_controller.default_url_options = { :host => 'https://preprod.ggc.cyprx.cloud' }
   config.action_mailer.default_url_options = { protocol: 'https' }
-  Rails.application.default_url_options = { :host => 'https://preprod.ggc.ch' }
-  Rails.application.routes.default_url_options = { :host => 'https://preprod.ggc.ch' }
-  config.action_mailer.asset_host = 'https://preprod.ggc.ch'
+  Rails.application.default_url_options = { :host => 'https://preprod.ggc.cyprx.cloud' }
+  Rails.application.routes.default_url_options = { :host => 'https://preprod.ggc.cyprx.cloud' }
+  config.action_mailer.asset_host = 'https://preprod.ggc.cyprx.cloud'
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
@@ -116,6 +116,6 @@ Rails.application.configure do
     :authentication => :login,
     :enable_starttls_auto => true
   }
-  OmniAuth.config.full_host = "https://preprod.ggc.ch"
+  OmniAuth.config.full_host = "https://preprod.ggc.cyprx.cloud"
 
 end

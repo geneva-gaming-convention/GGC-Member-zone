@@ -1,43 +1,23 @@
 module ElasticsearchHelper
-
   puts "elasticsearch initialization"
-  @repository = Elasticsearch::Persistence::Repository.new do
-    # Configure the Elasticsearch client
-    client Elasticsearch::Client.new hosts: [{ host: Rails.application.secrets.elastic_endpoint,
-      port: Rails.application.secrets.elastic_endpoint_port,
-      user: Rails.application.secrets.elastic_user,
-      password: Rails.application.secrets.elastic_password,
-      scheme: 'https'}], log: true
-
-      # Set a custom index name
-      index Rails.application.secrets.elastic_index
-
-      # Set a custom document type
-      type  :ggc_registration
-
-      # Specify the class to initialize when deserializing documents
-      # klass Note
-
-      # Configure the settings and mappings for the Elasticsearch index
-      # settings number_of_shards: 1 do
-      #  mapping do
-      #    indexes :text, analyzer: 'snowball'
-      #  end
-      # end
-
-      # Customize the serialization logic
-      def serialize(document)
-        super.merge(id: document.id)
-      end
-
-      # Customize the de-serialization logic
-      # def deserialize(document)
-      #   puts "# ***** CUSTOM DESERIALIZE LOGIC KICKING IN... *****"
-      #   super
-      # end
+  class EsRepo
+    include Elasticsearch::Persistence::Repository
+    include Elasticsearch::Persistence::Repository::DSL
+    index_name Rails.application.secrets.elastic_index
+    document_type :ggc_registration
   end
+  # Configure the Elasticsearch client
+  # @repository.client Elasticsearch::Client.new(hosts: [{ host: Rails.application.secrets.elastic_endpoint,
+  #   port: Rails.application.secrets.elastic_endpoint_port,
+  #   user: Rails.application.secrets.elastic_user,
+  #   password: Rails.application.secrets.elastic_password,
+  #   scheme: 'https'}], log: true)
+
+  client = Elasticsearch::Client.new(url: "https://"+Rails.application.secrets.elastic_user.to_s+":"+Rails.application.secrets.elastic_password.to_s+"@"+Rails.application.secrets.elastic_endpoint+":"+Rails.application.secrets.elastic_endpoint_port.to_s, log: true)
+  @repository = EsRepo.new(client: client)
 
   def self.included(base)
+    puts @repository.inspect
     @repository.create_index!
   end
 

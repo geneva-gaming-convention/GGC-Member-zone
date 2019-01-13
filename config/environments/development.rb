@@ -38,10 +38,10 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.action_mailer.default_url_options = { :host => 'http://dev:3000' }
-  config.action_controller.default_url_options = { :host => 'http://dev:3000' }
-  config.action_controller.asset_host = 'http://dev:3000'
-  config.action_mailer.asset_host = 'http://dev:3000'
+  config.action_mailer.default_url_options = { :host => 'http://devruby:3000' }
+  config.action_controller.default_url_options = { :host => 'http://devruby:3000' }
+  config.action_controller.asset_host = 'http://devruby:3000'
+  config.action_mailer.asset_host = 'http://devruby:3000'
   config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.smtp_settings = {
@@ -52,6 +52,6 @@ Rails.application.configure do
     :authentication => 'plain',
     :enable_starttls_auto => true
   }
-  OmniAuth.config.full_host = 'http://dev:3000'
+  OmniAuth.config.full_host = 'http://devruby:3000'
 
 end
